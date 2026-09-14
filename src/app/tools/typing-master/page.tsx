@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import {
@@ -280,7 +280,7 @@ export default function TypingMasterTool() {
   };
 
   // Calculate WPM and Accuracy
-  const calculateStats = (userTyped: string, elapsedSec: number) => {
+  const calculateStats = useCallback((userTyped: string, elapsedSec: number) => {
     let correct = 0;
     let mistakes = 0;
     for (let i = 0; i < userTyped.length; i++) {
@@ -303,20 +303,20 @@ export default function TypingMasterTool() {
       setGrossWpm(gross);
       setLiveWpm(net);
     }
-  };
+  }, [currentText]);
 
   // Finish Test
-  const finishTest = (finalTyped: string) => {
+  const finishTest = useCallback((finalTyped: string) => {
     setTestFinished(true);
     setTestActive(false);
     setShowCertificate(true);
 
     const elapsed = startTime ? (Date.now() - startTime) / 1000 : 1;
     calculateStats(finalTyped, elapsed);
-  };
+  }, [startTime, calculateStats]);
 
   // Reset Test
-  const resetTestState = () => {
+  const resetTestState = useCallback(() => {
     setTestActive(false);
     setTestFinished(false);
     setShowCertificate(false);
@@ -331,10 +331,10 @@ export default function TypingMasterTool() {
     if (inputRef.current) {
       inputRef.current.focus();
     }
-  };
+  }, [duration]);
 
   // Load Text on Language / Difficulty Change
-  const loadPassage = (lang: Language, diff: Difficulty) => {
+  const loadPassage = useCallback((lang: Language, diff: Difficulty) => {
     if (diff === 'custom') {
       if (customInputText.trim()) {
         setCurrentText(customInputText.trim());
@@ -347,7 +347,7 @@ export default function TypingMasterTool() {
       setCurrentText(selected);
     }
     resetTestState();
-  };
+  }, [customInputText, resetTestState]);
 
   // Timer Countdown and Stats
   useEffect(() => {
@@ -371,16 +371,19 @@ export default function TypingMasterTool() {
       }, 200);
     }
     return () => clearInterval(interval);
-  }, [testActive, startTime, typed, duration, currentText]);
+  }, [testActive, startTime, typed, duration, currentText, finishTest, calculateStats]);
 
   useEffect(() => {
-    loadPassage(language, difficulty);
-  }, [language, difficulty]);
+    const timer = setTimeout(() => {
+      loadPassage(language, difficulty);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [language, difficulty, loadPassage]);
 
   // Input Handling
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (testFinished) return;
-    let val = e.target.value;
+    const val = e.target.value;
 
     // Start timer on first keystroke
     if (!testActive && val.length > 0) {
