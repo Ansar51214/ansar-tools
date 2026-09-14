@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3c72" />
+      <stop offset="100%" stop-color="#2a5298" />
+    </linearGradient>
+    <linearGradient id="steelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#bdc3c7" />
+      <stop offset="100%" stop-color="#2c3e50" />
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Ring Background Circle -->
+  <circle cx="250" cy="250" r="230" fill="none" stroke="url(#blueGrad)" stroke-width="25" opacity="0.15" />
+
+  <!-- Outer Gear Wheel -->
+  <g fill="url(#blueGrad)">
+    <path d="M250 35 L265 65 L235 65 Z" transform="rotate(0 250 250)" />
+    <path d="M250 35 L265 65 L235 65 Z" transform="rotate(30 250 250)" />
+    <path d="M250 35 L265 65 L235 65 Z" transform="rotate(60 250 250)" />
+    <path d="M250 35 L265 65 L235 65 Z" transform="rotate(90 250 250)" />
+    <path d="M250 35 L265 65 L235 65 Z" transform="rotate(120 250 250)" />
+    <path d="M250 35 L265 65 L235 65 Z" transform="rotate(150 250 250)" />
+    <path d="M250 35 L265 65 L235 65 Z" transform="rotate(180 250 250)" />
+    <path d="M250 35 L265 65 L235 65 Z" transform="rotate(210 250 250)" />
+    <path d="M250 35 L265 65 L235 65 Z" transform="rotate(240 250 250)" />
+    <path d="M250 35 L265 65 L235 65 Z" transform="rotate(270 250 250)" />
+    <path d="M250 35 L265 65 L235 65 Z" transform="rotate(300 250 250)" />
+    <path d="M250 35 L265 65 L235 65 Z" transform="rotate(330 250 250)" />
+  </g>
+
+  <!-- Main Gear Body -->
+  <circle cx="250" cy="250" r="175" fill="none" stroke="url(#blueGrad)" stroke-width="50" />
+
+  <!-- Inner Cutouts for Gear -->
+  <circle cx="250" cy="250" r="140" fill="#ffffff" />
+
+  <!-- Central Interlocking Wrench/Tool Shape (Forming 'A' / 'S' concept) -->
+  <path d="M220 130 C270 130 310 160 310 210 C310 250 280 270 250 290 L210 320 C180 300 160 270 160 230 C160 170 200 130 220 130 Z" fill="url(#steelGrad)" opacity="0.85" />
+  
+  <path d="M280 370 C230 370 190 340 190 290 C190 250 220 230 250 210 L290 180 C320 200 340 230 340 270 C340 330 300 370 280 370 Z" fill="url(#blueGrad)" />
+
+  <!-- Wrench Head Accents -->
+  <circle cx="250" cy="250" r="30" fill="#ffffff" />
+</svg>
