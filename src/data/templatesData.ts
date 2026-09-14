@@ -61,28 +61,28 @@ export const TEMPLATES: TemplateItem[] = [
     generateText: (v) => `
 COMMERCIAL INVOICE
 ----------------------------------------------------------------------
-${v.companyName}
-${v.companyAddress}
+${escapeHtml(v.companyName)}
+${escapeHtml(v.companyAddress)}
 
-Invoice Number: ${v.invoiceNumber}
-Date: ${v.invoiceDate}
-Payment Due Date: ${v.dueDate}
+Invoice Number: ${escapeHtml(v.invoiceNumber)}
+Date: ${escapeHtml(v.invoiceDate)}
+Payment Due Date: ${escapeHtml(v.dueDate)}
 
 BILLED TO:
-${v.clientName}
-${v.clientAddress}
+${escapeHtml(v.clientName)}
+${escapeHtml(v.clientAddress)}
 
 ----------------------------------------------------------------------
 ITEMS & SERVICES                                      AMOUNT
 ----------------------------------------------------------------------
-1. ${v.item1Description}            Rs. ${v.item1Amount}
-2. ${v.item2Description}            Rs. ${v.item2Amount}
+1. ${escapeHtml(v.item1Description)}            Rs. ${escapeHtml(v.item1Amount)}
+2. ${escapeHtml(v.item2Description)}            Rs. ${escapeHtml(v.item2Amount)}
 ----------------------------------------------------------------------
-TOTAL AMOUNT DUE:                                    Rs. ${v.totalAmount}
+TOTAL AMOUNT DUE:                                    Rs. ${escapeHtml(v.totalAmount)}
 ----------------------------------------------------------------------
 
 PAYMENT INSTRUCTIONS:
-Bank Details: ${v.bankDetails}
+Bank Details: ${escapeHtml(v.bankDetails)}
 
 Thank you for your valued business!
 Terms: Payment expected within 14 days of invoice date.
@@ -160,22 +160,22 @@ Terms: Payment expected within 14 days of invoice date.
     generateText: (v) => `
 BUSINESS QUOTATION & PROJECT ESTIMATE
 ----------------------------------------------------------------------
-ISSUED BY: ${v.companyName}
-QUOTATION REF: ${v.quotationNo}
-DATE: ${v.date}
-VALIDITY: ${v.validity}
+ISSUED BY: ${escapeHtml(v.companyName)}
+QUOTATION REF: ${escapeHtml(v.quotationNo)}
+DATE: ${escapeHtml(v.date)}
+VALIDITY: ${escapeHtml(v.validity)}
 
 CLIENT INFORMATION:
-Prepared For: ${v.clientName}
+Prepared For: ${escapeHtml(v.clientName)}
 
 PROJECT SCOPE & DELIVERABLES:
-${v.scopeSummary}
+${escapeHtml(v.scopeSummary)}
 
 ESTIMATED INVESTMENT:
-Total Estimated Price: ${v.estimatedCost}
+Total Estimated Price: ${escapeHtml(v.estimatedCost)}
 
 TERMS & CONDITIONS:
-- ${v.paymentTerms}
+- ${escapeHtml(v.paymentTerms)}
 - Any additional feature requests beyond the agreed scope will be billed at an hourly rate.
 
 Authorized Signatory: _________________________
@@ -238,14 +238,14 @@ Authorized Signatory: _________________________
     generateText: (v) => `
 CASH PAYMENT RECEIPT / VOUCHER
 ----------------------------------------------------------------------
-${v.organization}
-Receipt No: ${v.receiptNo}                        Date: ${v.receiptDate}
+${escapeHtml(v.organization)}
+Receipt No: ${escapeHtml(v.receiptNo)}                        Date: ${escapeHtml(v.receiptDate)}
 
-Received with thanks from: ${v.receivedFrom}
-The sum of Rupees: ${v.sumOf}
-Amount in Figures: Rs. ${v.numericAmount} /-
-On Account of: ${v.onAccountOf}
-Mode of Payment: ${v.modeOfPayment}
+Received with thanks from: ${escapeHtml(v.receivedFrom)}
+The sum of Rupees: ${escapeHtml(v.sumOf)}
+Amount in Figures: Rs. ${escapeHtml(v.numericAmount)} /-
+On Account of: ${escapeHtml(v.onAccountOf)}
+Mode of Payment: ${escapeHtml(v.modeOfPayment)}
 
 ----------------------------------------------------------------------
 Received By: ___________________        Customer Signature: ___________
@@ -322,27 +322,27 @@ Received By: ___________________        Customer Signature: ___________
 RESIDENTIAL / COMMERCIAL TENANCY AGREEMENT
 (MUAHDANAMA KIRAYADARI / کرایہ نامہ)
 ----------------------------------------------------------------------
-This Tenancy Agreement is executed on ${v.startDate} between:
+This Tenancy Agreement is executed on ${escapeHtml(v.startDate)} between:
 
 1. FIRST PARTY (LANDLORD / LESSOR):
-Name: ${v.landlordName}
-CNIC / Identity No: ${v.landlordCnic}
+Name: ${escapeHtml(v.landlordName)}
+CNIC / Identity No: ${escapeHtml(v.landlordCnic)}
 (Hereinafter called the "Landlord" which term includes his heirs, successors & assigns).
 
 AND
 
 2. SECOND PARTY (TENANT / LESSEE):
-Name: ${v.tenantName}
-CNIC / Identity No: ${v.tenantCnic}
+Name: ${escapeHtml(v.tenantName)}
+CNIC / Identity No: ${escapeHtml(v.tenantCnic)}
 (Hereinafter called the "Tenant" which term includes his heirs & legal representatives).
 
 WHEREAS the Landlord is absolute owner and in possession of the premises situated at:
-${v.propertyAddress}
+${escapeHtml(v.propertyAddress)}
 
 NOW THEREFORE BOTH PARTIES MUTUALLY AGREE AS FOLLOWS:
-1. TERM: The tenancy is granted for a period of ${v.tenancyDuration} commencing from ${v.startDate}.
-2. MONTHLY RENT: The monthly rent agreed is Rs. ${v.monthlyRent} /- payable in advance on or before the 5th of each calendar month.
-3. SECURITY DEPOSIT: The Tenant has paid a refundable security deposit of Rs. ${v.securityDeposit} /- to the Landlord.
+1. TERM: The tenancy is granted for a period of ${escapeHtml(v.tenancyDuration)} commencing from ${escapeHtml(v.startDate)}.
+2. MONTHLY RENT: The monthly rent agreed is Rs. ${escapeHtml(v.monthlyRent)} /- payable in advance on or before the 5th of each calendar month.
+3. SECURITY DEPOSIT: The Tenant has paid a refundable security deposit of Rs. ${escapeHtml(v.securityDeposit)} /- to the Landlord.
 4. UTILITY BILLS: Electricity, gas, water, and society maintenance bills shall be paid promptly by the Tenant.
 5. SUB-LETTING: The Tenant shall NOT sublet, assign, or part with the possession of the premises to any third party.
 6. TERMINATION / NOTICE: Either party may terminate this agreement by serving one (1) month prior written notice.
@@ -351,7 +351,7 @@ IN WITNESS WHEREOF, the parties hereto have set their hands on this agreement:
 
 ___________________________                 ___________________________
 Landlord Signature                          Tenant Signature
-CNIC: ${v.landlordCnic}                     CNIC: ${v.tenantCnic}
+CNIC: ${escapeHtml(v.landlordCnic)}                     CNIC: ${escapeHtml(v.tenantCnic)}
 
 Witness 1: ___________________              Witness 2: ___________________
 CNIC: ________________________              CNIC: ________________________
@@ -425,24 +425,24 @@ CNIC: ________________________              CNIC: ________________________
 BEFORE THE NOTARY PUBLIC / OATH COMMISSIONER
 AFFIDAVIT (بیانِ حلفی)
 ----------------------------------------------------------------------
-SUBJECT: ${v.subject}
+SUBJECT: ${escapeHtml(v.subject)}
 
-I, ${v.deponentName}, Son/Daughter of ${v.fatherName},
-Holding CNIC No: ${v.deponentCnic},
-Resident of: ${v.deponentAddress},
+I, ${escapeHtml(v.deponentName)}, Son/Daughter of ${escapeHtml(v.fatherName)},
+Holding CNIC No: ${escapeHtml(v.deponentCnic)},
+Resident of: ${escapeHtml(v.deponentAddress)},
 
 Do solemnly affirm and declare on oath as under:
 
-1. ${v.statementPoint1}
-2. ${v.statementPoint2}
-3. ${v.statementPoint3}
+1. ${escapeHtml(v.statementPoint1)}
+2. ${escapeHtml(v.statementPoint2)}
+3. ${escapeHtml(v.statementPoint3)}
 
 VERIFICATION:
 Verified on oath this day at that the contents of the above affidavit are true and correct to the best of my knowledge and belief, and nothing has been concealed or falsely stated.
 
 DEPONENT: _________________________
-Name: ${v.deponentName}
-CNIC: ${v.deponentCnic}
+Name: ${escapeHtml(v.deponentName)}
+CNIC: ${escapeHtml(v.deponentCnic)}
 `.trim(),
     generateHtml: (v) => `
 <div style="font-family: 'Times New Roman', serif; color: #1e293b; max-width: 700px; margin: auto; padding: 28px; border: 1px solid #94a3b8; line-height: 1.6;">
@@ -494,18 +494,18 @@ CNIC: ${v.deponentCnic}
     generateText: (v) => `
 MUTUAL NON-DISCLOSURE AGREEMENT (NDA)
 ----------------------------------------------------------------------
-This Non-Disclosure Agreement is entered into on ${v.effectiveDate} by:
+This Non-Disclosure Agreement is entered into on ${escapeHtml(v.effectiveDate)} by:
 
-PARTY A: ${v.disclosingParty}
+PARTY A: ${escapeHtml(v.disclosingParty)}
 AND
-PARTY B: ${v.receivingParty}
+PARTY B: ${escapeHtml(v.receivingParty)}
 
 1. PURPOSE: The parties wish to explore a business relationship regarding:
-${v.purpose}
+${escapeHtml(v.purpose)}
 
 2. CONFIDENTIAL INFORMATION: Includes all technical data, trade secrets, software code, source files, and commercial specifications.
 3. OBLIGATIONS: The Receiving Party agrees to hold all confidential info in strictest confidence and not disclose to third parties without prior written consent.
-4. DURATION: These obligations shall remain in effect for a period of ${v.termYears} from the date of disclosure.
+4. DURATION: These obligations shall remain in effect for a period of ${escapeHtml(v.termYears)} from the date of disclosure.
 
 Signed by Authorized Representatives:
 Party A: _________________________       Party B: _________________________
@@ -545,30 +545,30 @@ Party A: _________________________       Party B: _________________________
       { key: 'reasonSummary', label: 'Reason / Next Step (Optional)', defaultValue: 'to pursue an exciting new career growth opportunity' }
     ],
     generateText: (v) => `
-Date: ${v.currentDate}
+Date: ${escapeHtml(v.currentDate)}
 
 To:
-${v.managerName}
-${v.companyName}
+${escapeHtml(v.managerName)}
+${escapeHtml(v.companyName)}
 
-Subject: Resignation Letter - ${v.employeeName} (${v.employeeDesignation})
+Subject: Resignation Letter - ${escapeHtml(v.employeeName)} (${escapeHtml(v.employeeDesignation)})
 
-Dear ${v.managerName},
+Dear ${escapeHtml(v.managerName)},
 
-Please accept this letter as formal notification that I am resigning from my position as ${v.employeeDesignation} at ${v.companyName}. My last working day will be ${v.lastWorkingDay}, providing the standard two weeks' notice.
+Please accept this letter as formal notification that I am resigning from my position as ${escapeHtml(v.employeeDesignation)} at ${escapeHtml(v.companyName)}. My last working day will be ${escapeHtml(v.lastWorkingDay)}, providing the standard two weeks' notice.
 
-I have decided to take this step ${v.reasonSummary}. 
+I have decided to take this step ${escapeHtml(v.reasonSummary)}. 
 
-I am sincerely grateful for the opportunities, mentorship, and professional support extended to me during my tenure with ${v.companyName}. Working with the team has been an enriching experience that I will always value.
+I am sincerely grateful for the opportunities, mentorship, and professional support extended to me during my tenure with ${escapeHtml(v.companyName)}. Working with the team has been an enriching experience that I will always value.
 
 During my remaining notice period, I am fully committed to ensuring a smooth transition of my duties, documentation of ongoing projects, and handover to my colleagues.
 
-I wish ${v.companyName} continued growth and success in all future endeavors.
+I wish ${escapeHtml(v.companyName)} continued growth and success in all future endeavors.
 
 Sincerely,
 
-${v.employeeName}
-${v.employeeDesignation}
+${escapeHtml(v.employeeName)}
+${escapeHtml(v.employeeDesignation)}
 `.trim(),
     generateHtml: (v) => `
 <div style="font-family: Arial, sans-serif; color: #1e293b; max-width: 680px; margin: auto; padding: 28px; border: 1px solid #e2e8f0; line-height: 1.6;">
@@ -622,14 +622,14 @@ ${v.employeeDesignation}
     ],
     generateText: (v) => `
 To:
-${v.authorityName}
-${v.orgName}
+${escapeHtml(v.authorityName)}
+${escapeHtml(v.orgName)}
 
 Subject: Application for Leave of Absence
 
 Respected Sir/Madam,
 
-Most respectfully, I wish to state that I am unable to attend my duties from ${v.fromDate} to ${v.toDate} ${v.reason}.
+Most respectfully, I wish to state that I am unable to attend my duties from ${escapeHtml(v.fromDate)} to ${escapeHtml(v.toDate)} ${escapeHtml(v.reason)}.
 
 I request you to kindly grant me leave for the aforementioned dates. I will ensure that any urgent tasks are addressed upon my return.
 
@@ -637,8 +637,8 @@ Thanking you in anticipation.
 
 Yours obediently,
 
-${v.applicantName}
-${v.roleOrClass}
+${escapeHtml(v.applicantName)}
+${escapeHtml(v.roleOrClass)}
 Date: ${new Date().toISOString().split('T')[0]}
 `.trim(),
     generateHtml: (v) => `
@@ -682,15 +682,15 @@ Date: ${new Date().toISOString().split('T')[0]}
 TO WHOM IT MAY CONCERN
 EXPERIENCE & RELIEVING CERTIFICATE
 ----------------------------------------------------------------------
-This is to certify that ${v.employeeName}, S/o ${v.fatherName}, was employed with ${v.companyName} from ${v.startDate} to ${v.endDate}.
+This is to certify that ${escapeHtml(v.employeeName)}, S/o ${escapeHtml(v.fatherName)}, was employed with ${escapeHtml(v.companyName)} from ${escapeHtml(v.startDate)} to ${escapeHtml(v.endDate)}.
 
-During his tenure, he served as ${v.designation}.
+During his tenure, he served as ${escapeHtml(v.designation)}.
 
-Throughout his service with us, we found him to be ${v.conductSummary}. He has fulfilled all his obligations and has been formally relieved of all duties with no outstanding dues.
+Throughout his service with us, we found him to be ${escapeHtml(v.conductSummary)}. He has fulfilled all his obligations and has been formally relieved of all duties with no outstanding dues.
 
 We wish him every success in all his future personal and professional endeavors.
 
-For ${v.companyName}
+For ${escapeHtml(v.companyName)}
 
 _________________________
 Head of Human Resources
@@ -751,18 +751,18 @@ Head of Human Resources
     generateText: (v) => `
 CERTIFICATE OF ACHIEVEMENT
 ----------------------------------------------------------------------
-${v.institutionName}
+${escapeHtml(v.institutionName)}
 
 PROUDLY PRESENTED TO:
-${v.recipientName}
+${escapeHtml(v.recipientName)}
 
 In recognition of successfully completing the program:
-"${v.courseTitle}"
-${v.gradeOrHonor}
+"${escapeHtml(v.courseTitle)}"
+${escapeHtml(v.gradeOrHonor)}
 
-Awarded on: ${v.awardDate}
+Awarded on: ${escapeHtml(v.awardDate)}
 
-${v.signatory1}                                      ${v.signatory2}
+${escapeHtml(v.signatory1)}                                      ${escapeHtml(v.signatory2)}
 Director                                             Dean
 `.trim(),
     generateHtml: (v) => `
@@ -815,25 +815,25 @@ Director                                             Dean
       { key: 'submissionDate', label: 'Submission Date', type: 'date', defaultValue: '2026-09-14' }
     ],
     generateText: (v) => `
-${v.universityName}
-${v.departmentName}
+${escapeHtml(v.universityName)}
+${escapeHtml(v.departmentName)}
 
 ASSIGNMENT SUBMISSION
 ----------------------------------------------------------------------
 TITLE:
-"${v.assignmentTitle}"
+"${escapeHtml(v.assignmentTitle)}"
 
 COURSE:
-${v.courseTitle}
+${escapeHtml(v.courseTitle)}
 
 SUBMITTED BY:
-${v.submittedBy}
+${escapeHtml(v.submittedBy)}
 
 SUBMITTED TO:
-${v.submittedTo}
+${escapeHtml(v.submittedTo)}
 
 DATE OF SUBMISSION:
-${v.submissionDate}
+${escapeHtml(v.submissionDate)}
 `.trim(),
     generateHtml: (v) => `
 <div style="font-family: Arial, sans-serif; color: #1e293b; max-width: 650px; margin: auto; padding: 40px 24px; border: 1px solid #cbd5e1; text-align: center;">
@@ -890,25 +890,25 @@ ${v.submissionDate}
 ROYAL MATRIMONIAL BIODATA (شادی بائیو ڈیٹا)
 ----------------------------------------------------------------------
 PERSONAL DETAILS:
-Name: ${v.fullName}
-Date of Birth: ${v.dob}
-Height / Complexion: ${v.height}
-Religion / Caste: ${v.religionCaste}
+Name: ${escapeHtml(v.fullName)}
+Date of Birth: ${escapeHtml(v.dob)}
+Height / Complexion: ${escapeHtml(v.height)}
+Religion / Caste: ${escapeHtml(v.religionCaste)}
 
 EDUCATION & CAREER:
-Qualification: ${v.education}
-Occupation: ${v.profession}
+Qualification: ${escapeHtml(v.education)}
+Occupation: ${escapeHtml(v.profession)}
 
 FAMILY BACKGROUND:
-Father: ${v.fatherInfo}
-Mother: ${v.motherInfo}
-Siblings: ${v.siblingsInfo}
+Father: ${escapeHtml(v.fatherInfo)}
+Mother: ${escapeHtml(v.motherInfo)}
+Siblings: ${escapeHtml(v.siblingsInfo)}
 
 PARTNER EXPECTATIONS:
-${v.partnerExpectations}
+${escapeHtml(v.partnerExpectations)}
 
 CONTACT:
-${v.contactDetails}
+${escapeHtml(v.contactDetails)}
 `.trim(),
     generateHtml: (v) => `
 <div style="font-family: Arial, sans-serif; color: #1e293b; max-width: 680px; margin: auto; padding: 26px; border: 3px solid #be123c; border-radius: 12px; background: #fff1f2;">
