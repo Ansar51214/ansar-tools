@@ -1,3 +1,4 @@
+import { escapeHtml } from '@/lib/escapeHtml';
 export interface TemplateField {
   key: string;
   label: string;
@@ -90,21 +91,21 @@ Terms: Payment expected within 14 days of invoice date.
 <div style="font-family: Arial, sans-serif; color: #1e293b; max-width: 700px; margin: auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 8px;">
   <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #2563eb; padding-bottom: 16px; margin-bottom: 20px;">
     <div>
-      <h2 style="margin: 0; color: #1e3a8a; font-size: 22px;">${v.companyName}</h2>
-      <p style="margin: 4px 0 0; color: #64748b; font-size: 13px;">${v.companyAddress}</p>
+      <h2 style="margin: 0; color: #1e3a8a; font-size: 22px;">${escapeHtml(v.companyName)}</h2>
+      <p style="margin: 4px 0 0; color: #64748b; font-size: 13px;">${escapeHtml(v.companyAddress)}</p>
     </div>
     <div style="text-align: right;">
       <h1 style="margin: 0; color: #2563eb; font-size: 24px; text-transform: uppercase;">INVOICE</h1>
-      <p style="margin: 4px 0 0; font-size: 13px;"><strong>#${v.invoiceNumber}</strong></p>
-      <p style="margin: 2px 0 0; color: #64748b; font-size: 12px;">Date: ${v.invoiceDate}</p>
+      <p style="margin: 4px 0 0; font-size: 13px;"><strong>#${escapeHtml(v.invoiceNumber)}</strong></p>
+      <p style="margin: 2px 0 0; color: #64748b; font-size: 12px;">Date: ${escapeHtml(v.invoiceDate)}</p>
     </div>
   </div>
 
   <div style="margin-bottom: 20px; background: #f8fafc; padding: 12px; border-radius: 6px;">
     <strong style="color: #475569; font-size: 11px; text-transform: uppercase;">Billed To:</strong>
-    <p style="margin: 4px 0 0; font-weight: bold; font-size: 15px;">${v.clientName}</p>
-    <p style="margin: 2px 0 0; color: #64748b; font-size: 13px;">${v.clientAddress}</p>
-    <p style="margin: 4px 0 0; font-size: 12px; color: #dc2626;"><strong>Due Date:</strong> ${v.dueDate}</p>
+    <p style="margin: 4px 0 0; font-weight: bold; font-size: 15px;">${escapeHtml(v.clientName)}</p>
+    <p style="margin: 2px 0 0; color: #64748b; font-size: 13px;">${escapeHtml(v.clientAddress)}</p>
+    <p style="margin: 4px 0 0; font-size: 12px; color: #dc2626;"><strong>Due Date:</strong> ${escapeHtml(v.dueDate)}</p>
   </div>
 
   <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
@@ -116,23 +117,23 @@ Terms: Payment expected within 14 days of invoice date.
     </thead>
     <tbody style="font-size: 13px;">
       <tr style="border-bottom: 1px solid #e2e8f0;">
-        <td style="padding: 10px;">${v.item1Description}</td>
-        <td style="padding: 10px; text-align: right; font-weight: 600;">${v.item1Amount}</td>
+        <td style="padding: 10px;">${escapeHtml(v.item1Description)}</td>
+        <td style="padding: 10px; text-align: right; font-weight: 600;">${escapeHtml(v.item1Amount)}</td>
       </tr>
       <tr style="border-bottom: 1px solid #e2e8f0;">
-        <td style="padding: 10px;">${v.item2Description}</td>
-        <td style="padding: 10px; text-align: right; font-weight: 600;">${v.item2Amount}</td>
+        <td style="padding: 10px;">${escapeHtml(v.item2Description)}</td>
+        <td style="padding: 10px; text-align: right; font-weight: 600;">${escapeHtml(v.item2Amount)}</td>
       </tr>
       <tr style="background: #f1f5f9; font-weight: bold; font-size: 15px;">
         <td style="padding: 12px; color: #0f172a;">Total Payable</td>
-        <td style="padding: 12px; text-align: right; color: #2563eb;">${v.totalAmount}</td>
+        <td style="padding: 12px; text-align: right; color: #2563eb;">${escapeHtml(v.totalAmount)}</td>
       </tr>
     </tbody>
   </table>
 
   <div style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 12px; border-radius: 4px; font-size: 12px;">
     <strong>Remittance / Bank Details:</strong><br />
-    ${v.bankDetails}
+    ${escapeHtml(v.bankDetails)}
   </div>
 </div>
 `
@@ -183,33 +184,33 @@ Authorized Signatory: _________________________
 <div style="font-family: Arial, sans-serif; color: #1e293b; max-width: 700px; margin: auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 8px;">
   <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #059669; padding-bottom: 14px; margin-bottom: 18px;">
     <div>
-      <h2 style="margin: 0; color: #065f46; font-size: 20px;">${v.companyName}</h2>
+      <h2 style="margin: 0; color: #065f46; font-size: 20px;">${escapeHtml(v.companyName)}</h2>
       <p style="margin: 3px 0 0; color: #64748b; font-size: 12px;">Official Project Quotation</p>
     </div>
     <div style="text-align: right;">
-      <span style="background: #d1fae5; color: #065f46; font-size: 11px; font-weight: bold; padding: 4px 8px; border-radius: 4px;">Ref: ${v.quotationNo}</span>
-      <p style="margin: 5px 0 0; color: #64748b; font-size: 12px;">Date: ${v.date}</p>
+      <span style="background: #d1fae5; color: #065f46; font-size: 11px; font-weight: bold; padding: 4px 8px; border-radius: 4px;">Ref: ${escapeHtml(v.quotationNo)}</span>
+      <p style="margin: 5px 0 0; color: #64748b; font-size: 12px;">Date: ${escapeHtml(v.date)}</p>
     </div>
   </div>
 
   <div style="margin-bottom: 16px;">
     <p style="margin: 0; font-size: 12px; color: #64748b; text-transform: uppercase;">Prepared For:</p>
-    <h3 style="margin: 4px 0; color: #0f172a; font-size: 16px;">${v.clientName}</h3>
+    <h3 style="margin: 4px 0; color: #0f172a; font-size: 16px;">${escapeHtml(v.clientName)}</h3>
   </div>
 
   <div style="background: #f8fafc; padding: 14px; border-radius: 6px; margin-bottom: 16px; border: 1px solid #e2e8f0;">
     <h4 style="margin: 0 0 6px; font-size: 13px; color: #0f172a;">Scope of Work:</h4>
-    <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #334155;">${v.scopeSummary}</p>
+    <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #334155;">${escapeHtml(v.scopeSummary)}</p>
   </div>
 
   <div style="display: flex; justify-content: space-between; align-items: center; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 14px; border-radius: 6px; margin-bottom: 16px;">
     <span style="font-weight: bold; font-size: 14px; color: #065f46;">Total Estimated Investment:</span>
-    <span style="font-size: 20px; font-weight: bold; color: #059669;">${v.estimatedCost}</span>
+    <span style="font-size: 20px; font-weight: bold; color: #059669;">${escapeHtml(v.estimatedCost)}</span>
   </div>
 
   <div style="font-size: 12px; color: #475569; border-top: 1px solid #e2e8f0; padding-top: 12px;">
-    <strong>Payment & Terms:</strong> ${v.paymentTerms}<br />
-    <em>Quotation is valid for: ${v.validity}</em>
+    <strong>Payment & Terms:</strong> ${escapeHtml(v.paymentTerms)}<br />
+    <em>Quotation is valid for: ${escapeHtml(v.validity)}</em>
   </div>
 </div>
 `
@@ -253,42 +254,42 @@ Received By: ___________________        Customer Signature: ___________
 <div style="font-family: Arial, sans-serif; color: #1e293b; max-width: 650px; margin: auto; padding: 20px; border: 2px dashed #94a3b8; border-radius: 8px;">
   <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #0284c7; padding-bottom: 8px; margin-bottom: 12px;">
     <div>
-      <h3 style="margin: 0; color: #0369a1; font-size: 18px;">${v.organization}</h3>
+      <h3 style="margin: 0; color: #0369a1; font-size: 18px;">${escapeHtml(v.organization)}</h3>
       <span style="font-size: 11px; color: #64748b;">OFFICIAL MONEY RECEIPT</span>
     </div>
     <div style="text-align: right;">
-      <p style="margin: 0; font-size: 13px; font-weight: bold; color: #dc2626;">No: ${v.receiptNo}</p>
-      <p style="margin: 2px 0 0; font-size: 12px; color: #64748b;">Date: ${v.receiptDate}</p>
+      <p style="margin: 0; font-size: 13px; font-weight: bold; color: #dc2626;">No: ${escapeHtml(v.receiptNo)}</p>
+      <p style="margin: 2px 0 0; font-size: 12px; color: #64748b;">Date: ${escapeHtml(v.receiptDate)}</p>
     </div>
   </div>
 
   <table style="width: 100%; font-size: 13px; line-height: 1.8;">
     <tr>
       <td style="width: 25%; color: #64748b;">Received From:</td>
-      <td style="font-weight: bold; border-bottom: 1px dotted #cbd5e1;">${v.receivedFrom}</td>
+      <td style="font-weight: bold; border-bottom: 1px dotted #cbd5e1;">${escapeHtml(v.receivedFrom)}</td>
     </tr>
     <tr>
       <td style="color: #64748b;">The Sum of:</td>
-      <td style="font-style: italic; border-bottom: 1px dotted #cbd5e1;">${v.sumOf}</td>
+      <td style="font-style: italic; border-bottom: 1px dotted #cbd5e1;">${escapeHtml(v.sumOf)}</td>
     </tr>
     <tr>
       <td style="color: #64748b;">On Account of:</td>
-      <td style="border-bottom: 1px dotted #cbd5e1;">${v.onAccountOf}</td>
+      <td style="border-bottom: 1px dotted #cbd5e1;">${escapeHtml(v.onAccountOf)}</td>
     </tr>
     <tr>
       <td style="color: #64748b;">Payment Method:</td>
-      <td style="border-bottom: 1px dotted #cbd5e1;">${v.modeOfPayment}</td>
+      <td style="border-bottom: 1px dotted #cbd5e1;">${escapeHtml(v.modeOfPayment)}</td>
     </tr>
   </table>
 
   <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 24px; padding-top: 12px;">
     <div style="background: #f1f5f9; padding: 8px 16px; border-radius: 4px; border: 1px solid #cbd5e1;">
       <span style="font-size: 11px; color: #64748b;">AMOUNT:</span><br />
-      <strong style="font-size: 18px; color: #0284c7;">Rs. ${v.numericAmount} /-</strong>
+      <strong style="font-size: 18px; color: #0284c7;">Rs. ${escapeHtml(v.numericAmount)} /-</strong>
     </div>
     <div style="text-align: center;">
       <div style="width: 140px; border-top: 1px solid #475569; margin-bottom: 4px;"></div>
-      <span style="font-size: 11px; color: #475569;">${v.authorizedBy}</span>
+      <span style="font-size: 11px; color: #475569;">${escapeHtml(v.authorizedBy)}</span>
     </div>
   </div>
 </div>
@@ -362,26 +363,26 @@ CNIC: ________________________              CNIC: ________________________
     <p style="margin: 4px 0 0; font-size: 13px; color: #64748b;">Governed under the Urban Rent Restriction Ordinance</p>
   </div>
 
-  <p style="font-size: 13px;">This Agreement of Tenancy is executed on <strong>${v.startDate}</strong> by and between:</p>
+  <p style="font-size: 13px;">This Agreement of Tenancy is executed on <strong>${escapeHtml(v.startDate)}</strong> by and between:</p>
 
   <div style="background: #f8fafc; padding: 12px; border-left: 3px solid #1e3a8a; margin-bottom: 12px; font-size: 13px;">
     <strong>1. LANDLORD (FIRST PARTY):</strong><br />
-    Name: <strong>${v.landlordName}</strong> | CNIC: <strong>${v.landlordCnic}</strong>
+    Name: <strong>${escapeHtml(v.landlordName)}</strong> | CNIC: <strong>${escapeHtml(v.landlordCnic)}</strong>
   </div>
 
   <div style="background: #f8fafc; padding: 12px; border-left: 3px solid #0284c7; margin-bottom: 16px; font-size: 13px;">
     <strong>2. TENANT (SECOND PARTY):</strong><br />
-    Name: <strong>${v.tenantName}</strong> | CNIC: <strong>${v.tenantCnic}</strong>
+    Name: <strong>${escapeHtml(v.tenantName)}</strong> | CNIC: <strong>${escapeHtml(v.tenantCnic)}</strong>
   </div>
 
   <p style="font-size: 13px;">
-    <strong>Premises Location:</strong> The Landlord hereby lets out premises situated at <strong>${v.propertyAddress}</strong>.
+    <strong>Premises Location:</strong> The Landlord hereby lets out premises situated at <strong>${escapeHtml(v.propertyAddress)}</strong>.
   </p>
 
   <ol style="font-size: 13px; padding-left: 20px;">
-    <li style="margin-bottom: 6px;"><strong>Duration:</strong> The tenancy period is fixed for <strong>${v.tenancyDuration}</strong> starting <strong>${v.startDate}</strong>.</li>
-    <li style="margin-bottom: 6px;"><strong>Monthly Rent:</strong> The monthly rent is agreed at <strong>Rs. ${v.monthlyRent} /-</strong> payable before 5th of each month.</li>
-    <li style="margin-bottom: 6px;"><strong>Security Deposit:</strong> The tenant deposited a refundable security sum of <strong>Rs. ${v.securityDeposit} /-</strong>.</li>
+    <li style="margin-bottom: 6px;"><strong>Duration:</strong> The tenancy period is fixed for <strong>${escapeHtml(v.tenancyDuration)}</strong> starting <strong>${escapeHtml(v.startDate)}</strong>.</li>
+    <li style="margin-bottom: 6px;"><strong>Monthly Rent:</strong> The monthly rent is agreed at <strong>Rs. ${escapeHtml(v.monthlyRent)} /-</strong> payable before 5th of each month.</li>
+    <li style="margin-bottom: 6px;"><strong>Security Deposit:</strong> The tenant deposited a refundable security sum of <strong>Rs. ${escapeHtml(v.securityDeposit)} /-</strong>.</li>
     <li style="margin-bottom: 6px;"><strong>Utilities:</strong> Tenant is responsible for clearing all electricity, gas, water, and internet bills promptly.</li>
     <li style="margin-bottom: 6px;"><strong>Notice Period:</strong> One month notice in writing is mandatory for vacation by either party.</li>
   </ol>
@@ -389,12 +390,12 @@ CNIC: ________________________              CNIC: ________________________
   <div style="display: flex; justify-content: space-between; margin-top: 36px; padding-top: 16px;">
     <div>
       <p style="margin: 0; border-top: 1px solid #475569; width: 180px; text-align: center; font-size: 12px; padding-top: 4px;">
-        <strong>First Party (Landlord)</strong><br />${v.landlordName}
+        <strong>First Party (Landlord)</strong><br />${escapeHtml(v.landlordName)}
       </p>
     </div>
     <div>
       <p style="margin: 0; border-top: 1px solid #475569; width: 180px; text-align: center; font-size: 12px; padding-top: 4px;">
-        <strong>Second Party (Tenant)</strong><br />${v.tenantName}
+        <strong>Second Party (Tenant)</strong><br />${escapeHtml(v.tenantName)}
       </p>
     </div>
   </div>
@@ -451,13 +452,13 @@ CNIC: ${v.deponentCnic}
   </div>
 
   <p style="font-size: 13px; margin-bottom: 12px;">
-    I, <strong>${v.deponentName}</strong>, S/o <strong>${v.fatherName}</strong>, CNIC No. <strong>${v.deponentCnic}</strong>, resident of <strong>${v.deponentAddress}</strong>, do hereby solemnly declare on oath as follows:
+    I, <strong>${escapeHtml(v.deponentName)}</strong>, S/o <strong>${escapeHtml(v.fatherName)}</strong>, CNIC No. <strong>${escapeHtml(v.deponentCnic)}</strong>, resident of <strong>${escapeHtml(v.deponentAddress)}</strong>, do hereby solemnly declare on oath as follows:
   </p>
 
   <ol style="font-size: 13px; padding-left: 20px; line-height: 1.8;">
-    <li>${v.statementPoint1}</li>
-    <li>${v.statementPoint2}</li>
-    <li>${v.statementPoint3}</li>
+    <li>${escapeHtml(v.statementPoint1)}</li>
+    <li>${escapeHtml(v.statementPoint2)}</li>
+    <li>${escapeHtml(v.statementPoint3)}</li>
   </ol>
 
   <div style="margin-top: 24px; padding: 12px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 12px;">
@@ -468,7 +469,7 @@ CNIC: ${v.deponentCnic}
   <div style="margin-top: 36px; text-align: right;">
     <div style="display: inline-block; text-align: center; border-top: 1px solid #1e293b; width: 180px; padding-top: 6px;">
       <strong style="font-size: 13px;">DEPONENT</strong><br />
-      <span style="font-size: 11px;">${v.deponentName}</span>
+      <span style="font-size: 11px;">${escapeHtml(v.deponentName)}</span>
     </div>
   </div>
 </div>
@@ -512,12 +513,12 @@ Party A: _________________________       Party B: _________________________
     generateHtml: (v) => `
 <div style="font-family: Arial, sans-serif; color: #1e293b; max-width: 700px; margin: auto; padding: 24px; border: 1px solid #cbd5e1; line-height: 1.6;">
   <h2 style="text-align: center; color: #0f172a; border-bottom: 2px solid #2563eb; padding-bottom: 8px;">NON-DISCLOSURE AGREEMENT (NDA)</h2>
-  <p style="font-size: 13px;">This Agreement is entered into on <strong>${v.effectiveDate}</strong> between <strong>${v.disclosingParty}</strong> and <strong>${v.receivingParty}</strong>.</p>
-  <p style="font-size: 13px;"><strong>Purpose:</strong> ${v.purpose}</p>
-  <p style="font-size: 13px;"><strong>Term:</strong> The confidentiality terms shall bind both parties for <strong>${v.termYears}</strong>.</p>
+  <p style="font-size: 13px;">This Agreement is entered into on <strong>${escapeHtml(v.effectiveDate)}</strong> between <strong>${escapeHtml(v.disclosingParty)}</strong> and <strong>${escapeHtml(v.receivingParty)}</strong>.</p>
+  <p style="font-size: 13px;"><strong>Purpose:</strong> ${escapeHtml(v.purpose)}</p>
+  <p style="font-size: 13px;"><strong>Term:</strong> The confidentiality terms shall bind both parties for <strong>${escapeHtml(v.termYears)}</strong>.</p>
   <div style="display: flex; justify-content: space-between; margin-top: 40px;">
-    <div><strong>${v.disclosingParty}</strong><br />Sign: ___________________</div>
-    <div><strong>${v.receivingParty}</strong><br />Sign: ___________________</div>
+    <div><strong>${escapeHtml(v.disclosingParty)}</strong><br />Sign: ___________________</div>
+    <div><strong>${escapeHtml(v.receivingParty)}</strong><br />Sign: ___________________</div>
   </div>
 </div>
 `
@@ -571,23 +572,23 @@ ${v.employeeDesignation}
 `.trim(),
     generateHtml: (v) => `
 <div style="font-family: Arial, sans-serif; color: #1e293b; max-width: 680px; margin: auto; padding: 28px; border: 1px solid #e2e8f0; line-height: 1.6;">
-  <p style="margin: 0; color: #64748b; font-size: 13px;">Date: ${v.currentDate}</p>
+  <p style="margin: 0; color: #64748b; font-size: 13px;">Date: ${escapeHtml(v.currentDate)}</p>
   <div style="margin: 16px 0;">
     <strong style="font-size: 14px; color: #0f172a;">To:</strong><br />
-    <span style="font-size: 14px;">${v.managerName}</span><br />
-    <span style="font-size: 13px; color: #475569;">${v.companyName}</span>
+    <span style="font-size: 14px;">${escapeHtml(v.managerName)}</span><br />
+    <span style="font-size: 13px; color: #475569;">${escapeHtml(v.companyName)}</span>
   </div>
 
   <div style="background: #f1f5f9; padding: 10px 14px; border-left: 4px solid #2563eb; margin-bottom: 16px;">
-    <strong style="color: #1e3a8a; font-size: 14px;">Subject: Resignation from the position of ${v.employeeDesignation}</strong>
+    <strong style="color: #1e3a8a; font-size: 14px;">Subject: Resignation from the position of ${escapeHtml(v.employeeDesignation)}</strong>
   </div>
 
-  <p style="font-size: 13px;">Dear ${v.managerName},</p>
+  <p style="font-size: 13px;">Dear ${escapeHtml(v.managerName)},</p>
   <p style="font-size: 13px;">
-    Please accept this letter as formal notification that I am resigning from my position as <strong>${v.employeeDesignation}</strong> with <strong>${v.companyName}</strong>. In accordance with company policy, my last working day will be <strong>${v.lastWorkingDay}</strong>.
+    Please accept this letter as formal notification that I am resigning from my position as <strong>${escapeHtml(v.employeeDesignation)}</strong> with <strong>${escapeHtml(v.companyName)}</strong>. In accordance with company policy, my last working day will be <strong>${escapeHtml(v.lastWorkingDay)}</strong>.
   </p>
   <p style="font-size: 13px;">
-    I have decided to take this step ${v.reasonSummary}. I want to express my genuine appreciation for the guidance and opportunities I have received during my time with your organization.
+    I have decided to take this step ${escapeHtml(v.reasonSummary)}. I want to express my genuine appreciation for the guidance and opportunities I have received during my time with your organization.
   </p>
   <p style="font-size: 13px;">
     During the transition period, I will do everything possible to wrap up my responsibilities and train other team members to ensure minimal disruption.
@@ -595,8 +596,8 @@ ${v.employeeDesignation}
 
   <div style="margin-top: 32px;">
     <p style="margin: 0; font-size: 13px;">Yours sincerely,</p>
-    <p style="margin: 18px 0 0; font-weight: bold; font-size: 15px; color: #0f172a;">${v.employeeName}</p>
-    <p style="margin: 0; font-size: 13px; color: #64748b;">${v.employeeDesignation}</p>
+    <p style="margin: 18px 0 0; font-weight: bold; font-size: 15px; color: #0f172a;">${escapeHtml(v.employeeName)}</p>
+    <p style="margin: 0; font-size: 13px; color: #64748b;">${escapeHtml(v.employeeDesignation)}</p>
   </div>
 </div>
 `
@@ -642,19 +643,19 @@ Date: ${new Date().toISOString().split('T')[0]}
 `.trim(),
     generateHtml: (v) => `
 <div style="font-family: Arial, sans-serif; color: #1e293b; max-width: 650px; margin: auto; padding: 24px; border: 1px solid #e2e8f0; line-height: 1.6;">
-  <p style="margin: 0; font-size: 13px;"><strong>To:</strong><br />${v.authorityName}<br />${v.orgName}</p>
+  <p style="margin: 0; font-size: 13px;"><strong>To:</strong><br />${escapeHtml(v.authorityName)}<br />${escapeHtml(v.orgName)}</p>
   <h4 style="margin: 16px 0; color: #1e3a8a; border-bottom: 1px solid #cbd5e1; padding-bottom: 6px;">Subject: Application for Leave of Absence</h4>
   <p style="font-size: 13px;">Respected Sir/Madam,</p>
   <p style="font-size: 13px;">
-    Most respectfully, I beg to submit that I cannot attend office from <strong>${v.fromDate}</strong> to <strong>${v.toDate}</strong> ${v.reason}.
+    Most respectfully, I beg to submit that I cannot attend office from <strong>${escapeHtml(v.fromDate)}</strong> to <strong>${escapeHtml(v.toDate)}</strong> ${escapeHtml(v.reason)}.
   </p>
   <p style="font-size: 13px;">
     Kindly sanction my leave for the stated period. I will be deeply grateful.
   </p>
   <div style="margin-top: 30px;">
     <p style="margin: 0; font-size: 13px;">Yours obediently,</p>
-    <p style="margin: 10px 0 0; font-weight: bold;">${v.applicantName}</p>
-    <p style="margin: 0; font-size: 12px; color: #64748b;">${v.roleOrClass}</p>
+    <p style="margin: 10px 0 0; font-weight: bold;">${escapeHtml(v.applicantName)}</p>
+    <p style="margin: 0; font-size: 12px; color: #64748b;">${escapeHtml(v.roleOrClass)}</p>
   </div>
 </div>
 `
@@ -697,7 +698,7 @@ Head of Human Resources
     generateHtml: (v) => `
 <div style="font-family: Arial, sans-serif; color: #1e293b; max-width: 680px; margin: auto; padding: 32px; border: 2px solid #cbd5e1; border-radius: 8px;">
   <div style="text-align: center; border-bottom: 2px solid #0284c7; padding-bottom: 12px; margin-bottom: 20px;">
-    <h2 style="margin: 0; color: #0369a1; font-size: 22px; text-transform: uppercase;">${v.companyName}</h2>
+    <h2 style="margin: 0; color: #0369a1; font-size: 22px; text-transform: uppercase;">${escapeHtml(v.companyName)}</h2>
     <p style="margin: 4px 0 0; font-size: 13px; color: #64748b; font-weight: 600;">CERTIFICATE OF WORK EXPERIENCE</p>
   </div>
 
@@ -706,11 +707,11 @@ Head of Human Resources
   </div>
 
   <p style="font-size: 14px; line-height: 1.8; text-align: justify;">
-    This is to certify that <strong>${v.employeeName}</strong>, S/o <strong>${v.fatherName}</strong>, has been an employee of <strong>${v.companyName}</strong> from <strong>${v.startDate}</strong> to <strong>${v.endDate}</strong>, holding the designation of <strong>${v.designation}</strong>.
+    This is to certify that <strong>${escapeHtml(v.employeeName)}</strong>, S/o <strong>${escapeHtml(v.fatherName)}</strong>, has been an employee of <strong>${escapeHtml(v.companyName)}</strong> from <strong>${escapeHtml(v.startDate)}</strong> to <strong>${escapeHtml(v.endDate)}</strong>, holding the designation of <strong>${escapeHtml(v.designation)}</strong>.
   </p>
 
   <p style="font-size: 14px; line-height: 1.8; text-align: justify;">
-    During his tenure with our organization, he demonstrated exemplary dedication and was found to be ${v.conductSummary}. All company assets and clearance formalities have been completed successfully.
+    During his tenure with our organization, he demonstrated exemplary dedication and was found to be ${escapeHtml(v.conductSummary)}. All company assets and clearance formalities have been completed successfully.
   </p>
 
   <p style="font-size: 14px; line-height: 1.8;">
@@ -767,7 +768,7 @@ Director                                             Dean
     generateHtml: (v) => `
 <div style="font-family: 'Georgia', serif; color: #1e293b; max-width: 760px; margin: auto; padding: 32px; border: 8px double #d97706; background: #fffbeb; text-align: center;">
   <p style="margin: 0; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: #b45309; font-weight: bold;">
-    ${v.institutionName}
+    ${escapeHtml(v.institutionName)}
   </p>
   <div style="margin: 16px 0 6px;">
     <span style="font-size: 28px; font-weight: bold; color: #78350f; text-transform: uppercase; letter-spacing: 1px;">CERTIFICATE OF ACHIEVEMENT</span>
@@ -775,21 +776,21 @@ Director                                             Dean
   <p style="margin: 0 0 16px; font-size: 13px; color: #92400e; font-style: italic;">This certificate is proudly awarded to</p>
 
   <h1 style="margin: 10px 0; font-size: 32px; color: #1e3a8a; font-family: 'Times New Roman', serif; text-decoration: underline;">
-    ${v.recipientName}
+    ${escapeHtml(v.recipientName)}
   </h1>
 
   <p style="margin: 12px auto; max-width: 540px; font-size: 14px; line-height: 1.6; color: #451a03;">
-    For successfully completing the rigorous curriculum and practical project milestones in <strong>${v.courseTitle}</strong>, demonstrating exceptional dedication ${v.gradeOrHonor}.
+    For successfully completing the rigorous curriculum and practical project milestones in <strong>${escapeHtml(v.courseTitle)}</strong>, demonstrating exceptional dedication ${escapeHtml(v.gradeOrHonor)}.
   </p>
 
-  <p style="font-size: 12px; color: #78350f; margin-top: 16px;">Awarded on this day: <strong>${v.awardDate}</strong></p>
+  <p style="font-size: 12px; color: #78350f; margin-top: 16px;">Awarded on this day: <strong>${escapeHtml(v.awardDate)}</strong></p>
 
   <div style="display: flex; justify-content: space-between; margin-top: 40px; padding: 0 40px;">
     <div style="border-top: 1px solid #78350f; width: 180px; padding-top: 6px; font-size: 12px;">
-      ${v.signatory1}
+      ${escapeHtml(v.signatory1)}
     </div>
     <div style="border-top: 1px solid #78350f; width: 180px; padding-top: 6px; font-size: 12px;">
-      ${v.signatory2}
+      ${escapeHtml(v.signatory2)}
     </div>
   </div>
 </div>
@@ -836,27 +837,27 @@ ${v.submissionDate}
 `.trim(),
     generateHtml: (v) => `
 <div style="font-family: Arial, sans-serif; color: #1e293b; max-width: 650px; margin: auto; padding: 40px 24px; border: 1px solid #cbd5e1; text-align: center;">
-  <h2 style="margin: 0; color: #0f172a; font-size: 20px; text-transform: uppercase;">${v.universityName}</h2>
-  <h4 style="margin: 6px 0 30px; color: #475569; font-size: 14px; font-weight: normal;">${v.departmentName}</h4>
+  <h2 style="margin: 0; color: #0f172a; font-size: 20px; text-transform: uppercase;">${escapeHtml(v.universityName)}</h2>
+  <h4 style="margin: 6px 0 30px; color: #475569; font-size: 14px; font-weight: normal;">${escapeHtml(v.departmentName)}</h4>
 
   <div style="border-top: 2px solid #2563eb; border-bottom: 2px solid #2563eb; padding: 24px 10px; margin: 30px 0;">
     <span style="font-size: 12px; font-weight: bold; color: #2563eb; text-transform: uppercase;">Assignment Title</span>
-    <h1 style="margin: 8px 0; font-size: 22px; color: #0f172a;">${v.assignmentTitle}</h1>
-    <p style="margin: 4px 0 0; font-size: 13px; color: #475569;">Course: <strong>${v.courseTitle}</strong></p>
+    <h1 style="margin: 8px 0; font-size: 22px; color: #0f172a;">${escapeHtml(v.assignmentTitle)}</h1>
+    <p style="margin: 4px 0 0; font-size: 13px; color: #475569;">Course: <strong>${escapeHtml(v.courseTitle)}</strong></p>
   </div>
 
   <div style="display: flex; justify-content: space-around; text-align: left; margin-top: 40px; font-size: 13px;">
     <div style="background: #f8fafc; padding: 14px 20px; border-radius: 6px; border: 1px solid #e2e8f0;">
       <span style="font-size: 11px; color: #64748b; text-transform: uppercase; font-weight: bold;">Submitted By:</span>
-      <p style="margin: 4px 0 0; font-weight: bold; color: #0f172a;">${v.submittedBy}</p>
+      <p style="margin: 4px 0 0; font-weight: bold; color: #0f172a;">${escapeHtml(v.submittedBy)}</p>
     </div>
     <div style="background: #f8fafc; padding: 14px 20px; border-radius: 6px; border: 1px solid #e2e8f0;">
       <span style="font-size: 11px; color: #64748b; text-transform: uppercase; font-weight: bold;">Submitted To:</span>
-      <p style="margin: 4px 0 0; font-weight: bold; color: #0f172a;">${v.submittedTo}</p>
+      <p style="margin: 4px 0 0; font-weight: bold; color: #0f172a;">${escapeHtml(v.submittedTo)}</p>
     </div>
   </div>
 
-  <p style="margin-top: 40px; font-size: 12px; color: #64748b;">Date: ${v.submissionDate}</p>
+  <p style="margin-top: 40px; font-size: 12px; color: #64748b;">Date: ${escapeHtml(v.submissionDate)}</p>
 </div>
 `
   },
@@ -919,32 +920,32 @@ ${v.contactDetails}
   <div style="background: #ffffff; padding: 14px; border-radius: 8px; border: 1px solid #fecdd3; margin-bottom: 12px;">
     <h4 style="margin: 0 0 8px; color: #be123c; font-size: 13px; text-transform: uppercase;">1. Personal Information</h4>
     <table style="width: 100%; font-size: 13px; line-height: 1.8;">
-      <tr><td style="width: 35%; color: #64748b;">Full Name:</td><td><strong>${v.fullName}</strong></td></tr>
-      <tr><td style="color: #64748b;">Date of Birth & Age:</td><td>${v.dob}</td></tr>
-      <tr><td style="color: #64748b;">Height & Complexion:</td><td>${v.height}</td></tr>
-      <tr><td style="color: #64748b;">Religion & Sect:</td><td>${v.religionCaste}</td></tr>
+      <tr><td style="width: 35%; color: #64748b;">Full Name:</td><td><strong>${escapeHtml(v.fullName)}</strong></td></tr>
+      <tr><td style="color: #64748b;">Date of Birth & Age:</td><td>${escapeHtml(v.dob)}</td></tr>
+      <tr><td style="color: #64748b;">Height & Complexion:</td><td>${escapeHtml(v.height)}</td></tr>
+      <tr><td style="color: #64748b;">Religion & Sect:</td><td>${escapeHtml(v.religionCaste)}</td></tr>
     </table>
   </div>
 
   <div style="background: #ffffff; padding: 14px; border-radius: 8px; border: 1px solid #fecdd3; margin-bottom: 12px;">
     <h4 style="margin: 0 0 8px; color: #be123c; font-size: 13px; text-transform: uppercase;">2. Education & Profession</h4>
     <table style="width: 100%; font-size: 13px; line-height: 1.8;">
-      <tr><td style="width: 35%; color: #64748b;">Highest Qualification:</td><td><strong>${v.education}</strong></td></tr>
-      <tr><td style="color: #64748b;">Current Profession:</td><td>${v.profession}</td></tr>
+      <tr><td style="width: 35%; color: #64748b;">Highest Qualification:</td><td><strong>${escapeHtml(v.education)}</strong></td></tr>
+      <tr><td style="color: #64748b;">Current Profession:</td><td>${escapeHtml(v.profession)}</td></tr>
     </table>
   </div>
 
   <div style="background: #ffffff; padding: 14px; border-radius: 8px; border: 1px solid #fecdd3; margin-bottom: 12px;">
     <h4 style="margin: 0 0 8px; color: #be123c; font-size: 13px; text-transform: uppercase;">3. Family Background</h4>
-    <p style="margin: 3px 0; font-size: 13px;"><strong>Father:</strong> ${v.fatherInfo}</p>
-    <p style="margin: 3px 0; font-size: 13px;"><strong>Mother:</strong> ${v.motherInfo}</p>
-    <p style="margin: 3px 0; font-size: 13px;"><strong>Siblings:</strong> ${v.siblingsInfo}</p>
+    <p style="margin: 3px 0; font-size: 13px;"><strong>Father:</strong> ${escapeHtml(v.fatherInfo)}</p>
+    <p style="margin: 3px 0; font-size: 13px;"><strong>Mother:</strong> ${escapeHtml(v.motherInfo)}</p>
+    <p style="margin: 3px 0; font-size: 13px;"><strong>Siblings:</strong> ${escapeHtml(v.siblingsInfo)}</p>
   </div>
 
   <div style="background: #ffffff; padding: 14px; border-radius: 8px; border: 1px solid #fecdd3; font-size: 13px;">
     <h4 style="margin: 0 0 6px; color: #be123c; font-size: 13px; text-transform: uppercase;">4. Preferences & Contact</h4>
-    <p style="margin: 0 0 6px;"><strong>Expectations:</strong> ${v.partnerExpectations}</p>
-    <p style="margin: 0; color: #881337;"><strong>Contact:</strong> ${v.contactDetails}</p>
+    <p style="margin: 0 0 6px;"><strong>Expectations:</strong> ${escapeHtml(v.partnerExpectations)}</p>
+    <p style="margin: 0; color: #881337;"><strong>Contact:</strong> ${escapeHtml(v.contactDetails)}</p>
   </div>
 </div>
 `
