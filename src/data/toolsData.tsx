@@ -22,7 +22,7 @@ export const categories: Category[] = [
       { id: "clients-financial-calculator", title: "Clients & Financial Freedom Calculator", category: "Career", icon: <Users className="w-7 h-7 text-teal-500" />, badge: "HOT" },
       { id: "ecommerce-calculator", title: "E-Commerce Profit & Growth Calculator", category: "Utility", icon: <TrendingUp className="w-7 h-7 text-emerald-500" />, badge: "HOT" },
       { id: "online-pdf-editor", title: "Online PDF Editor", category: "PDFs", icon: <FileSignature className="w-7 h-7" />, badge: "HOT" },
-      { id: "passport-photo", title: "Passport Size Photo Maker", category: "Image Tools", icon: <UserPlus className="w-7 h-7" />, badge: "HOT" },
+      { id: "passport-photo-maker", title: "Passport Size Photo Maker", category: "Image Tools", icon: <UserPlus className="w-7 h-7" />, badge: "HOT" },
       { id: "id-card-maker", title: "Pro ID Card Maker & PSD Studio", category: "Templates", icon: <CreditCard className="w-7 h-7 text-indigo-500" />, badge: "NEW" },
       { id: "shaadi-biodata", title: "Shaadi Biodata Maker", category: "Matrimonial", icon: <Heart className="w-7 h-7 text-rose-500" />, badge: "HOT" },
       { id: "ats-resume", title: "Pro ATS Resume Maker", category: "Career", icon: <FileText className="w-7 h-7" />, badge: "100% Free" },
@@ -48,7 +48,7 @@ export const categories: Category[] = [
     title: "Image & Photo Tools",
     icon: <ImageIcon className="w-6 h-6" />,
     tools: [
-      { id: "passport-photo", title: "Passport Size Photo Maker", category: "Image Tools", icon: <UserPlus className="w-7 h-7" />, badge: "HOT" },
+      { id: "passport-photo-maker", title: "Passport Size Photo Maker", category: "Image Tools", icon: <UserPlus className="w-7 h-7" />, badge: "HOT" },
       { id: "png-to-jpg", title: "PNG to JPG", category: "Image Tools", icon: <RefreshCw className="w-7 h-7" />, badge: "HOT" },
       { id: "background-remover", title: "Background Remover", category: "Image Tools", icon: <Scissors className="w-7 h-7" />, badge: "NEW" },
       { id: "image-compressor", title: "Image Compressor", category: "Image Tools", icon: <Minimize className="w-7 h-7" />, badge: "100% Free" },
