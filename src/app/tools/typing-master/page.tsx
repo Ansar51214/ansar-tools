@@ -279,25 +279,41 @@ export default function TypingMasterTool() {
     }
   };
 
-  // Load Text on Language / Difficulty Change
-  const loadPassage = (lang: Language, diff: Difficulty) => {
-    if (diff === 'custom') {
-      if (customInputText.trim()) {
-        setCurrentText(customInputText.trim());
+  // Calculate WPM and Accuracy
+  const calculateStats = (userTyped: string, elapsedSec: number) => {
+    let correct = 0;
+    let mistakes = 0;
+    for (let i = 0; i < userTyped.length; i++) {
+      if (userTyped[i] === currentText[i]) {
+        correct++;
       } else {
-        setShowCustomModal(true);
+        mistakes++;
       }
-    } else {
-      const list = PASSAGES[lang][diff];
-      const selected = list[Math.floor(Math.random() * list.length)];
-      setCurrentText(selected);
     }
-    resetTestState();
+    setErrorsCount(mistakes);
+
+    const accuracy = userTyped.length > 0 ? Math.round((correct / userTyped.length) * 100) : 100;
+    setLiveAccuracy(accuracy);
+
+    if (elapsedSec > 1) {
+      const minutes = elapsedSec / 60;
+      // Standard WPM: 5 characters = 1 word
+      const gross = Math.round((userTyped.length / 5) / minutes);
+      const net = Math.max(0, Math.round(((userTyped.length / 5) - mistakes) / minutes));
+      setGrossWpm(gross);
+      setLiveWpm(net);
+    }
   };
 
-  useEffect(() => {
-    loadPassage(language, difficulty);
-  }, [language, difficulty]);
+  // Finish Test
+  const finishTest = (finalTyped: string) => {
+    setTestFinished(true);
+    setTestActive(false);
+    setShowCertificate(true);
+
+    const elapsed = startTime ? (Date.now() - startTime) / 1000 : 1;
+    calculateStats(finalTyped, elapsed);
+  };
 
   // Reset Test
   const resetTestState = () => {
@@ -315,6 +331,22 @@ export default function TypingMasterTool() {
     if (inputRef.current) {
       inputRef.current.focus();
     }
+  };
+
+  // Load Text on Language / Difficulty Change
+  const loadPassage = (lang: Language, diff: Difficulty) => {
+    if (diff === 'custom') {
+      if (customInputText.trim()) {
+        setCurrentText(customInputText.trim());
+      } else {
+        setShowCustomModal(true);
+      }
+    } else {
+      const list = PASSAGES[lang][diff];
+      const selected = list[Math.floor(Math.random() * list.length)];
+      setCurrentText(selected);
+    }
+    resetTestState();
   };
 
   // Timer Countdown and Stats
@@ -341,31 +373,9 @@ export default function TypingMasterTool() {
     return () => clearInterval(interval);
   }, [testActive, startTime, typed, duration, currentText]);
 
-  // Calculate WPM and Accuracy
-  const calculateStats = (userTyped: string, elapsedSec: number) => {
-    let correct = 0;
-    let mistakes = 0;
-    for (let i = 0; i < userTyped.length; i++) {
-      if (userTyped[i] === currentText[i]) {
-        correct++;
-      } else {
-        mistakes++;
-      }
-    }
-    setErrorsCount(mistakes);
-
-    const accuracy = userTyped.length > 0 ? Math.round((correct / userTyped.length) * 100) : 100;
-    setLiveAccuracy(accuracy);
-
-    if (elapsedSec > 1) {
-      const minutes = elapsedSec / 60;
-      // Standard WPM: 5 characters = 1 word
-      const gross = Math.round((userTyped.length / 5) / minutes);
-      const net = Math.max(0, Math.round(((userTyped.length / 5) - mistakes) / minutes));
-      setGrossWpm(gross);
-      setLiveWpm(net);
-    }
-  };
+  useEffect(() => {
+    loadPassage(language, difficulty);
+  }, [language, difficulty]);
 
   // Input Handling
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -435,16 +445,6 @@ export default function TypingMasterTool() {
         }
       }
     }
-  };
-
-  // Finish Test
-  const finishTest = (finalTyped: string) => {
-    setTestFinished(true);
-    setTestActive(false);
-    setShowCertificate(true);
-
-    const elapsed = startTime ? (Date.now() - startTime) / 1000 : 1;
-    calculateStats(finalTyped, elapsed);
   };
 
   // Finger Color Classes

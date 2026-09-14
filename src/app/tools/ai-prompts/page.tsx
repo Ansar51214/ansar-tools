@@ -73,6 +73,10 @@ const CATEGORY_GRADIENTS: Record<string, string> = {
   'Productivity': 'from-cyan-600 to-blue-600'
 };
 
+function generateCustomPromptId(): string {
+  return `custom-${Date.now()}`;
+}
+
 export default function AIPromptsGalleryPage() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -220,7 +224,7 @@ export default function AIPromptsGalleryPage() {
     }
 
     const newPrompt: PromptItem = {
-      id: `custom-${Date.now()}`,
+      id: generateCustomPromptId(),
       title: newTitle.trim(),
       category: newCategory,
       description: newDescription.trim() || 'Custom prompt created by you.',

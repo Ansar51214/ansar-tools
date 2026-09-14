@@ -85,6 +85,10 @@ export const GOOGLE_FONTS = [
   { name: 'Courier Prime', label: 'Courier Prime (Typewriter Monospace)' },
 ];
 
+function createAnnotationId(prefix: string): string {
+  return `anno-${prefix}-${Date.now()}`;
+}
+
 export default function ProfessionalPdfEditorPage() {
   // Document State
   const [docs, setDocs] = useState<LoadedDoc[]>([]);
@@ -485,7 +489,7 @@ export default function ProfessionalPdfEditorPage() {
 
     if (activeTool === 'text') {
       const newAnno: AnnotationItem = {
-        id: `anno-text-${Date.now()}`,
+        id: createAnnotationId('text'),
         type: 'text',
         x: Math.max(1, Math.min(85, clickX)),
         y: Math.max(1, Math.min(95, clickY)),
@@ -502,7 +506,7 @@ export default function ProfessionalPdfEditorPage() {
       showToast('Text added! Click to edit, or drag move handle to position.');
     } else if (activeTool === 'check' || activeTool === 'cross') {
       const newAnno: AnnotationItem = {
-        id: `anno-sym-${Date.now()}`,
+        id: createAnnotationId('sym'),
         type: 'symbol',
         x: Math.max(1, clickX - 2),
         y: Math.max(1, clickY - 2),
@@ -516,7 +520,7 @@ export default function ProfessionalPdfEditorPage() {
       const isLine = activeTool === 'shape_line';
       const isArrow = activeTool === 'shape_arrow';
       const newAnno: AnnotationItem = {
-        id: `anno-shape-${Date.now()}`,
+        id: createAnnotationId('shape'),
         type: activeTool as any,
         x: Math.max(1, Math.min(80, clickX)),
         y: Math.max(1, Math.min(85, clickY)),
@@ -587,7 +591,7 @@ export default function ProfessionalPdfEditorPage() {
       saveHistory();
       const cloned: AnnotationItem = {
         ...JSON.parse(JSON.stringify(foundAnno)),
-        id: `anno-clone-${Date.now()}`,
+        id: createAnnotationId('clone'),
         x: Math.min(85, foundAnno.x + 3),
         y: Math.min(90, foundAnno.y + 3)
       };
@@ -740,7 +744,7 @@ export default function ProfessionalPdfEditorPage() {
       if (activeTool === 'whiteout') {
         const autoColor = samplePaperBackground(pageIndex, minX, minY, width, height);
         const newAnno: AnnotationItem = {
-          id: `anno-whiteout-${Date.now()}`,
+          id: createAnnotationId('whiteout'),
           type: 'whiteout',
           x: minX,
           y: minY,
@@ -753,7 +757,7 @@ export default function ProfessionalPdfEditorPage() {
         showToast('Erased seamlessly with Content-Aware background (Zero borders)!');
       } else if (activeTool === 'highlight') {
         const newAnno: AnnotationItem = {
-          id: `anno-highlight-${Date.now()}`,
+          id: createAnnotationId('highlight'),
           type: 'highlight',
           x: minX,
           y: minY,
@@ -766,7 +770,7 @@ export default function ProfessionalPdfEditorPage() {
         showToast('Highlighted area created!');
       } else if (activeTool.startsWith('shape_')) {
         const newAnno: AnnotationItem = {
-          id: `anno-shape-${Date.now()}`,
+          id: createAnnotationId('shape'),
           type: activeTool as any,
           x: minX,
           y: minY,
@@ -1052,7 +1056,7 @@ export default function ProfessionalPdfEditorPage() {
 
     saveHistory();
     const newAnno: AnnotationItem = {
-      id: `anno-sig-${Date.now()}`,
+      id: createAnnotationId('sig'),
       type: 'signature',
       x: 35,
       y: 65,
@@ -1075,7 +1079,7 @@ export default function ProfessionalPdfEditorPage() {
         if (typeof event.target?.result === 'string') {
           saveHistory();
           const newAnno: AnnotationItem = {
-            id: `anno-img-${Date.now()}`,
+            id: createAnnotationId('img'),
             type: 'image',
             x: 30,
             y: 40,
