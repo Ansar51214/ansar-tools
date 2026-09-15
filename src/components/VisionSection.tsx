@@ -9,10 +9,10 @@ export default function VisionSection() {
           Our Vision
         </div>
         <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">
-          Democratizing Digital Tools for Everyone.
+          Built for Pakistan&apos;s Creators, Freelancers, and Everyday Achievers.
         </h2>
         <p className="text-lg text-gray-600 leading-relaxed">
-          We believe that essential digital utilities should be accessible to all. That&apos;s why we&apos;re committed to providing 100% free, privacy-focused, and lightning-fast web tools with no hidden paywalls, intrusive ads, or mandatory signups.
+          Whether you&apos;re a student preparing admission docs, a freelancer managing invoices, or a small business handling everyday paperwork, essential utilities should never come with paywalls or subscription traps. Ansar Tools was created to give everyone across Pakistan instant access to fast, privacy-respecting browser tools that work seamlessly with zero hassle.
         </p>
         
         <ul className="space-y-3 pt-4">

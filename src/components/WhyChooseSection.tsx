@@ -3,18 +3,18 @@ import { Zap, ShieldCheck, Gift } from "lucide-react";
 export default function WhyChooseSection() {
   const reasons = [
     {
-      title: "Lightning Fast",
-      description: "Powered by modern client-side processing, our tools run instantly in your browser without waiting for server uploads.",
+      title: "Zero Wait Time",
+      description: "Everything executes right inside your browser engine. Enjoy instant file transformations and zero upload bottlenecks, even on slower connections.",
       icon: <Zap className="w-8 h-8 text-orange-500" />
     },
     {
-      title: "Secure by Design",
-      description: "Your files never leave your device. All processing happens locally in your browser, ensuring maximum privacy and data security.",
+      title: "Nothing Leaves Your Device",
+      description: "Your documents, photos, and personal records stay entirely on your local machine. No remote server storage, no data mining, and zero tracking.",
       icon: <ShieldCheck className="w-8 h-8 text-green-500" />
     },
     {
-      title: "Forever Free",
-      description: "We believe utility tools should be accessible to everyone. Enjoy all features with no hidden charges, watermarks, or premium limits.",
+      title: "No Catch, Ever",
+      description: "Every single utility is freely accessible without premium paywalls, sneaky trial periods, artificial watermarks, or sign-up hurdles.",
       icon: <Gift className="w-8 h-8 text-purple-500" />
     }
   ];
@@ -24,7 +24,7 @@ export default function WhyChooseSection() {
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Ansar Tools?</h2>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          Built with modern web technologies to provide you with the best possible experience.
+          Built from the ground up to deliver a clean, lightning-fast, and privacy-first utility experience.
         </p>
       </div>
 

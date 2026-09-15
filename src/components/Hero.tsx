@@ -13,7 +13,7 @@ export default function Hero({ searchQuery, setSearchQuery, activeFilter, setAct
   return (
     <section className="w-full py-20 px-4 flex flex-col items-center justify-center rounded-b-[3rem] shadow-lg mb-12" style={{ background: 'linear-gradient(135deg, #09396F 20%, #4088AD 95%)' }}>
       <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#F0E8F1] mb-8 text-center tracking-tight">
-        Ansar Tools for <span className="bg-gradient-to-r from-white via-orange-400 to-white bg-clip-text text-transparent bg-[length:200%_auto] animate-[flowText_7s_linear_infinite]">Smart Person</span>
+        Pakistan&apos;s All-in-One <span className="bg-gradient-to-r from-white via-orange-400 to-white bg-clip-text text-transparent bg-[length:200%_auto] animate-[flowText_7s_linear_infinite]">Digital Utility Suite</span>
       </h1>
       
       <div className="w-full max-w-3xl relative mb-6">
