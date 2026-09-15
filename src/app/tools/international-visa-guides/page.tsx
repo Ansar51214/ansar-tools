@@ -727,20 +727,40 @@ export default function InternationalVisaGuidesPage() {
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-1.5">
-              {regions.map((reg) => (
-                <button
-                  key={reg}
-                  onClick={() => setSelectedRegion(reg)}
-                  className={`px-3 py-1 rounded-xl text-xs font-bold transition-all ${
-                    selectedRegion === reg
-                      ? "bg-blue-600 text-white shadow-md shadow-blue-600/30"
-                      : "bg-slate-800 text-slate-300 hover:bg-slate-700"
-                  }`}
-                >
-                  {reg}
-                </button>
-              ))}
+            <div className="flex flex-col gap-2">
+              <div className="flex flex-wrap items-center gap-1.5">
+                <span className="text-[11px] font-semibold text-slate-400 mr-1">Region:</span>
+                {regions.map((reg) => (
+                  <button
+                    key={reg}
+                    onClick={() => setSelectedRegion(reg)}
+                    className={`px-3 py-1 rounded-xl text-xs font-bold transition-all ${
+                      selectedRegion === reg
+                        ? "bg-blue-600 text-white shadow-md shadow-blue-600/30"
+                        : "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                    }`}
+                  >
+                    {reg}
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap items-center gap-1.5">
+                <span className="text-[11px] font-semibold text-slate-400 mr-1">Visa Type:</span>
+                {["All", "E-Visa (Online)", "Sticker Visa (Embassy / VFS)", "Visa on Arrival", "Visa Free"].map((type) => (
+                  <button
+                    key={type}
+                    onClick={() => setSelectedVisaType(type)}
+                    className={`px-3 py-1 rounded-xl text-xs font-bold transition-all ${
+                      selectedVisaType === type
+                        ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/30"
+                        : "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                    }`}
+                  >
+                    {type}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
