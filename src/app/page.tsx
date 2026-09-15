@@ -5,9 +5,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ToolGrid from "@/components/ToolGrid";
 import VisionSection from "@/components/VisionSection";
-import EcosystemSection from "@/components/EcosystemSection";
 import WhyChooseSection from "@/components/WhyChooseSection";
-import BlogSection from "@/components/BlogSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import { categories } from "@/data/toolsData";
@@ -79,9 +77,7 @@ export default function Home() {
         </section>
 
         <VisionSection />
-        <EcosystemSection />
         <WhyChooseSection />
-        <BlogSection />
         <FAQSection />
       </main>
 
