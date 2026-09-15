@@ -289,7 +289,7 @@ export default function FbrTaxServicesPage() {
           </div>
         </div>
 
-        {/* Sharda-Style Hero Section with Live Search & Quick Action Buttons */}
+        {/* Hero Section with Live Search & Quick Action Buttons */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1e293b] via-[#0f172a] to-[#78350f] border border-amber-500/30 p-6 sm:p-10 shadow-2xl text-center">
           <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -330,7 +330,7 @@ export default function FbrTaxServicesPage() {
               </div>
             </div>
 
-            {/* Sharda Result Style Quick Colorful Links */}
+            {/* Quick Colorful Links */}
             <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2">
               <a
                 href="https://e.fbr.gov.pk/esbn/Service.aspx?PID=0&SID=ATLInquiry"
@@ -482,7 +482,7 @@ export default function FbrTaxServicesPage() {
           </div>
         </div>
 
-        {/* Sharda Result Style 3-Column Box Grid */}
+        {/* 3-Column Box Grid */}
         <div className="space-y-4">
           <div className="border-b border-slate-800 pb-3 flex items-center justify-between">
             <div>

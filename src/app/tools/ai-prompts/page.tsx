@@ -293,7 +293,7 @@ export default function AIPromptsGalleryPage() {
     showToast('Prompt Vault exported to Markdown! 📄');
   };
 
-  // Download individual prompt as .txt file (Sharda Tool feature)
+  // Download individual prompt as .txt file
   const handleDownloadTxt = (title: string, text: string, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
@@ -359,7 +359,7 @@ export default function AIPromptsGalleryPage() {
         </div>
       )}
 
-      {/* Hero Section (Matching Sharda AI Benchmark) */}
+      {/* Hero Section */}
       <section className="bg-gradient-to-b from-[#f8faff] via-[#f4f0ff] to-white text-slate-900 pt-10 pb-10 px-4 relative overflow-hidden text-center border-b border-slate-100">
         <div className="max-w-5xl mx-auto relative z-10">
           
@@ -856,7 +856,7 @@ export default function AIPromptsGalleryPage() {
                         <button
                           onClick={(e) => handleDownloadTxt(prompt.title, prompt.promptTemplate, e)}
                           className="py-2 px-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1 border border-slate-700 transition-all active:scale-95"
-                          title="Download as .txt file (Sharda Tool feature)"
+                          title="Download as .txt file"
                         >
                           <Download className="w-3.5 h-3.5 text-emerald-400" />
                           <span>Save</span>

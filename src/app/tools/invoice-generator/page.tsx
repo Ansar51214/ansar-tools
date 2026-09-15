@@ -45,7 +45,7 @@ const CURRENCIES: Currency[] = [
   { code: 'AUD', symbol: 'A$', name: 'AUD (A$) - Australian Dollar' },
 ];
 
-// Color themes matching Sharda Tool + upgrades
+// Color themes for invoice templates
 interface ColorTheme {
   id: string;
   name: string;
@@ -129,7 +129,7 @@ interface SavedInvoiceRecord {
 
 export default function InvoiceGeneratorPage() {
   // --- STYLING & FORMATTING ---
-  const [activeTheme, setActiveTheme] = useState<ColorTheme>(COLOR_THEMES[0]); // Green default (like Sharda)
+  const [activeTheme, setActiveTheme] = useState<ColorTheme>(COLOR_THEMES[0]); // Green default theme
   const [paperFormat, setPaperFormat] = useState<PaperFormat>('a4');
   const [currency, setCurrency] = useState<Currency>(CURRENCIES[0]);
   const [statusStamp, setStatusStamp] = useState<StatusStamp>('NONE');
@@ -713,7 +713,7 @@ export default function InvoiceGeneratorPage() {
       </div>
 
       {/* =======================================================================
-         TOP STICKY STUDIO TOOLBAR (Sharda-Style Clean, One-Click Controls)
+         TOP STICKY STUDIO TOOLBAR (Clean, One-Click Controls)
          ======================================================================= */}
       <div className="bg-slate-950/95 backdrop-blur-md border-b border-slate-800 sticky top-16 z-30 px-3 sm:px-6 py-2.5 shadow-xl print:hidden">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
@@ -1221,7 +1221,7 @@ export default function InvoiceGeneratorPage() {
             </div>
           ) : (
             /* -----------------------------------------------------------------
-                VIEW 2: FULL STANDARD A4 INVOICE SHEET (SHARDA-STYLE WYSIWYG)
+                VIEW 2: FULL STANDARD A4 INVOICE SHEET (WYSIWYG)
                 ----------------------------------------------------------------- */
             <div className="flex flex-col justify-between min-h-[980px]">
               <div>
@@ -1441,7 +1441,7 @@ export default function InvoiceGeneratorPage() {
                   </div>
                 </div>
 
-                {/* Table of Line Items (Sharda Style Direct Row Editing) */}
+                {/* Table of Line Items (Direct Row Editing) */}
                 <div className="my-6 rounded-xl overflow-hidden border border-slate-200 shadow-sm">
                   <table className="w-full text-left border-collapse">
                     <thead>
@@ -2015,7 +2015,7 @@ export default function InvoiceGeneratorPage() {
       )}
 
       {/* =======================================================================
-         INVOICE HISTORY MODAL (Sharda & Zoho Style Archive)
+         INVOICE HISTORY MODAL (Archive)
          ======================================================================= */}
       {showHistoryModal && (
         <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 print:hidden">

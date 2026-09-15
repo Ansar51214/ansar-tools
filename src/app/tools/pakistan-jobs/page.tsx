@@ -473,7 +473,7 @@ export default function PakistanJobsPage() {
     }
   };
 
-  // Group into columns like Sharda Result
+  // Group into 3 responsive columns
   const latestGovtJobs = PAKISTAN_JOBS_DATA.filter(j => j.category === "Government").slice(0, 7);
   const latestForcesJobs = PAKISTAN_JOBS_DATA.filter(j => j.category === "Forces & Police").slice(0, 7);
   const latestResults = PAKISTAN_JOBS_DATA.filter(j => j.category === "Results & Merit Lists").slice(0, 7);
@@ -509,7 +509,7 @@ export default function PakistanJobsPage() {
           </div>
         </div>
 
-        {/* Hero Section Inspired by Sharda Result */}
+        {/* Hero Section */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0c2340] via-[#0f172a] to-[#064e3b] border border-emerald-500/30 p-6 sm:p-10 shadow-2xl text-center">
           <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -580,7 +580,7 @@ export default function PakistanJobsPage() {
           </div>
         </div>
 
-        {/* Infinite Live News Marquee (Same as Sharda Result) */}
+        {/* Infinite Live News Marquee */}
         <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-2.5 overflow-hidden flex items-center gap-3">
           <span className="flex items-center gap-1 bg-rose-600 text-white font-bold text-xs px-3 py-1.5 rounded-xl whitespace-nowrap shadow-md">
             <Flame className="w-3.5 h-3.5 animate-bounce" /> LIVE UPDATES:
@@ -646,13 +646,13 @@ export default function PakistanJobsPage() {
           </div>
         </div>
 
-        {/* Sharda Result Style 3-Column Card Layout */}
+        {/* 3-Column Card Layout */}
         <div className="space-y-4 pt-2">
           <div className="border-b border-slate-800 pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <h2 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
                 <Layers className="w-6 h-6 text-emerald-400" />
-                Featured Pakistani Job Sectors (Sharda Layout)
+                Featured Pakistani Job Sectors
               </h2>
               <p className="text-xs text-slate-400 mt-0.5">
                 Organized by department with verified deadline, eligibility, and direct apply link.
@@ -820,7 +820,7 @@ export default function PakistanJobsPage() {
           </div>
         </div>
 
-        {/* 2nd Row of Sharda Style Columns: Roll No Slips, Banking & Scholarships */}
+        {/* 2nd Row of Columns: Roll No Slips, Banking & Scholarships */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
 
           {/* COLUMN 4: ROLL NO SLIPS / ADMIT CARDS */}

@@ -218,7 +218,7 @@ Address: Islamabad / Lahore / Karachi, Pakistan`;
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
-      {/* 1. Header Banner (Sharda Result Theme) */}
+      {/* 1. Header Banner */}
       <div className="bg-slate-900 text-white border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
@@ -262,7 +262,7 @@ Address: Islamabad / Lahore / Karachi, Pakistan`;
             </div>
           </div>
 
-          {/* Quick Jump Buttons (Sharda-Style Colored Pills) */}
+          {/* Quick Jump Buttons (Colored Pills) */}
           <div className="flex flex-wrap items-center gap-2 mt-5 pt-4 border-t border-slate-800">
             <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-1">
               Direct Portals:

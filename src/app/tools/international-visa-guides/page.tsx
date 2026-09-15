@@ -297,7 +297,7 @@ export default function InternationalVisaGuidesPage() {
     }
   };
 
-  // Grouped for Sharda Result 3-Column Boxes
+  // Grouped for 3-Column Boxes
   const gulfVisas = VISA_DATA.filter(v => v.region === "Middle East & Gulf");
   const europeVisas = VISA_DATA.filter(v => v.region === "Europe & UK");
   const asiaVisas = VISA_DATA.filter(v => v.region === "Asia & Far East");
@@ -330,7 +330,7 @@ export default function InternationalVisaGuidesPage() {
           </div>
         </div>
 
-        {/* Sharda-Style Hero Section with Live Search & Quick Action Buttons */}
+        {/* Hero Section with Live Search & Quick Action Buttons */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#0284c7] border border-blue-500/30 p-6 sm:p-10 shadow-2xl text-center">
           <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-blue-500/15 rounded-full blur-3xl pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-teal-500/15 rounded-full blur-3xl pointer-events-none"></div>
@@ -371,7 +371,7 @@ export default function InternationalVisaGuidesPage() {
               </div>
             </div>
 
-            {/* Sharda Result Style Quick Colorful Links */}
+            {/* Quick Colorful Links */}
             <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2">
               <a
                 href="https://smartservices.icp.gov.pk/"
@@ -433,7 +433,7 @@ export default function InternationalVisaGuidesPage() {
           </div>
         </div>
 
-        {/* Sharda Result Style 3-Column Box Grid */}
+        {/* 3-Column Box Grid */}
         <div className="space-y-4">
           <div className="border-b border-slate-800 pb-3 flex items-center justify-between">
             <div>

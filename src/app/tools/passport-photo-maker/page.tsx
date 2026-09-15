@@ -115,7 +115,7 @@ export default function PassportPhotoMakerPage() {
   const [bgTolerance, setBgTolerance] = useState<number>(28);
   const [bgFeather, setBgFeather] = useState<number>(2);
 
-  // --- SHARDA TOOL ONE-CLICK GRID & VIEW STATE ---
+  // --- ONE-CLICK PRINT GRID & VIEW STATE ---
   const [sheetLayout, setSheetLayout] = useState<'single' | '4' | '6' | '8' | '12' | '16' | '32' | 'combo'>('single');
   const [viewMode, setViewMode] = useState<'single' | 'sheet'>('single');
   const sheetCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -1588,7 +1588,7 @@ export default function PassportPhotoMakerPage() {
         
         {/* LEFT / CENTER: Interactive Canvas Viewport */}
         <div className="flex-1 flex flex-col items-center">
-          {/* SHARDA-STYLE 1-CLICK INSTANT PHOTO GRID BAR */}
+          {/* 1-CLICK INSTANT PHOTO GRID BAR */}
           {imageLoaded && (
             <div className="w-full mb-3.5 bg-slate-950 border border-slate-800 rounded-2xl p-2.5 sm:p-3 flex flex-wrap items-center justify-between gap-2 shadow-xl">
               <div className="flex items-center gap-1.5 flex-wrap">
@@ -1729,7 +1729,7 @@ export default function PassportPhotoMakerPage() {
             {imageLoaded ? (
               viewMode === 'sheet' ? (
                 /* =========================================================
-                   PRINT SHEET VIEWPORT (Sharda Style 4, 6, 8, 12, 16, 32)
+                   PRINT SHEET VIEWPORT (Multi-Photo Grid Layouts)
                    ========================================================= */
                 <div className="relative flex flex-col items-center justify-center select-none w-full max-w-full">
                   {/* High Resolution Print Sheet Canvas View */}

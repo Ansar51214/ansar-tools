@@ -312,7 +312,7 @@ export default function NadraPortalPage() {
           </div>
         </div>
 
-        {/* Sharda-Style Hero Section with Live Search & Quick Action Buttons */}
+        {/* Hero Section with Live Search & Quick Action Buttons */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#064e3b] via-[#0b241c] to-[#0f172a] border border-emerald-500/30 p-6 sm:p-10 shadow-2xl text-center">
           <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -353,7 +353,7 @@ export default function NadraPortalPage() {
               </div>
             </div>
 
-            {/* Sharda Result Style Quick Colorful Links */}
+            {/* Quick Colorful Links */}
             <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2">
               <a
                 href="https://id.nadra.gov.pk/"
@@ -449,7 +449,7 @@ export default function NadraPortalPage() {
           </div>
         </div>
 
-        {/* 3-Column Service Grid (Sharda Result Structure) */}
+        {/* 3-Column Service Grid */}
         <div className="space-y-4">
           <div className="border-b border-slate-800 pb-3 flex items-center justify-between">
             <div>

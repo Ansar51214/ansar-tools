@@ -21,7 +21,7 @@ export default function Navbar() {
               <Link href="/" className="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</Link>
               <Link href="/#tools" className="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">All Tools</Link>
               <Link href="/#about" className="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">About Us</Link>
-              <Link href="/tools/ats-resume" className="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Resume Builder</Link>
+              <Link href="/tools/resume-maker" className="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Resume Builder</Link>
               <Link href="/#contact" className="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</Link>
             </div>
           </div>
@@ -42,7 +42,7 @@ export default function Navbar() {
             <Link href="/" className="text-gray-800 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Home</Link>
             <Link href="/#tools" className="text-gray-800 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">All Tools</Link>
             <Link href="/#about" className="text-gray-800 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">About Us</Link>
-            <Link href="/tools/ats-resume" className="text-gray-800 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Resume Builder</Link>
+            <Link href="/tools/resume-maker" className="text-gray-800 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Resume Builder</Link>
             <Link href="/#contact" className="text-gray-800 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Contact</Link>
           </div>
         </div>

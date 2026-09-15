@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Play } from "lucide-react";
+
 import Logo from "./Logo";
 
 export default function Footer() {
@@ -15,15 +15,7 @@ export default function Footer() {
             Your one-stop destination for free, fast, and secure digital utilities. Process PDFs, edit images, and access smart tools instantly in your browser.
           </p>
           
-          <div className="pt-4">
-            <Link href="#" className="inline-flex items-center gap-3 bg-black hover:bg-gray-800 border border-gray-700 rounded-xl px-4 py-2 transition-colors">
-              <Play className="w-6 h-6 text-green-400 fill-current" />
-              <div className="text-left">
-                <div className="text-[10px] uppercase tracking-wider text-gray-400 leading-none">GET IT ON</div>
-                <div className="text-white font-semibold leading-tight">Google Play</div>
-              </div>
-            </Link>
-          </div>
+
         </div>
         
         <div>
@@ -31,7 +23,7 @@ export default function Footer() {
           <ul className="space-y-3">
             <li><Link href="/" className="hover:text-blue-400 transition-colors">Home</Link></li>
             <li><Link href="/#tools" className="hover:text-blue-400 transition-colors">All Tools</Link></li>
-            <li><Link href="/tools/ats-resume" className="hover:text-blue-400 transition-colors">Resume Builder</Link></li>
+            <li><Link href="/tools/resume-maker" className="hover:text-blue-400 transition-colors">Resume Builder</Link></li>
             <li><Link href="/#about" className="hover:text-blue-400 transition-colors">About Us</Link></li>
           </ul>
         </div>
