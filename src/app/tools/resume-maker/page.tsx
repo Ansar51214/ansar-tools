@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -211,7 +211,15 @@ const SAMPLE_RESUME: ResumeData = {
 
 export default function ResumeMakerPage() {
   // State
-  const [resumeData, setResumeData] = useState<ResumeData>(SAMPLE_RESUME);
+  const [resumeData, setResumeData] = useState<ResumeData>(() => {
+    if (typeof window === 'undefined') return SAMPLE_RESUME;
+    try {
+      const saved = localStorage.getItem('ansar_resume_data');
+      return saved ? JSON.parse(saved) : SAMPLE_RESUME;
+    } catch {
+      return SAMPLE_RESUME;
+    }
+  });
   const [currentTemplate, setCurrentTemplate] = useState<TemplateId>('harvard');
   const [currentColor, setCurrentColor] = useState<string>(COLOR_THEMES[0].hex);
   const [fontFamily, setFontFamily] = useState<'sans' | 'serif' | 'mono'>('sans');
@@ -221,21 +229,6 @@ export default function ResumeMakerPage() {
   const [copiedNotification, setCopiedNotification] = useState<string | null>(null);
   const [isDownloadingPdf, setIsDownloadingPdf] = useState<boolean>(false);
   const [isDownloadingWord, setIsDownloadingWord] = useState<boolean>(false);
-
-  // Auto-Save to LocalStorage
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem('ansar_resume_data');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        setTimeout(() => {
-          setResumeData(parsed);
-        }, 0);
-      }
-    } catch {
-      // ignore
-    }
-  }, []);
 
   const saveToLocal = (data: ResumeData) => {
     setResumeData(data);

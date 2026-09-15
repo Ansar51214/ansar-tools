@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import {
@@ -74,8 +74,24 @@ export default function AIPromptsGalleryPage() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedModel, setSelectedModel] = useState<string>('all');
-  const [favorites, setFavorites] = useState<string[]>([]);
-  const [customPrompts, setCustomPrompts] = useState<PromptItem[]>([]);
+  const [favorites, setFavorites] = useState<string[]>(() => {
+    if (typeof window === 'undefined') return [];
+    try {
+      const saved = localStorage.getItem('ansar_ai_prompt_favorites');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+  const [customPrompts, setCustomPrompts] = useState<PromptItem[]>(() => {
+    if (typeof window === 'undefined') return [];
+    try {
+      const saved = localStorage.getItem('ansar_ai_custom_prompts');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
   
   // Modals & Card Flip state
   const [customizerPrompt, setCustomizerPrompt] = useState<PromptItem | null>(null);
@@ -102,23 +118,7 @@ export default function AIPromptsGalleryPage() {
   const [newTemplate, setNewTemplate] = useState('');
   const [newTags, setNewTags] = useState('');
 
-  // Load favorites & custom prompts from LocalStorage
-  useEffect(() => {
-    try {
-      const savedFavs = localStorage.getItem('ansar_ai_prompt_favorites');
-      const savedCustom = localStorage.getItem('ansar_ai_custom_prompts');
-      if (savedFavs || savedCustom) {
-        const parsedFavs = savedFavs ? JSON.parse(savedFavs) : null;
-        const parsedCustom = savedCustom ? JSON.parse(savedCustom) : null;
-        setTimeout(() => {
-          if (parsedFavs) setFavorites(parsedFavs);
-          if (parsedCustom) setCustomPrompts(parsedCustom);
-        }, 0);
-      }
-    } catch (e) {
-      console.error('Failed to load saved prompts:', e);
-    }
-  }, []);
+
 
   // Save favorites to LocalStorage
   const toggleFavorite = (id: string, e?: React.MouseEvent) => {
