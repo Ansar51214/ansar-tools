@@ -1174,7 +1174,7 @@ Please share the digital design proof on this WhatsApp number and confirm delive
                       type="text"
                       required
                       value={checkoutCity}
-                      onChange={(e) => setCustomerCity(e.target.value)}
+                      onChange={(e) => setCheckoutCity(e.target.value)}
                       placeholder="Lahore / Karachi / Islamabad..."
                       className="w-full text-xs p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-amber-500"
                     />
