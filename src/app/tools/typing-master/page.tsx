@@ -916,11 +916,16 @@ export default function TypingMasterTool() {
               </div>
 
               {/* Big Metrics Grid */}
-              <div className="grid grid-cols-3 gap-2 sm:gap-4 my-6 bg-slate-50 p-4 rounded-xl border border-slate-200">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 my-6 bg-slate-50 p-4 rounded-xl border border-slate-200">
                 <div>
                   <span className="text-[10px] text-slate-500 uppercase font-bold block">Net Speed</span>
                   <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-600">{liveWpm}</span>
-                  <span className="text-[10px] text-slate-400 block">WPM</span>
+                  <span className="text-[10px] text-slate-400 block">Net WPM</span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-slate-500 uppercase font-bold block">Gross Speed</span>
+                  <span className="text-2xl sm:text-3xl font-black font-mono text-purple-600">{grossWpm}</span>
+                  <span className="text-[10px] text-slate-400 block">Gross WPM</span>
                 </div>
                 <div>
                   <span className="text-[10px] text-slate-500 uppercase font-bold block">Accuracy</span>
