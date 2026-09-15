@@ -161,7 +161,6 @@ export default function InvoiceGeneratorPage() {
   const [amountPaid, setAmountPaid] = useState<number>(0);
 
   // --- PAYMENT DETAILS & SCAN-TO-PAY QR ---
-  const [showPaymentInfo, setShowPaymentInfo] = useState(true);
   const [bankName, setBankName] = useState('Meezan Bank Ltd');
   const [accountTitle, setAccountTitle] = useState('Ansar Tech Solutions');
   const [accountNumber, setAccountNumber] = useState('02010103948291');
