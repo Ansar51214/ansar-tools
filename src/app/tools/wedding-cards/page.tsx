@@ -51,7 +51,6 @@ export default function AprintsWeddingCardsStorePage() {
   const [brideNameOrder, setBrideNameOrder] = useState<string>('Ayesha Noor');
   const [eventTypeOrder, setEventTypeOrder] = useState<string>('Barat & Walima Suite');
   const [customerCity, setCustomerCity] = useState<string>('Lahore');
-  const [customerPhone, setCustomerPhone] = useState<string>('');
   const [activeGalleryImg, setActiveGalleryImg] = useState<string>('');
 
   // Cart State
@@ -256,20 +255,13 @@ Please share the digital design proof on this WhatsApp number and confirm delive
 
   const [selectedTheme, setSelectedTheme] = useState<WeddingTheme>(THEMES[0]);
   const [particleType, setParticleType] = useState<'petals' | 'sparkles' | 'fireflies'>('petals');
-  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [invocation, setInvocation] = useState('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ');
   const [eventTitle, setEventTitle] = useState('The Royal Barat & Nikkah Ceremony');
-  const [hostText, setHostText] = useState('Together with their families, cordially invite you to celebrate the wedding of');
   const [groomName, setGroomName] = useState('Muhammad Hamza');
-  const [groomDetails, setGroomDetails] = useState('Son of Mr. & Mrs. Tariq Mahmood');
   const [brideName, setBrideName] = useState('Ayesha Noor');
-  const [brideDetails, setBrideDetails] = useState('Daughter of Mr. & Mrs. Shakeel Ahmed');
   const [eventDate, setEventDate] = useState('2026-11-20');
   const [eventTime, setEventTime] = useState('07:30 PM');
   const [venueName, setVenueName] = useState('The Grand Marquee Palace');
-  const [venueAddress, setVenueAddress] = useState('Club Road, Sector G-5, Islamabad');
-  const [rsvpContact, setRsvpContact] = useState('+92 331 1146549 | +92 300 1234567');
-  const [customQuote, setCustomQuote] = useState('"And among His signs is that He created for you mates from among yourselves..." (Quran 30:21)');
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const cardContainerRef = useRef<HTMLDivElement | null>(null);
@@ -724,8 +716,31 @@ Please share the digital design proof on this WhatsApp number and confirm delive
             {/* Couple & Event Details */}
             <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
               <h3 className="text-xs font-bold uppercase tracking-wider text-amber-700 flex items-center gap-2">
-                <Heart className="w-4 h-4 text-rose-500" /> 2. Couple Information
+                <Heart className="w-4 h-4 text-rose-500" /> 2. Card Details &amp; Couple Information
               </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-[11px] font-bold text-slate-600 mb-1">Card Header / Invocation</label>
+                  <input
+                    type="text"
+                    value={invocation}
+                    onChange={(e) => setInvocation(e.target.value)}
+                    placeholder="بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
+                    className="w-full text-xs p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-amber-500 font-medium"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[11px] font-bold text-slate-600 mb-1">Event Title / Ceremony</label>
+                  <input
+                    type="text"
+                    value={eventTitle}
+                    onChange={(e) => setEventTitle(e.target.value)}
+                    placeholder="The Royal Barat & Nikkah Ceremony"
+                    className="w-full text-xs p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-amber-500 font-medium"
+                  />
+                </div>
+              </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
@@ -960,23 +975,56 @@ Please share the digital design proof on this WhatsApp number and confirm delive
                   </div>
                 </div>
 
-                {/* 4. Couple Names Customization */}
-                <div className="grid grid-cols-2 gap-3 pt-2 border-t border-slate-100">
+                {/* 4. Event Type & Couple Customization */}
+                <div className="pt-2 border-t border-slate-100 space-y-3">
                   <div>
-                    <label className="block text-[11px] font-bold text-slate-700 mb-1">Groom Name</label>
-                    <input
-                      type="text"
-                      value={groomNameOrder}
-                      onChange={(e) => setGroomNameOrder(e.target.value)}
-                      className="w-full text-xs p-2 rounded-xl border border-slate-200 focus:outline-none focus:border-amber-500 font-semibold"
-                    />
+                    <label className="block text-[11px] font-bold text-slate-700 mb-1">Event Type / Ceremony</label>
+                    <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5">
+                      {['Barat & Walima Suite', 'Barat', 'Walima', 'Mehndi', 'Nikkah', 'Engagement'].map((type) => (
+                        <button
+                          key={type}
+                          type="button"
+                          onClick={() => setEventTypeOrder(type)}
+                          className={`px-2 py-1.5 rounded-lg border text-[11px] font-semibold text-center transition-colors ${
+                            eventTypeOrder === type
+                              ? 'border-amber-600 bg-amber-600 text-white font-bold'
+                              : 'border-slate-200 text-slate-600 hover:border-slate-300 bg-slate-50'
+                          }`}
+                        >
+                          {type}
+                        </button>
+                      ))}
+                    </div>
                   </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-[11px] font-bold text-slate-700 mb-1">Groom Name</label>
+                      <input
+                        type="text"
+                        value={groomNameOrder}
+                        onChange={(e) => setGroomNameOrder(e.target.value)}
+                        className="w-full text-xs p-2 rounded-xl border border-slate-200 focus:outline-none focus:border-amber-500 font-semibold"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-bold text-slate-700 mb-1">Bride Name</label>
+                      <input
+                        type="text"
+                        value={brideNameOrder}
+                        onChange={(e) => setBrideNameOrder(e.target.value)}
+                        className="w-full text-xs p-2 rounded-xl border border-slate-200 focus:outline-none focus:border-amber-500 font-semibold"
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <label className="block text-[11px] font-bold text-slate-700 mb-1">Bride Name</label>
+                    <label className="block text-[11px] font-bold text-slate-700 mb-1">Destination City (for WhatsApp Proof)</label>
                     <input
                       type="text"
-                      value={brideNameOrder}
-                      onChange={(e) => setBrideNameOrder(e.target.value)}
+                      value={customerCity}
+                      onChange={(e) => setCustomerCity(e.target.value)}
+                      placeholder="e.g. Lahore, Karachi, Islamabad"
                       className="w-full text-xs p-2 rounded-xl border border-slate-200 focus:outline-none focus:border-amber-500 font-semibold"
                     />
                   </div>
