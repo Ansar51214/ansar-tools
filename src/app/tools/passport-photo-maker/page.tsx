@@ -18,6 +18,7 @@ import { SUIT_TEMPLATES, SuitTemplate } from './suits';
 import { SAMPLE_PORTRAIT_DATA_URI } from './sampleImage';
 import { PDFDocument } from 'pdf-lib';
 import {
+  Loader2,
   Upload,
   Sparkles,
   ZoomIn,
@@ -53,9 +54,7 @@ export default function PassportPhotoMakerPage() {
   const [toolMode, setToolMode] = useState<'photo' | 'signature'>('photo');
 
   // --- STATE: Image & Processing ---
-  const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageSize, setImageSize] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
 
   // --- Active Tab ---
   const [activeTab, setActiveTab] = useState<'preset' | 'namedate' | 'bg' | 'suit' | 'adjust' | 'print'>('preset');
@@ -90,7 +89,6 @@ export default function PassportPhotoMakerPage() {
   const [estimatedKb, setEstimatedKb] = useState<number | null>(null);
 
   // --- SIGNATURE RESIZER STATE ---
-  const [sigSrc, setSigSrc] = useState<string | null>(null);
   const [sigLoaded, setSigLoaded] = useState(false);
   const [sigPreset, setSigPreset] = useState<SignaturePreset>(SIGNATURE_PRESETS[0]);
   const [sigAutoWhiten, setSigAutoWhiten] = useState<boolean>(true);
@@ -112,7 +110,6 @@ export default function PassportPhotoMakerPage() {
 
   // --- Background State ---
   const [bgColor, setBgColor] = useState<string>('transparent');
-  const [bgMode, setBgMode] = useState<'original' | 'replace'>('original');
   const [detectedPhotoBg, setDetectedPhotoBg] = useState<string | null>(null);
   const [enableBgReplace, setEnableBgReplace] = useState<boolean>(false);
   const [bgTolerance, setBgTolerance] = useState<number>(28);
@@ -124,8 +121,6 @@ export default function PassportPhotoMakerPage() {
   const sheetCanvasRef = useRef<HTMLCanvasElement>(null);
 
   // --- Eraser / Touch-up Brush State ---
-  const [brushMode, setBrushMode] = useState<'none' | 'erase' | 'restore'>('none');
-  const [brushSize, setBrushSize] = useState<number>(25);
 
   // --- Suit State ---
   const [selectedSuit, setSelectedSuit] = useState<SuitTemplate | null>(null);
@@ -365,7 +360,6 @@ export default function PassportPhotoMakerPage() {
     img.crossOrigin = 'anonymous';
     img.onload = () => {
       sigHiddenImgRef.current = img;
-      setSigSrc(src);
       setSigLoaded(true);
       setSigZoom(1);
       setSigPan({ x: 0, y: 0 });
@@ -442,8 +436,6 @@ export default function PassportPhotoMakerPage() {
     img.crossOrigin = 'anonymous';
     img.onload = () => {
       hiddenImageRef.current = img;
-      setImageSize({ width: img.width, height: img.height });
-      setImageSrc(src);
       setImageLoaded(true);
 
       // Reset transforms to fit nicely in crop viewport
@@ -462,7 +454,6 @@ export default function PassportPhotoMakerPage() {
       const detected = detectImageBgColor(img);
       setDetectedPhotoBg(detected);
       setBgColor('transparent');
-      setBgMode('original');
       setEnableBgReplace(false);
 
       // Initialize mask canvas for eraser
@@ -2300,8 +2291,7 @@ export default function PassportPhotoMakerPage() {
                     type="button"
                     onClick={() => {
                       setBgColor('transparent');
-                      setBgMode('original');
-                      setEnableBgReplace(false);
+                                      setEnableBgReplace(false);
                     }}
                     className={`px-3 py-1 text-xs font-bold rounded-lg transition-all ${
                       bgColor === 'transparent'
@@ -2958,9 +2948,16 @@ export default function PassportPhotoMakerPage() {
               <div className="border-t border-slate-800/80 pt-4 flex flex-col gap-3">
                 <div className="flex items-center justify-between text-xs bg-slate-900/60 p-3 rounded-xl border border-slate-800">
                   <span className="text-slate-400">Target File Size:</span>
-                  <span className="font-mono font-bold text-emerald-400">
-                    {sigPreset.minKb} KB – {sigPreset.maxKb} KB (Portal Strict)
-                  </span>
+                  <div className="flex items-center gap-2">
+                    {sigEstimatedKb !== null && (
+                      <span className="text-[11px] font-mono font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded-md flex items-center gap-1">
+                        <CheckCircle className="w-3 h-3 text-emerald-400" /> ~{sigEstimatedKb} KB
+                      </span>
+                    )}
+                    <span className="font-mono font-bold text-emerald-400">
+                      {sigPreset.minKb} KB – {sigPreset.maxKb} KB (Portal Strict)
+                    </span>
+                  </div>
                 </div>
 
                 <button
@@ -2974,6 +2971,19 @@ export default function PassportPhotoMakerPage() {
             </div>
           </div>
         </main>
+      )}
+
+      {/* PROCESSING OVERLAY WITH STATUS MESSAGE */}
+      {isProcessing && (
+        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-sm w-full flex flex-col items-center gap-4 shadow-2xl text-center">
+            <Loader2 className="w-10 h-10 text-blue-500 animate-spin" />
+            <div>
+              <h3 className="text-sm font-bold text-white mb-1">Processing Image</h3>
+              <p className="text-xs text-slate-400 font-mono">{statusMessage || 'Please wait...'}</p>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* PRINT SHEET PREVIEW MODAL */}
