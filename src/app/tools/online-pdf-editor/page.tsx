@@ -1849,6 +1849,40 @@ export default function ProfessionalPdfEditorPage() {
                   />
                 </div>
               )}
+
+              {/* Highlight Controls */}
+              {activeTool === 'highlight' && (
+                <div className="flex items-center gap-2 bg-slate-900/95 px-3 py-1 rounded-xl border border-slate-700">
+                  <span className="text-slate-400 text-[11px]">Highlight Color:</span>
+                  <div className="flex items-center gap-1.5">
+                    {[
+                      { name: 'Yellow', hex: '#fef08a' },
+                      { name: 'Green', hex: '#bbf7d0' },
+                      { name: 'Pink', hex: '#fbcfe8' },
+                      { name: 'Blue', hex: '#bae6fd' },
+                      { name: 'Orange', hex: '#fed7aa' }
+                    ].map(swatch => (
+                      <button
+                        key={swatch.hex}
+                        type="button"
+                        onClick={() => setHighlightColor(swatch.hex)}
+                        className={`w-4 h-4 rounded-full border transition-all ${
+                          highlightColor === swatch.hex ? 'scale-125 ring-2 ring-white border-white' : 'border-slate-600 hover:scale-110'
+                        }`}
+                        style={{ backgroundColor: swatch.hex }}
+                        title={`${swatch.name} Highlight`}
+                      />
+                    ))}
+                  </div>
+                  <input
+                    type="color"
+                    value={highlightColor}
+                    onChange={(e) => setHighlightColor(e.target.value)}
+                    className="w-5 h-5 rounded cursor-pointer border-0 bg-transparent ml-1"
+                    title="Custom Highlight Color"
+                  />
+                </div>
+              )}
             </div>
 
             {/* Right: Zoom & Export CTA */}
