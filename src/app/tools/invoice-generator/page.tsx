@@ -7,11 +7,23 @@ import Image from 'next/image';
 import { currencyToWords } from './numberToWords';
 import { QRCodeSVG } from 'qrcode.react';
 import {
-  Receipt, Plus, Trash2, Printer, Download, Share2, Sparkles,
-  RotateCcw, CheckCircle2, Building, User, Calendar, CreditCard,
-  Percent, DollarSign, PenTool, Image as ImageIcon, Check,
-  Phone, Mail, Globe, MapPin, ShieldCheck, ArrowRight,
-  FileSpreadsheet, History, X, Save, AlertCircle, Eye, SlidersHorizontal
+  Receipt,
+  Plus,
+  Trash2,
+  Printer,
+  Share2,
+  Sparkles,
+  RotateCcw,
+  CheckCircle2,
+  Building,
+  PenTool,
+  Image as ImageIcon,
+  Check,
+  FileSpreadsheet,
+  History,
+  X,
+  Save,
+  AlertCircle
 } from 'lucide-react';
 
 // Currency definitions

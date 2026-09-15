@@ -1,12 +1,16 @@
 'use client';
 
-import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import {
-  Keyboard, Timer, Award, RotateCcw, Volume2, VolumeX,
-  Sparkles, CheckCircle2, AlertCircle, Share2, Printer,
-  Globe, ChevronDown, Sliders, Play, Pause, FileText, Check, X
+  Keyboard,
+  Award,
+  RotateCcw,
+  Sparkles,
+  Printer,
+  Play,
+  X
 } from 'lucide-react';
 
 // Language Type

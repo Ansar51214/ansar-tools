@@ -3,14 +3,34 @@
 import { useState, useRef, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
+
 import Image from 'next/image';
 import {
-  Heart, Download, Copy, Share2, Printer, Plus, Trash2,
-  Upload, Sparkles, CheckCircle2, Eye, Sliders, ShieldCheck,
-  User, Briefcase, Users, Phone, MapPin, Check, RefreshCw,
-  Camera, Image as ImageIcon, FileText, Loader2, ArrowRight,
-  ChevronLeft, ChevronRight, GraduationCap, Star, AlertTriangle
+  Heart,
+  Download,
+  Share2,
+  Plus,
+  Trash2,
+  Upload,
+  Sparkles,
+  CheckCircle2,
+  Eye,
+  Sliders,
+  ShieldCheck,
+  User,
+  Briefcase,
+  Users,
+  Phone,
+  MapPin,
+  Check,
+  Camera,
+  Image as ImageIcon,
+  FileText,
+  Loader2,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  AlertTriangle
 } from 'lucide-react';
 
 export type ThemeId = 'emerald' | 'maroon' | 'navy' | 'rosegold' | 'ivory' | 'saffron' | 'violet' | 'monochrome';
@@ -921,7 +941,7 @@ export default function ShaadiBiodataPage() {
     showToast('Generating formatted Microsoft Word (.docx)... 📝');
 
     try {
-      const { Document, Packer, Paragraph, TextRun, HeadingLevel, Table, TableRow, TableCell, WidthType, AlignmentType } = await import('docx');
+      const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType } = await import('docx');
 
       const p = data.personal;
       const edu = data.educationCareer;

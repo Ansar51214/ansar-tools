@@ -1,15 +1,27 @@
 'use client';
 
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
+
 import {
-  FileText, Sparkles, CheckCircle2, AlertCircle, Download,
-  Printer, Copy, RotateCcw, Plus, Trash2, ChevronDown, ChevronUp,
-  Palette, Type, Sliders, ShieldCheck, Zap, Star, Briefcase,
-  GraduationCap, Award, FolderGit2, Globe, Mail, Phone, MapPin,
-  ExternalLink, Info, Check, Eye, Maximize2, Loader2
+  FileText,
+  Sparkles,
+  CheckCircle2,
+  AlertCircle,
+  Download,
+  Printer,
+  Copy,
+  RotateCcw,
+  Plus,
+  Trash2,
+  Zap,
+  Briefcase,
+  GraduationCap,
+  FolderGit2,
+  Globe,
+  Eye,
+  Loader2
 } from 'lucide-react';
 
 // --- DATA TYPES ---
@@ -272,10 +284,8 @@ export default function ResumeMakerPage() {
 
     // 3. Quantified Impact & Metrics (%, $, numbers) in Experience (+25 pts)
     let numberMatches = 0;
-    let totalBullets = 0;
     resumeData.experiences.forEach((exp) => {
       exp.bullets.forEach((b) => {
-        totalBullets++;
         if (/\d+[%kKmMbB]?|\$\d+|\d+x|\d+\+/.test(b)) {
           numberMatches++;
         }
@@ -398,7 +408,7 @@ export default function ResumeMakerPage() {
   const handleDownloadWord = async () => {
     setIsDownloadingWord(true);
     try {
-      const { Document, Paragraph, TextRun, HeadingLevel, BorderStyle, Packer } = await import('docx');
+      const { Document, Paragraph, TextRun, BorderStyle, Packer } = await import('docx');
 
       const p = resumeData.personal;
       const accentHex = (currentColor || '#0f766e').replace('#', '');

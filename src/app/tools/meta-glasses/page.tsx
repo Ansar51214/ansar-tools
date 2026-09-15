@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 // @ts-ignore
 import piexif from 'piexifjs';
 import { Upload, RefreshCw } from 'lucide-react';
-import Image from 'next/image';
+
 
 export default function MetaGlassesTool() {
   const [dataUrl, setDataUrl] = useState<string | null>(null);

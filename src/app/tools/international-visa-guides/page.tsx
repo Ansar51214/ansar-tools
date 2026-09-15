@@ -2,32 +2,21 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import { 
-  Globe2, 
-  Search, 
-  ExternalLink, 
-  ShieldCheck, 
-  Plane, 
-  FileCheck, 
-  FileText, 
-  CheckCircle2, 
-  Clock, 
-  DollarSign, 
-  Layers, 
-  ArrowUpRight, 
-  Sparkles, 
-  PhoneCall, 
-  AlertCircle, 
-  CreditCard, 
-  Building2, 
-  Share2, 
-  Check, 
-  Compass, 
-  MapPin, 
-  Luggage, 
-  HelpCircle,
-  FileBadge,
-  Calendar
+import {
+  Search,
+  ExternalLink,
+  ShieldCheck,
+  Plane,
+  CheckCircle2,
+  Layers,
+  ArrowUpRight,
+  Sparkles,
+  AlertCircle,
+  Building2,
+  Share2,
+  Check,
+  Compass,
+  FileBadge
 } from "lucide-react";
 
 interface VisaCountry {
@@ -279,8 +268,6 @@ export default function InternationalVisaGuidesPage() {
     "Asia & Far East",
     "North America & Oceania"
   ];
-
-  const visaTypes = ["All", "E-Visa (Online)", "Sticker Visa (Embassy / VFS)", "Visa on Arrival"];
 
   const filteredCountries = useMemo(() => {
     return VISA_DATA.filter(item => {

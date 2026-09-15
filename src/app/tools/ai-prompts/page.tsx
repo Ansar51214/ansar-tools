@@ -3,39 +3,32 @@
 import { useState, useEffect, useMemo } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { 
-  curatedPrompts, 
-  PromptItem, 
-  CATEGORIES 
+import {
+  curatedPrompts,
+  PromptItem,
+  CATEGORIES
 } from '@/data/promptsData';
-import { 
-  Search, Sparkles, Copy, Check, CheckCircle2, Bookmark, 
-  ExternalLink, Plus, Trash2, Share2, Code, PenTool, 
-  TrendingUp, Briefcase, GraduationCap, Image as ImageIcon, 
-  Coins, Zap, RotateCcw, Sliders, Download, FileText, X,
-  FolderPlus, Eye, ArrowRight, MessageSquare, CreditCard,
-  Layout, Mail, Layers, BookOpen, Video, Send, MousePointerClick
-} from 'lucide-react';
-
-const CATEGORY_ICONS: Record<string, any> = {
+import {
+  Search,
   Sparkles,
-  CreditCard,
-  Layout,
-  Mail,
-  Image: ImageIcon,
-  Layers,
-  BookOpen,
-  Video,
-  Code,
-  PenTool,
-  TrendingUp,
-  Briefcase,
-  GraduationCap,
-  Coins,
-  Zap,
+  Copy,
+  Check,
   Bookmark,
-  FolderPlus
-};
+  ExternalLink,
+  Plus,
+  Trash2,
+  RotateCcw,
+  Sliders,
+  Download,
+  FileText,
+  X,
+  FolderPlus,
+  Eye,
+  ArrowRight,
+  MessageSquare,
+  Send,
+  MousePointerClick
+} from 'lucide-react';
 
 const CATEGORY_COLORS: Record<string, { bg: string; text: string; border: string }> = {
   'ID Cards': { bg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200' },

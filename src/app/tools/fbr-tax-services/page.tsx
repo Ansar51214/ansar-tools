@@ -2,32 +2,23 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import { 
-  Receipt, 
-  Search, 
-  ExternalLink, 
-  ShieldCheck, 
-  Calculator, 
-  FileText, 
-  CheckCircle2, 
-  Building2, 
-  CreditCard, 
-  Smartphone, 
-  HelpCircle, 
-  Share2, 
-  Check, 
-  AlertCircle, 
-  DollarSign, 
-  TrendingUp, 
-  Layers, 
-  ArrowUpRight, 
-  Globe2, 
-  Sparkles, 
-  PhoneCall, 
-  Lock, 
-  Scale, 
-  FileCheck2,
-  Percent
+import {
+  Search,
+  ExternalLink,
+  ShieldCheck,
+  Calculator,
+  FileText,
+  CheckCircle2,
+  CreditCard,
+  Smartphone,
+  Share2,
+  Check,
+  Layers,
+  ArrowUpRight,
+  Sparkles,
+  PhoneCall,
+  Scale,
+  FileCheck2
 } from "lucide-react";
 
 interface FbrService {

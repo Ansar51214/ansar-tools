@@ -4,21 +4,33 @@ import { useState, useMemo, useRef } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
-import { 
-  ID_CARD_TEMPLATES, 
-  ID_CARD_CATEGORIES, 
-  IdCardTemplate, 
-  IdCardData, 
-  IdCardOrientation, 
-  IdCardTheme,
+import {
+  ID_CARD_TEMPLATES,
+  ID_CARD_CATEGORIES,
+  IdCardTemplate,
+  IdCardData,
+  IdCardOrientation,
   DEFAULT_TERMS
 } from '@/data/idCardsData';
-import { 
-  CreditCard, Download, Printer, RotateCcw, Upload, Sparkles, 
-  Check, Copy, ExternalLink, FileDown, Search, Sliders, Eye, 
-  Layers, ShieldCheck, QrCode, Barcode, Camera, Phone, Mail, 
-  MapPin, Calendar, Building, User, CheckCircle2, FlipHorizontal, 
-  Tag, ZoomIn, X, RefreshCw, Star, Info, Shield, CheckCircle
+import {
+  CreditCard,
+  Download,
+  Printer,
+  RotateCcw,
+  Sparkles,
+  FileDown,
+  Search,
+  Sliders,
+  Eye,
+  Layers,
+  ShieldCheck,
+  Camera,
+  Building,
+  CheckCircle2,
+  X,
+  Star,
+  Info,
+  Shield
 } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 

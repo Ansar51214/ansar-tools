@@ -3,11 +3,15 @@
 import { useState, useMemo } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { 
-  Users, Calculator, Target, ArrowUpRight, TrendingUp, CheckCircle2, 
-  Sparkles, Copy, Printer, RotateCcw, DollarSign, ShieldCheck, 
-  Zap, Compass, Calendar, Briefcase, ChevronRight, Layers, 
-  HelpCircle, AlertCircle
+import {
+  Calculator,
+  CheckCircle2,
+  Copy,
+  Printer,
+  RotateCcw,
+  Zap,
+  Compass,
+  Layers
 } from 'lucide-react';
 
 interface Preset {

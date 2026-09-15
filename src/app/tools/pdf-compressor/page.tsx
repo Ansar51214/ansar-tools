@@ -1,15 +1,28 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
+
 import Image from 'next/image';
 import {
-  FileText, Minimize2, Sparkles, Upload, Download, CheckCircle2,
-  AlertCircle, Trash2, Eye, RefreshCw, Zap, ShieldCheck,
-  Sliders, ArrowRight, FileCheck, Lock, Check, Layers,
-  Info, ExternalLink, HelpCircle, ChevronRight, X, Palette
+  FileText,
+  Minimize2,
+  Sparkles,
+  Upload,
+  Download,
+  CheckCircle2,
+  Trash2,
+  RefreshCw,
+  Zap,
+  ShieldCheck,
+  Sliders,
+  FileCheck,
+  Lock,
+  Check,
+  Layers,
+  Info,
+  Palette
 } from 'lucide-react';
 import { PDFDocument } from 'pdf-lib';
 

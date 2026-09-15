@@ -1,14 +1,27 @@
 'use client';
 
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
+
 import {
-  FileImage, Upload, Download, Copy, Check, Eye, Trash2,
-  FileText, Sparkles, ShieldCheck, RefreshCw, ZoomIn, ZoomOut,
-  CheckCircle2, AlertCircle, X, Layers, Sliders, Maximize2,
-  ArrowRight, FileArchive, Settings2, Image as ImageIcon, Loader2
+  FileImage,
+  Upload,
+  Download,
+  Copy,
+  Eye,
+  Trash2,
+  FileText,
+  Sparkles,
+  ShieldCheck,
+  RefreshCw,
+  CheckCircle2,
+  X,
+  Layers,
+  Sliders,
+  FileArchive,
+  Image as ImageIcon,
+  Loader2
 } from 'lucide-react';
 import JSZip from 'jszip';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';

@@ -3,12 +3,29 @@
 import { useState, useRef, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
+
 import {
-  FileText, Upload, Download, Trash2, ArrowUp, ArrowDown,
-  RotateCw, Plus, CheckCircle2, ShieldCheck, Sparkles, RefreshCw,
-  Layers, ChevronDown, ChevronUp, Eye, FileSearch, ArrowRight,
-  Loader2, Files, SortAsc, SortDesc, X
+  FileText,
+  Upload,
+  Download,
+  Trash2,
+  ArrowUp,
+  ArrowDown,
+  RotateCw,
+  Plus,
+  CheckCircle2,
+  ShieldCheck,
+  Sparkles,
+  Layers,
+  ChevronDown,
+  ChevronUp,
+  Eye,
+  FileSearch,
+  Loader2,
+  Files,
+  SortAsc,
+  SortDesc,
+  X
 } from 'lucide-react';
 import { PDFDocument, rgb, StandardFonts, degrees } from 'pdf-lib';
 

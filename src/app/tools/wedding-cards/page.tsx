@@ -4,18 +4,31 @@ import { useState, useMemo, useRef, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
-import { 
-  APRINTS_PRODUCTS, 
-  APRINTS_CATEGORIES, 
-  AprintsWeddingCard 
+import {
+  APRINTS_PRODUCTS,
+  APRINTS_CATEGORIES,
+  AprintsWeddingCard
 } from '@/data/aprintsCardsData';
-import { 
-  Heart, Sparkles, Music, VolumeX, Volume2, Download, Video, 
-  Share2, Calendar, MapPin, RefreshCw, Upload, Eye, Palette, 
-  Check, CheckCircle2, Sliders, ChevronDown, ChevronUp, Copy,
-  Clock, Phone, MessageSquare, Play, Pause, Film, ShoppingBag,
-  Search, X, Star, ShieldCheck, Truck, ArrowRight, Layers,
-  CreditCard, CheckCircle, Package, AlertCircle
+import {
+  Heart,
+  Sparkles,
+  Calendar,
+  MapPin,
+  Eye,
+  Palette,
+  Check,
+  CheckCircle2,
+  Clock,
+  Phone,
+  MessageSquare,
+  Film,
+  ShoppingBag,
+  Search,
+  X,
+  Star,
+  ShieldCheck,
+  Truck,
+  CheckCircle
 } from 'lucide-react';
 
 export default function AprintsWeddingCardsStorePage() {

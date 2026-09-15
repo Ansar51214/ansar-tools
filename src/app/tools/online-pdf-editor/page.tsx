@@ -3,15 +3,41 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
+
 import Script from 'next/script';
-import { 
-  Type, PenTool, Eraser, Highlighter, Image as ImageIcon, Check, X as CrossIcon, 
-  RotateCw, Trash2, Plus, Download, Upload, ZoomIn, ZoomOut, 
-  Undo2, ShieldCheck, Zap, Sparkles, CheckCircle2, Share2, 
-  Move, Copy, Palette, Pipette, MousePointer, Italic, Bold,
-  Square, Circle, ArrowUpRight, Minus, Paintbrush, AlignLeft, AlignCenter, AlignRight,
-  FilePlus, Layers
+import {
+  Type,
+  PenTool,
+  Eraser,
+  Highlighter,
+  Image as ImageIcon,
+  Check,
+  X as CrossIcon,
+  RotateCw,
+  Trash2,
+  Plus,
+  Download,
+  Upload,
+  ZoomIn,
+  ZoomOut,
+  Undo2,
+  Sparkles,
+  Move,
+  Copy,
+  Palette,
+  Pipette,
+  MousePointer,
+  Italic,
+  Bold,
+  Square,
+  Circle,
+  ArrowUpRight,
+  Minus,
+  Paintbrush,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+  FilePlus
 } from 'lucide-react';
 import { PDFDocument, degrees, rgb, StandardFonts } from 'pdf-lib';
 

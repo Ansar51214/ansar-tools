@@ -3,15 +3,35 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
+
 import {
-  Scissors, Upload, Download, RefreshCw, ZoomIn, ZoomOut,
-  Eye, Undo2, Redo2, Palette, Sliders, Sparkles, Check,
-  CheckCircle2, ShieldCheck, Zap, Image as ImageIcon, Copy,
-  Eraser, Paintbrush, Pipette, Move, Maximize2, X,
-  ArrowRight, Star, AlertCircle, RotateCcw, SplitSquareVertical,
-  ChevronUp, ChevronDown, ChevronLeft, ChevronRight, Crosshair,
-  Crop, Wand2, ShieldAlert
+  Scissors,
+  Download,
+  RefreshCw,
+  ZoomIn,
+  ZoomOut,
+  Eye,
+  Undo2,
+  Redo2,
+  Palette,
+  Sliders,
+  Sparkles,
+  Check,
+  ShieldCheck,
+  Zap,
+  Copy,
+  Eraser,
+  Paintbrush,
+  Pipette,
+  Move,
+  Star,
+  RotateCcw,
+  SplitSquareVertical,
+  ChevronUp,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Crop
 } from 'lucide-react';
 
 // Preset Studio Backdrops

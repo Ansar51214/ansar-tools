@@ -3,11 +3,23 @@
 import { useState, useMemo } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { 
-  TrendingUp, Calculator, DollarSign, ArrowUpRight, AlertTriangle, 
-  CheckCircle2, Sparkles, Copy, Printer, RotateCcw, Target, 
-  ShoppingBag, Truck, Package, Megaphone, Percent, Layers, 
-  Info, ShieldCheck, Zap
+import {
+  TrendingUp,
+  Calculator,
+  DollarSign,
+  AlertTriangle,
+  CheckCircle2,
+  Copy,
+  Printer,
+  RotateCcw,
+  Target,
+  ShoppingBag,
+  Truck,
+  Package,
+  Megaphone,
+  Percent,
+  Layers,
+  Zap
 } from 'lucide-react';
 
 interface Preset {

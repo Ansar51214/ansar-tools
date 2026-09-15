@@ -4,26 +4,48 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import NextImage from 'next/image';
-import { 
-  COUNTRY_PRESETS, 
-  PAPER_PRESETS, 
-  STANDARD_BG_COLORS, 
+import {
+  COUNTRY_PRESETS,
+  PAPER_PRESETS,
+  STANDARD_BG_COLORS,
   SIGNATURE_PRESETS,
-  CountryPreset, 
-  PaperPreset, 
+  CountryPreset,
+  PaperPreset,
   SignaturePreset,
-  mmToPx 
+  mmToPx
 } from './presets';
 import { SUIT_TEMPLATES, SuitTemplate } from './suits';
 import { SAMPLE_PORTRAIT_DATA_URI } from './sampleImage';
-import { PDFDocument, rgb } from 'pdf-lib';
+import { PDFDocument } from 'pdf-lib';
 import {
-  Upload, Sparkles, ZoomIn, ZoomOut, RotateCw, RotateCcw,
-  FlipHorizontal, Download, Printer, Eye, EyeOff, Sliders,
-  User, Palette, Grid, Scissors, Check, Undo, RefreshCw,
-  FileDown, ChevronRight, HelpCircle, ShieldCheck, Camera,
-  Move, Maximize2, AlertCircle, ArrowUp, ArrowDown, ArrowLeft, ArrowRight,
-  Calendar, PenTool, Type as TypeIcon, Image as ImageIcon, CheckCircle, Info, Shield, Crop
+  Upload,
+  Sparkles,
+  ZoomIn,
+  ZoomOut,
+  RotateCw,
+  RotateCcw,
+  FlipHorizontal,
+  Download,
+  Printer,
+  Eye,
+  Sliders,
+  User,
+  Palette,
+  Grid,
+  Check,
+  RefreshCw,
+  FileDown,
+  ShieldCheck,
+  ArrowUp,
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  PenTool,
+  Type as TypeIcon,
+  Image as ImageIcon,
+  CheckCircle,
+  Shield,
+  Crop
 } from 'lucide-react';
 
 export default function PassportPhotoMakerPage() {

@@ -10,9 +10,9 @@ import {
 } from '@/data/templatesData';
 import { 
   Search, Download, FileText, Printer, Copy, Check, Eye, 
-  Sparkles, Filter, ShieldCheck, FileCheck, ArrowUpRight, 
-  Briefcase, Scale, GraduationCap, Heart, Receipt, Layers,
-  ExternalLink, X, RefreshCw, SlidersHorizontal, ChevronRight
+  Sparkles, ShieldCheck, FileCheck, 
+  Briefcase, Scale, GraduationCap, Heart, Layers,
+  X, RefreshCw, SlidersHorizontal
 } from 'lucide-react';
 
 export default function TemplateDownloadsPage() {
@@ -151,34 +151,6 @@ export default function TemplateDownloadsPage() {
     }
   };
 
-  // Export as HTML file
-  const handleDownloadHtml = (template: TemplateItem) => {
-    const htmlContent = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>${template.title}</title>
-  <style>
-    body { font-family: system-ui, -apple-system, sans-serif; background: #f8fafc; padding: 30px; }
-    @media print { body { background: #fff; padding: 0; } }
-  </style>
-</head>
-<body>
-  ${template.generateHtml(customFieldValues)}
-</body>
-</html>
-    `.trim();
-
-    const blob = new Blob([htmlContent], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${template.id}.html`;
-    a.click();
-    URL.revokeObjectURL(url);
-    showToast('HTML file downloaded!');
-  };
 
   // Quick Copy formatted text
   const handleCopyText = (template: TemplateItem, valuesToUse?: Record<string, string>) => {
