@@ -654,28 +654,15 @@ export default function AIPromptsGalleryPage() {
                               )}
                             </div>
 
-                            <div className="flex items-center gap-1">
-                              {prompt.isCustom && (
-                                <button
-                                  onClick={(e) => handleDeleteCustomPrompt(prompt.id, e)}
-                                  className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
-                                  title="Delete custom prompt"
-                                >
-                                  <Trash2 className="w-4 h-4" />
-                                </button>
-                              )}
+                            {prompt.isCustom && (
                               <button
-                                onClick={(e) => toggleFavorite(prompt.id, e)}
-                                className={`p-1.5 rounded-lg transition-colors ${
-                                  isFav 
-                                    ? 'text-amber-500 bg-amber-50 hover:bg-amber-100' 
-                                    : 'text-slate-400 hover:text-slate-600 hover:bg-slate-100'
-                                }`}
-                                title={isFav ? 'Remove from favorites' : 'Save to favorites'}
+                                onClick={(e) => handleDeleteCustomPrompt(prompt.id, e)}
+                                className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                                title="Delete custom prompt"
                               >
-                                <Bookmark className={`w-4 h-4 ${isFav ? 'fill-amber-500' : ''}`} />
+                                <Trash2 className="w-4 h-4" />
                               </button>
-                            </div>
+                            )}
                           </div>
                         </>
                       )}
@@ -685,19 +672,17 @@ export default function AIPromptsGalleryPage() {
                         <h3 className="text-base font-bold text-slate-900 group-hover:text-fuchsia-600 transition-colors line-clamp-1">
                           {prompt.title}
                         </h3>
-                        {prompt.imageUrl && (
-                          <button
-                            onClick={(e) => toggleFavorite(prompt.id, e)}
-                            className={`p-1 rounded-lg transition-colors flex-shrink-0 ${
-                              isFav 
-                                ? 'text-amber-500 bg-amber-50 hover:bg-amber-100' 
-                                : 'text-slate-400 hover:text-slate-600 hover:bg-slate-100'
-                            }`}
-                            title={isFav ? 'Remove from favorites' : 'Save to favorites'}
-                          >
-                            <Bookmark className={`w-4 h-4 ${isFav ? 'fill-amber-500' : ''}`} />
-                          </button>
-                        )}
+                        <button
+                          onClick={(e) => toggleFavorite(prompt.id, e)}
+                          className={`p-1 rounded-lg transition-colors flex-shrink-0 ${
+                            isFav 
+                              ? 'text-amber-500 bg-amber-50 hover:bg-amber-100' 
+                              : 'text-slate-400 hover:text-slate-600 hover:bg-slate-100'
+                          }`}
+                          title={isFav ? 'Remove from favorites' : 'Save to favorites'}
+                        >
+                          <Bookmark className={`w-4 h-4 ${isFav ? 'fill-amber-500' : ''}`} />
+                        </button>
                       </div>
 
                       <p className="text-xs text-slate-500 mb-3 line-clamp-2 leading-relaxed">

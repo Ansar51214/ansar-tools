@@ -1432,6 +1432,7 @@ Include essential clauses:
     description: 'Iconic flat geometric symbol with golden ratio balance, sleek typography, and scalable vector aesthetics on pure white background.',
     targetModels: ['Midjourney', 'Flux', 'DALL-E 3'],
     tags: ['Logo Design', 'Minimalist', 'Tech', 'SaaS', 'Vector', 'Flat Design'],
+    imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80',
     promptTemplate: `Minimalist modern vector logo design for [COMPANY_NAME], a [INDUSTRY_OR_NICHE] startup. The logo features a clean geometric icon representing [CORE_SYMBOLIC_CONCEPT], designed with mathematical golden ratio balance and sleek continuous lines. Color palette: [COLOR_PALETTE]. Flat vector graphic style, bold recognizable silhouette, Paul Rand and Dieter Rams aesthetic, isolated on a pure white background, no gradients, no photorealistic shading, clean typography below the icon reading "[COMPANY_NAME]", professional corporate branding --no realistic photo, mockup, 3d, shadows --ar 1:1 --v 6.1`,
     defaultVariables: {
       COMPANY_NAME: 'NexusAI',
@@ -1447,6 +1448,7 @@ Include essential clauses:
     description: 'Polished 3D gold or platinum metallic emblem with realistic bevels, specular reflections, and debossed texture on a matte black background.',
     targetModels: ['Midjourney', 'Flux', 'DALL-E 3'],
     tags: ['Logo Design', 'Luxury', '3D Metallic', 'Emblem', 'Gold Foil', 'Real Estate', 'Jewelry'],
+    imageUrl: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=600&auto=format&fit=crop&q=80',
     promptTemplate: `High-end luxury 3D metallic logo emblem for [BRAND_NAME], an exclusive [LUXURY_INDUSTRY] brand. An ornate [CENTRAL_MOTIF] rendered in polished [METALLIC_FINISH] with subtle beveled chamfer edges, exquisite micro-reflections, and raytraced ambient lighting. The logo is debossed into a premium matte black textured linen card background. Clean elegant serif wordmark beneath reading "[BRAND_NAME]", 8K resolution, octane render style, ultra-premium corporate identity --ar 1:1 --v 6.1 --style raw`,
     defaultVariables: {
       BRAND_NAME: 'Aurelia Crown',
@@ -1462,6 +1464,7 @@ Include essential clauses:
     description: 'Sophisticated interlocking monogram initials with high-fashion luxury proportions inspired by Paris fashion houses.',
     targetModels: ['Midjourney', 'Flux', 'DALL-E 3'],
     tags: ['Logo Design', 'Monogram', 'Lettermark', 'Fashion', 'Typography', 'Minimalist'],
+    imageUrl: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80',
     promptTemplate: `Sophisticated interlocking monogram logo combining the letters "[INITIALS]" for [BRAND_NAME], a [BRAND_TYPE] brand. The letters intertwine with flawless geometric harmony, featuring hairline thin and bold contrast strokes in high-fashion editorial style (inspired by Yves Saint Laurent and Gucci). Minimalist monochrome aesthetic, rendered in [COLOR_ACCENT] on a solid [BACKGROUND_COLOR] backdrop. Razor-sharp vector vector lines, luxury symmetry, iconic fashion house lettermark --no clutter, no gradients --ar 1:1 --v 6.1`,
     defaultVariables: {
       INITIALS: 'VK',
@@ -1478,6 +1481,7 @@ Include essential clauses:
     description: 'Hand-crafted retro circular badge with curved typography, banner ribbons, established date, and artisan woodcut illustration.',
     targetModels: ['Midjourney', 'Flux', 'DALL-E 3'],
     tags: ['Logo Design', 'Vintage', 'Retro Badge', 'Coffee', 'Barber', 'Brewery', 'Hand-Drawn'],
+    imageUrl: 'https://images.unsplash.com/photo-1559825481-12a05cc00344?w=600&auto=format&fit=crop&q=80',
     promptTemplate: `Artisan vintage retro circular badge logo for "[BUSINESS_NAME]", an authentic [BUSINESS_TYPE] established in [ESTABLISHED_YEAR]. The emblem features a detailed hand-drawn [FOCAL_ILLUSTRATION] in traditional woodcut cross-hatch engraving style. Surrounding circular text arching over the top reads "[TOP_BANNER_TEXT]" and bottom ribbon banner reads "[ESTABLISHED_YEAR]". Earthy vintage color scheme: [COLOR_SCHEME]. Distressed texture, classic Americana slab-serif typography, screenprint aesthetic, isolated on an off-white aged paper background --ar 1:1 --v 6.1`,
     defaultVariables: {
       BUSINESS_NAME: 'Iron & Oak Roasters',
@@ -1494,6 +1498,7 @@ Include essential clauses:
     description: 'Futuristic continuous ribbon origami with flowing neon holographic gradients for AI, FinTech, and crypto platforms.',
     targetModels: ['Midjourney', 'Flux', 'DALL-E 3'],
     tags: ['Logo Design', 'Web3', 'AI', 'FinTech', 'Gradient', 'Futuristic', 'Crypto'],
+    imageUrl: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=600&auto=format&fit=crop&q=80',
     promptTemplate: `Cutting-edge dynamic abstract logo for [TECH_VENTURE], a [TECH_CATEGORY] enterprise. The mark is a 3D isometric continuous origami ribbon twisting into an impossible [SHAPE_GEOMETRY], symbolizing infinite computing and connectivity. Smooth radiant gradient transition from [GRADIENT_START] to [GRADIENT_END] with soft outer luminescent cyber glow. Centered on a clean dark slate-950 backdrop, ultra-sharp vector rendering, futuristic sans-serif typography below, Silicon Valley tech brand identity --ar 1:1 --v 6.1`,
     defaultVariables: {
       TECH_VENTURE: 'Synapse Protocol',
@@ -1510,6 +1515,7 @@ Include essential clauses:
     description: 'Fierce, stylized illustrated mascot with bold vector stroke outlines, cel-shaded highlights, and dynamic sports typography.',
     targetModels: ['Midjourney', 'Flux', 'DALL-E 3'],
     tags: ['Logo Design', 'Mascot', 'Esports', 'Gaming', 'Character', 'Illustration'],
+    imageUrl: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=600&auto=format&fit=crop&q=80',
     promptTemplate: `Fierce esports team mascot logo featuring an aggressive [MASCOT_CREATURE] with glowing eyes and razor-sharp geometric contours. High-contrast cel-shading with heavy black vector contour outlines, dramatic rim lighting in [ACCENT_NEON_COLOR], positioned inside a modern angular sports shield crest. Bold, angled sports display typography banner underneath reading "[TEAM_NAME]". Professional gaming franchise branding, vector sticker style, isolated on clean dark background, Twitch and esports tournament ready --ar 1:1 --v 6.1`,
     defaultVariables: {
       MASCOT_CREATURE: 'cybernetic mechanized white tiger baring teeth',
@@ -1524,6 +1530,7 @@ Include essential clauses:
     description: 'Ingenious dual-meaning silhouette where the negative space inside the primary symbol forms a secondary hidden icon.',
     targetModels: ['Midjourney', 'Flux', 'DALL-E 3'],
     tags: ['Logo Design', 'Negative Space', 'Clever', 'Minimalist', 'Creative Agency'],
+    imageUrl: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&auto=format&fit=crop&q=80',
     promptTemplate: `Award-winning conceptual minimalist logo utilizing negative space for [BRAND_NAME], a [INDUSTRY_DESCRIPTION] firm. The outer silhouette depicts [PRIMARY_SYMBOL], while the negative white space inside cleverly and seamlessly reveals [HIDDEN_SECONDARY_SYMBOL]. Pure two-tone color palette using [TWO_TONE_COLORS]. Brilliant visual pun, highly memorable, Swiss design discipline, crisp vector outlines on solid background, no gradients, no photorealism --ar 1:1 --v 6.1`,
     defaultVariables: {
       BRAND_NAME: 'Horizon Logistics & Air Cargo',
@@ -1540,6 +1547,7 @@ Include essential clauses:
     description: 'Delicate hand-drawn botanical line art with soft pastel watercolor splash wash and gold foil leaf accents for wellness & spas.',
     targetModels: ['Midjourney', 'Flux', 'DALL-E 3'],
     tags: ['Logo Design', 'Botanical', 'Watercolor', 'Spa', 'Skincare', 'Beauty', 'Organic'],
+    imageUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=600&auto=format&fit=crop&q=80',
     promptTemplate: `Delicate organic botanical logo emblem for [SPA_OR_BRAND_NAME], an all-natural [WELLNESS_NICHE] brand. Features fine single-needle line art illustration of [PLANT_OR_FLOWER_ELEMENTS], enveloped by a soft translucent watercolor splash wash in [WATERCOLOR_TONES] with subtle metallic gold foil splatters. Elegant modern calligraphy script for the brand name, luxurious Zen atmosphere, clean off-white textured cotton paper background, feminine aesthetic, organic skincare packaging ready --ar 1:1 --v 6.1`,
     defaultVariables: {
       SPA_OR_BRAND_NAME: 'Verdant Glow Naturals',
@@ -1555,6 +1563,7 @@ Include essential clauses:
     description: 'Majestic classical heraldry crest with dual rampant lions, royal crown, filigree shield, and Latin ribbon for law & elite heritage.',
     targetModels: ['Midjourney', 'Flux', 'DALL-E 3'],
     tags: ['Logo Design', 'Royal Crest', 'Coat of Arms', 'Law Firm', 'Heritage', 'Luxury'],
+    imageUrl: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=600&auto=format&fit=crop&q=80',
     promptTemplate: `Majestic classical heraldic coat of arms crest logo for [INSTITUTION_OR_FIRM], a distinguished [HERITAGE_SECTOR]. The crest features an ornate baroque shield with [SHIELD_CENTRAL_EMBLEM], flanked by [SUPPORTERS_ANIMALS] standing rampant on an acanthus leaf pedestal. Crowned with an antique royal coronet at the top and a flowing parchment ribbon banner at the base inscribed with the motto "[MOTTO_TEXT]". Rendered in [COLOR_THEME] with intricate hand-engraved line details, stately institutional prestige --ar 1:1 --v 6.1`,
     defaultVariables: {
       INSTITUTION_OR_FIRM: 'Sterling & Kensington Chambers',
@@ -1572,6 +1581,7 @@ Include essential clauses:
     description: 'Ultra-modern single continuous line stroke forming geometric architectural silhouettes and structural luxury towers.',
     targetModels: ['Midjourney', 'Flux', 'DALL-E 3'],
     tags: ['Logo Design', 'Monoline', 'Architecture', 'Real Estate', 'Minimalist', 'Line Art'],
+    imageUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&auto=format&fit=crop&q=80',
     promptTemplate: `Ultra-modern continuous monoline vector logo for [DEVELOPER_NAME], an elite [REAL_ESTATE_NICHE] firm. Designed using a single, uninterrupted uniform stroke width line that flows to form [ARCHITECTURAL_SILHOUETTE]. Perfect geometric angles, spacious kerning, accompanied by a clean geometric sans-serif wordmark reading "[DEVELOPER_NAME]". Rendered in [LINE_COLOR] on a clean [BG_COLOR] backdrop. Architectural drafting precision, Scandinavian minimalism, luxury property branding --ar 1:1 --v 6.1`,
     defaultVariables: {
       DEVELOPER_NAME: 'Vanguard Skyline Developments',
@@ -1588,6 +1598,7 @@ Include essential clauses:
     description: 'Charming modern bistro badge combining vintage cutlery, artisanal flame, and warm appetizing culinary aesthetics.',
     targetModels: ['Midjourney', 'Flux', 'DALL-E 3'],
     tags: ['Logo Design', 'Restaurant', 'Food', 'Cafe', 'Bakery', 'Culinary', 'Artisan'],
+    imageUrl: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&auto=format&fit=crop&q=80',
     promptTemplate: `Charming artisan culinary logo badge for [RESTAURANT_NAME], a [CULINARY_SPECIALTY] bistro. The emblem features a hand-crafted illustration of [KITCHEN_OR_FOOD_ELEMENTS] with warm woodcut linework, enclosed in a rustic circular stamp with delicate wheat sheaf borders. Warm appetizing color palette: [APPETIZING_COLORS]. Nostalgic yet contemporary gastronomy branding, custom hand-lettered bold typography, vector format on clean parchment background --ar 1:1 --v 6.1`,
     defaultVariables: {
       RESTAURANT_NAME: 'The Hearth & Crust Bakehouse',
@@ -1603,6 +1614,7 @@ Include essential clauses:
     description: 'Bold custom brand wordmark with unique character ligatures, stylized letter cutouts, and distinctive modern kerning.',
     targetModels: ['Midjourney', 'Flux', 'ChatGPT', 'Claude'],
     tags: ['Logo Design', 'Wordmark', 'Typography', 'Branding', 'Custom Font', 'Modern'],
+    imageUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80',
     promptTemplate: `Custom modern typographic logo wordmark for "[BRAND_TEXT]", a modern [PRODUCT_OR_LIFESTYLE] company. The wordmark features custom designed bold geometric letterforms with distinctive creative ligatures between [LIGATURE_PAIR]. A subtle negative space or geometric angle in the letter [SPECIAL_LETTER_FEATURE] gives the mark an unmistakable signature look. High-contrast palette: [PALETTE_CHOICE]. Perfectly balanced optical kerning, avant-garde editorial branding, scalable from app favicon to billboard --ar 1:1 --v 6.1`,
     defaultVariables: {
       BRAND_TEXT: 'LUMINA',
