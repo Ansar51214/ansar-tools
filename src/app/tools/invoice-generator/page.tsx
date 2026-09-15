@@ -259,27 +259,31 @@ export default function InvoiceGeneratorPage() {
   useEffect(() => {
     try {
       const savedCompany = localStorage.getItem('ansar_invoice_company');
-      if (savedCompany) {
-        const p = JSON.parse(savedCompany);
-        if (p.companyName) setCompanyName(p.companyName);
-        if (p.companyTagline) setCompanyTagline(p.companyTagline);
-        if (p.companyAddress) setCompanyAddress(p.companyAddress);
-        if (p.companyCity) setCompanyCity(p.companyCity);
-        if (p.companyPhone) setCompanyPhone(p.companyPhone);
-        if (p.companyEmail) setCompanyEmail(p.companyEmail);
-        if (p.companyWebsite) setCompanyWebsite(p.companyWebsite);
-        if (p.companyTaxId) setCompanyTaxId(p.companyTaxId);
-        if (p.companyLogo) setCompanyLogo(p.companyLogo);
-        if (p.bankName) setBankName(p.bankName);
-        if (p.accountTitle) setAccountTitle(p.accountTitle);
-        if (p.accountNumber) setAccountNumber(p.accountNumber);
-        if (p.iban) setIban(p.iban);
-        if (p.walletNumber) setWalletNumber(p.walletNumber);
-      }
-
       const historyData = localStorage.getItem('ansar_invoice_history');
-      if (historyData) {
-        setSavedInvoices(JSON.parse(historyData));
+      if (savedCompany || historyData) {
+        const p = savedCompany ? JSON.parse(savedCompany) : null;
+        const history = historyData ? JSON.parse(historyData) : null;
+        setTimeout(() => {
+          if (p) {
+            if (p.companyName) setCompanyName(p.companyName);
+            if (p.companyTagline) setCompanyTagline(p.companyTagline);
+            if (p.companyAddress) setCompanyAddress(p.companyAddress);
+            if (p.companyCity) setCompanyCity(p.companyCity);
+            if (p.companyPhone) setCompanyPhone(p.companyPhone);
+            if (p.companyEmail) setCompanyEmail(p.companyEmail);
+            if (p.companyWebsite) setCompanyWebsite(p.companyWebsite);
+            if (p.companyTaxId) setCompanyTaxId(p.companyTaxId);
+            if (p.companyLogo) setCompanyLogo(p.companyLogo);
+            if (p.bankName) setBankName(p.bankName);
+            if (p.accountTitle) setAccountTitle(p.accountTitle);
+            if (p.accountNumber) setAccountNumber(p.accountNumber);
+            if (p.iban) setIban(p.iban);
+            if (p.walletNumber) setWalletNumber(p.walletNumber);
+          }
+          if (history) {
+            setSavedInvoices(history);
+          }
+        }, 0);
       }
     } catch {
       // ignore

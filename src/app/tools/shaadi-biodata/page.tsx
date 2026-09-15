@@ -720,15 +720,17 @@ export default function ShaadiBiodataPage() {
   useEffect(() => {
     try {
       const saved = localStorage.getItem('ansar_shaadi_biodata_v2');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (parsed.personal) {
-          setData(parsed);
-        }
-      }
       const savedTheme = localStorage.getItem('ansar_shaadi_theme');
-      if (savedTheme && savedTheme in THEME_CONFIGS) {
-        setCurrentTheme(savedTheme as ThemeId);
+      if (saved || savedTheme) {
+        const parsed = saved ? JSON.parse(saved) : null;
+        setTimeout(() => {
+          if (parsed && parsed.personal) {
+            setData(parsed);
+          }
+          if (savedTheme && savedTheme in THEME_CONFIGS) {
+            setCurrentTheme(savedTheme as ThemeId);
+          }
+        }, 0);
       }
     } catch (e) {
       console.error(e);

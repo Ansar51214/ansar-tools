@@ -106,12 +106,14 @@ export default function AIPromptsGalleryPage() {
   useEffect(() => {
     try {
       const savedFavs = localStorage.getItem('ansar_ai_prompt_favorites');
-      if (savedFavs) {
-        setFavorites(JSON.parse(savedFavs));
-      }
       const savedCustom = localStorage.getItem('ansar_ai_custom_prompts');
-      if (savedCustom) {
-        setCustomPrompts(JSON.parse(savedCustom));
+      if (savedFavs || savedCustom) {
+        const parsedFavs = savedFavs ? JSON.parse(savedFavs) : null;
+        const parsedCustom = savedCustom ? JSON.parse(savedCustom) : null;
+        setTimeout(() => {
+          if (parsedFavs) setFavorites(parsedFavs);
+          if (parsedCustom) setCustomPrompts(parsedCustom);
+        }, 0);
       }
     } catch (e) {
       console.error('Failed to load saved prompts:', e);

@@ -3,7 +3,6 @@
 import { useState, useRef } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-// @ts-ignore
 import piexif from 'piexifjs';
 import { Upload, RefreshCw } from 'lucide-react';
 

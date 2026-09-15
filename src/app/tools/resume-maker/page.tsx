@@ -227,7 +227,10 @@ export default function ResumeMakerPage() {
     try {
       const saved = localStorage.getItem('ansar_resume_data');
       if (saved) {
-        setResumeData(JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        setTimeout(() => {
+          setResumeData(parsed);
+        }, 0);
       }
     } catch {
       // ignore

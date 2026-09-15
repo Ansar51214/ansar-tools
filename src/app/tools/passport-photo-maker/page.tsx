@@ -295,6 +295,126 @@ export default function PassportPhotoMakerPage() {
   };
 
   // ---------------------------------------------------------------------------
+  // Helper: Biometric Face Oval Guide
+  // ---------------------------------------------------------------------------
+  const drawBiometricGuide = (ctx: CanvasRenderingContext2D, w: number, h: number, headPercent: number) => {
+    ctx.save();
+    const centerX = w / 2;
+    const centerY = h * 0.44;
+
+    const ovalRadiusX = w * 0.28;
+    const ovalRadiusY = h * (headPercent / 200);
+
+    // Outer Head Oval (Dashed Blue)
+    ctx.strokeStyle = '#2563EB';
+    ctx.lineWidth = 2.5;
+    ctx.setLineDash([8, 6]);
+    ctx.beginPath();
+    ctx.ellipse(centerX, centerY, ovalRadiusX, ovalRadiusY, 0, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Crown / Hairline Guide (Top of head)
+    const crownY = centerY - ovalRadiusY;
+    ctx.strokeStyle = '#EF4444';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([5, 4]);
+    ctx.beginPath();
+    ctx.moveTo(w * 0.15, crownY);
+    ctx.lineTo(w * 0.85, crownY);
+    ctx.stroke();
+
+    // Eye Level Guide
+    const eyeY = centerY - ovalRadiusY * 0.15;
+    ctx.strokeStyle = '#10B981';
+    ctx.beginPath();
+    ctx.moveTo(w * 0.18, eyeY);
+    ctx.lineTo(w * 0.82, eyeY);
+    ctx.stroke();
+
+    // Chin Guide
+    const chinY = centerY + ovalRadiusY;
+    ctx.strokeStyle = '#F59E0B';
+    ctx.beginPath();
+    ctx.moveTo(w * 0.2, chinY);
+    ctx.lineTo(w * 0.8, chinY);
+    ctx.stroke();
+
+    // Reset line dash for labels
+    ctx.setLineDash([]);
+    ctx.font = 'bold 10px Inter, sans-serif';
+    ctx.fillStyle = '#EF4444';
+    ctx.fillText('CROWN (Top)', w * 0.04, crownY - 4);
+    ctx.fillStyle = '#10B981';
+    ctx.fillText('EYE LEVEL', w * 0.04, eyeY - 4);
+    ctx.fillStyle = '#F59E0B';
+    ctx.fillText('CHIN LINE', w * 0.04, chinY + 12);
+
+    // Shoulder arch guide
+    ctx.strokeStyle = 'rgba(59, 130, 246, 0.4)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.ellipse(centerX, h * 0.95, w * 0.48, h * 0.22, 0, Math.PI, 0, false);
+    ctx.stroke();
+
+    ctx.restore();
+  };
+
+  // Rule of thirds grid
+  const drawRuleOfThirds = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
+    ctx.save();
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+
+    ctx.beginPath();
+    ctx.moveTo(w / 3, 0);
+    ctx.lineTo(w / 3, h);
+    ctx.moveTo((2 * w) / 3, 0);
+    ctx.lineTo((2 * w) / 3, h);
+
+    ctx.moveTo(0, h / 3);
+    ctx.lineTo(w, h / 3);
+    ctx.moveTo(0, (2 * h) / 3);
+    ctx.lineTo(w, (2 * h) / 3);
+    ctx.stroke();
+
+    ctx.restore();
+  };
+
+  // Sharpness Convolution Kernel
+  const applySharpnessFilter = (ctx: CanvasRenderingContext2D, w: number, h: number, amount: number) => {
+    const imgData = ctx.getImageData(0, 0, w, h);
+    const src = imgData.data;
+    const output = ctx.createImageData(w, h);
+    const dst = output.data;
+
+    const factor = (amount / 100) * 0.75;
+    // 3x3 sharpen kernel: [0, -factor, 0, -factor, 1 + 4*factor, -factor, 0, -factor, 0]
+    for (let y = 1; y < h - 1; y++) {
+      for (let x = 1; x < w - 1; x++) {
+        const idx = (y * w + x) * 4;
+        for (let c = 0; c < 3; c++) {
+          const up = ((y - 1) * w + x) * 4 + c;
+          const down = ((y + 1) * w + x) * 4 + c;
+          const left = (y * w + (x - 1)) * 4 + c;
+          const right = (y * w + (x + 1)) * 4 + c;
+          const val = src[idx + c] * (1 + 4 * factor) - (src[up] + src[down] + src[left] + src[right]) * factor;
+          dst[idx + c] = Math.min(255, Math.max(0, val));
+        }
+        dst[idx + 3] = src[idx + 3];
+      }
+    }
+    ctx.putImageData(output, 0, 0);
+  };
+
+  const hexToRgb = (hex: string) => {
+    let clean = hex.replace('#', '');
+    if (clean.length === 3) clean = clean.split('').map((c) => c + c).join('');
+    const num = parseInt(clean, 16);
+    return { r: (num >> 16) & 255, g: (num >> 8) & 255, b: num & 255 };
+  };
+
+  // ---------------------------------------------------------------------------
   // Signature Resizer Canvas Renderer
   // ---------------------------------------------------------------------------
   const renderSignatureCanvas = useCallback(() => {
@@ -429,7 +549,7 @@ export default function PassportPhotoMakerPage() {
   // ---------------------------------------------------------------------------
   // Load Image Handler
   // ---------------------------------------------------------------------------
-  const handleLoadImage = (src: string) => {
+  const handleLoadImage = useCallback((src: string) => {
     setIsProcessing(true);
     setStatusMessage('Loading portrait...');
     const img = new Image();
@@ -474,7 +594,7 @@ export default function PassportPhotoMakerPage() {
       setIsProcessing(false);
     };
     img.src = src;
-  };
+  }, []);
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -523,23 +643,9 @@ export default function PassportPhotoMakerPage() {
     };
     window.addEventListener('paste', handlePaste);
     return () => window.removeEventListener('paste', handlePaste);
-  }, []);
+  }, [handleLoadImage]);
 
-  // Pre-load suit image when selected
-  useEffect(() => {
-    if (selectedSuit) {
-      const sImg = new Image();
-      sImg.crossOrigin = 'anonymous';
-      sImg.onload = () => {
-        suitImageRef.current = sImg;
-        renderCanvas();
-      };
-      sImg.src = selectedSuit.svgDataUri;
-    } else {
-      suitImageRef.current = null;
-      renderCanvas();
-    }
-  }, [selectedSuit]);
+
 
   // ---------------------------------------------------------------------------
   // Canvas Rendering Engine
@@ -724,125 +830,23 @@ export default function PassportPhotoMakerPage() {
     renderCanvas();
   }, [renderCanvas]);
 
-  // ---------------------------------------------------------------------------
-  // Helper: Biometric Face Oval Guide
-  // ---------------------------------------------------------------------------
-  const drawBiometricGuide = (ctx: CanvasRenderingContext2D, w: number, h: number, headPercent: number) => {
-    ctx.save();
-    const centerX = w / 2;
-    const centerY = h * 0.44;
-
-    const ovalRadiusX = w * 0.28;
-    const ovalRadiusY = h * (headPercent / 200);
-
-    // Outer Head Oval (Dashed Blue)
-    ctx.strokeStyle = '#2563EB';
-    ctx.lineWidth = 2.5;
-    ctx.setLineDash([8, 6]);
-    ctx.beginPath();
-    ctx.ellipse(centerX, centerY, ovalRadiusX, ovalRadiusY, 0, 0, Math.PI * 2);
-    ctx.stroke();
-
-    // Crown / Hairline Guide (Top of head)
-    const crownY = centerY - ovalRadiusY;
-    ctx.strokeStyle = '#EF4444';
-    ctx.lineWidth = 1.5;
-    ctx.setLineDash([5, 4]);
-    ctx.beginPath();
-    ctx.moveTo(w * 0.15, crownY);
-    ctx.lineTo(w * 0.85, crownY);
-    ctx.stroke();
-
-    // Eye Level Guide
-    const eyeY = centerY - ovalRadiusY * 0.15;
-    ctx.strokeStyle = '#10B981';
-    ctx.beginPath();
-    ctx.moveTo(w * 0.18, eyeY);
-    ctx.lineTo(w * 0.82, eyeY);
-    ctx.stroke();
-
-    // Chin Guide
-    const chinY = centerY + ovalRadiusY;
-    ctx.strokeStyle = '#F59E0B';
-    ctx.beginPath();
-    ctx.moveTo(w * 0.2, chinY);
-    ctx.lineTo(w * 0.8, chinY);
-    ctx.stroke();
-
-    // Reset line dash for labels
-    ctx.setLineDash([]);
-    ctx.font = 'bold 10px Inter, sans-serif';
-    ctx.fillStyle = '#EF4444';
-    ctx.fillText('CROWN (Top)', w * 0.04, crownY - 4);
-    ctx.fillStyle = '#10B981';
-    ctx.fillText('EYE LEVEL', w * 0.04, eyeY - 4);
-    ctx.fillStyle = '#F59E0B';
-    ctx.fillText('CHIN LINE', w * 0.04, chinY + 12);
-
-    // Shoulder arch guide
-    ctx.strokeStyle = 'rgba(59, 130, 246, 0.4)';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.ellipse(centerX, h * 0.95, w * 0.48, h * 0.22, 0, Math.PI, 0, false);
-    ctx.stroke();
-
-    ctx.restore();
-  };
-
-  // Rule of thirds grid
-  const drawRuleOfThirds = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
-    ctx.save();
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
-    ctx.lineWidth = 1;
-    ctx.setLineDash([4, 4]);
-
-    ctx.beginPath();
-    ctx.moveTo(w / 3, 0);
-    ctx.lineTo(w / 3, h);
-    ctx.moveTo((2 * w) / 3, 0);
-    ctx.lineTo((2 * w) / 3, h);
-
-    ctx.moveTo(0, h / 3);
-    ctx.lineTo(w, h / 3);
-    ctx.moveTo(0, (2 * h) / 3);
-    ctx.lineTo(w, (2 * h) / 3);
-    ctx.stroke();
-
-    ctx.restore();
-  };
-
-  // Sharpness Convolution Kernel
-  const applySharpnessFilter = (ctx: CanvasRenderingContext2D, w: number, h: number, amount: number) => {
-    const imgData = ctx.getImageData(0, 0, w, h);
-    const src = imgData.data;
-    const output = ctx.createImageData(w, h);
-    const dst = output.data;
-
-    const factor = (amount / 100) * 0.75;
-    // 3x3 sharpen kernel: [0, -factor, 0, -factor, 1 + 4*factor, -factor, 0, -factor, 0]
-    for (let y = 1; y < h - 1; y++) {
-      for (let x = 1; x < w - 1; x++) {
-        const idx = (y * w + x) * 4;
-        for (let c = 0; c < 3; c++) {
-          const up = ((y - 1) * w + x) * 4 + c;
-          const down = ((y + 1) * w + x) * 4 + c;
-          const left = (y * w + (x - 1)) * 4 + c;
-          const right = (y * w + (x + 1)) * 4 + c;
-          const val = src[idx + c] * (1 + 4 * factor) - (src[up] + src[down] + src[left] + src[right]) * factor;
-          dst[idx + c] = Math.min(255, Math.max(0, val));
-        }
-        dst[idx + 3] = src[idx + 3];
-      }
+  // Pre-load suit image when selected
+  useEffect(() => {
+    if (selectedSuit) {
+      const sImg = new Image();
+      sImg.crossOrigin = 'anonymous';
+      sImg.onload = () => {
+        suitImageRef.current = sImg;
+        renderCanvas();
+      };
+      sImg.src = selectedSuit.svgDataUri;
+    } else {
+      suitImageRef.current = null;
+      renderCanvas();
     }
-    ctx.putImageData(output, 0, 0);
-  };
+  }, [selectedSuit, renderCanvas]);
 
-  const hexToRgb = (hex: string) => {
-    let clean = hex.replace('#', '');
-    if (clean.length === 3) clean = clean.split('').map((c) => c + c).join('');
-    const num = parseInt(clean, 16);
-    return { r: (num >> 16) & 255, g: (num >> 8) & 255, b: num & 255 };
-  };
+
 
   // ---------------------------------------------------------------------------
   // Drag / Pan & Suit Nudge Interactions
@@ -939,7 +943,7 @@ export default function PassportPhotoMakerPage() {
   // ---------------------------------------------------------------------------
   // High-Resolution Single Photo Generation (300 DPI)
   // ---------------------------------------------------------------------------
-  const generateHighResSingleCanvas = (): HTMLCanvasElement => {
+  const generateHighResSingleCanvas = useCallback((): HTMLCanvasElement => {
     const singleCanvas = document.createElement('canvas');
     singleCanvas.width = targetWidthPx;
     singleCanvas.height = targetHeightPx;
@@ -1042,7 +1046,34 @@ export default function PassportPhotoMakerPage() {
     }
 
     return singleCanvas;
-  };
+  }, [
+    targetWidthPx,
+    targetHeightPx,
+    bgColor,
+    detectedPhotoBg,
+    pan,
+    rotation,
+    flipH,
+    zoom,
+    brightness,
+    contrast,
+    saturation,
+    isGrayscale,
+    enableBgReplace,
+    bgTolerance,
+    sharpness,
+    selectedSuit,
+    suitScale,
+    suitPos,
+    suitFlip,
+    addNameDate,
+    candidateName,
+    dopDate,
+    dopPrefix,
+    addBorder,
+    borderWidth,
+    borderColor
+  ]);
 
   // Download Single Photo HD or with Strict Target KB Limiter
   const handleDownloadSingle = async (format: 'png' | 'jpeg') => {
@@ -1097,7 +1128,7 @@ export default function PassportPhotoMakerPage() {
   // ---------------------------------------------------------------------------
   // Print Sheet Generator (A4, 4x6", 5x7", 4x6 Combo Cyber Cafe Special)
   // ---------------------------------------------------------------------------
-  const generateSheetCanvas = (): { canvas: HTMLCanvasElement; count: number; cols: number; rows: number } => {
+  const generateSheetCanvas = useCallback((): { canvas: HTMLCanvasElement; count: number; cols: number; rows: number } => {
     const single = generateHighResSingleCanvas();
     const sheet = document.createElement('canvas');
     const ctx = sheet.getContext('2d');
@@ -1284,7 +1315,17 @@ export default function PassportPhotoMakerPage() {
     );
 
     return { canvas: sheet, count: totalPhotos, cols, rows };
-  };
+  }, [
+    generateHighResSingleCanvas,
+    sheetLayout,
+    selectedPaper,
+    selectedPreset,
+    photoSpacingMm,
+    targetWidthPx,
+    targetHeightPx,
+    showCutLines,
+    showCropMarks
+  ]);
 
   const handleSelectSheetLayout = (layout: 'single' | '4' | '6' | '8' | '12' | '16' | '32' | 'combo') => {
     setSheetLayout(layout);
@@ -1373,41 +1414,7 @@ export default function PassportPhotoMakerPage() {
         ctx.drawImage(canvas, 0, 0);
       }
     }
-  }, [
-    viewMode,
-    sheetLayout,
-    selectedPaper,
-    selectedPreset,
-    photoSpacingMm,
-    showCutLines,
-    showCropMarks,
-    imageLoaded,
-    zoom,
-    pan,
-    rotation,
-    flipH,
-    bgColor,
-    detectedPhotoBg,
-    enableBgReplace,
-    bgTolerance,
-    bgFeather,
-    sharpness,
-    brightness,
-    contrast,
-    saturation,
-    isGrayscale,
-    selectedSuit,
-    suitScale,
-    suitPos,
-    suitFlip,
-    addNameDate,
-    candidateName,
-    dopDate,
-    dopPrefix,
-    addBorder,
-    borderWidth,
-    borderColor
-  ]);
+  }, [viewMode, imageLoaded, generateSheetCanvas]);
 
   // Preview Print Sheet Modal
   const handleOpenSheetPreview = () => {
