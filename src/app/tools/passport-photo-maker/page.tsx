@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import NextImage from 'next/image';
 import { 
   COUNTRY_PRESETS, 
   PAPER_PRESETS, 
@@ -1621,7 +1622,7 @@ export default function PassportPhotoMakerPage() {
                   }`}
                 >
                   <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                  8 Photos (4×6") ★
+                  8 Photos (4×6&quot;) ★
                 </button>
                 <button
                   type="button"
@@ -1643,7 +1644,7 @@ export default function PassportPhotoMakerPage() {
                       : 'bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800'
                   }`}
                 >
-                  16 Photos (5×7")
+                  16 Photos (5×7&quot;)
                 </button>
                 <button
                   type="button"
@@ -1756,7 +1757,7 @@ export default function PassportPhotoMakerPage() {
                   </div>
 
                   <p className="text-[11px] text-slate-400 mt-3 text-center max-w-xl">
-                    ✂️ Standard print sheet with scissor cut lines. Insert 4×6" photo paper into your printer and select 100% scale.
+                    ✂️ Standard print sheet with scissor cut lines. Insert 4×6&quot; photo paper into your printer and select 100% scale.
                   </p>
                 </div>
               ) : (
@@ -2176,7 +2177,7 @@ export default function PassportPhotoMakerPage() {
                           }}
                           className="text-[10px] text-blue-400 hover:text-blue-300 font-semibold"
                         >
-                          Today's Date
+                          Today&apos;s Date
                         </button>
                       </div>
                       <input
@@ -2404,7 +2405,7 @@ export default function PassportPhotoMakerPage() {
                       : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white'
                   }`}
                 >
-                  Men's Suits
+                  Men&apos;s Suits
                 </button>
                 <button
                   onClick={() => setSuitGenderTab('women')}
@@ -2414,7 +2415,7 @@ export default function PassportPhotoMakerPage() {
                       : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white'
                   }`}
                 >
-                  Women's Blazers
+                  Women&apos;s Blazers
                 </button>
               </div>
 
@@ -2430,8 +2431,8 @@ export default function PassportPhotoMakerPage() {
                         : 'border-slate-800 hover:border-slate-700'
                     }`}
                   >
-                    <div className="w-full h-16 rounded-lg bg-slate-900 flex items-center justify-center overflow-hidden p-1">
-                      <img src={suit.svgDataUri} alt={suit.name} className="max-h-full object-contain pointer-events-none" />
+                    <div className="w-full h-16 rounded-lg bg-slate-900 flex items-center justify-center overflow-hidden p-1 relative">
+                      <NextImage src={suit.svgDataUri} alt={suit.name} width={64} height={64} unoptimized className="max-h-full object-contain pointer-events-none" />
                     </div>
                     <span className="text-[10px] text-slate-300 text-center line-clamp-1 leading-tight">{suit.name}</span>
                   </button>
@@ -2972,8 +2973,8 @@ export default function PassportPhotoMakerPage() {
               </button>
             </div>
 
-            <div className="max-h-[60vh] overflow-auto flex items-center justify-center bg-slate-950 p-4 rounded-xl border border-slate-800">
-              <img src={sheetPreviewUrl} alt="Sheet Preview" className="max-w-full h-auto rounded shadow-lg border border-slate-700" />
+            <div className="max-h-[60vh] overflow-auto flex items-center justify-center bg-slate-950 p-4 rounded-xl border border-slate-800 relative">
+              <NextImage src={sheetPreviewUrl} alt="Sheet Preview" width={800} height={1200} unoptimized className="max-w-full h-auto rounded shadow-lg border border-slate-700" />
             </div>
 
             <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-800">

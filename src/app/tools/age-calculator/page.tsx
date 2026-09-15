@@ -58,7 +58,7 @@ export default function AgeCalculatorTool() {
     const totalMonths = years * 12 + months;
 
     // Days until next birthday
-    let nextBirthday = new Date(today.getFullYear(), dobDate.getMonth(), dobDate.getDate());
+    const nextBirthday = new Date(today.getFullYear(), dobDate.getMonth(), dobDate.getDate());
     if (nextBirthday < today) {
       nextBirthday.setFullYear(today.getFullYear() + 1);
     }

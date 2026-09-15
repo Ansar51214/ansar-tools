@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   Heart, Download, Copy, Share2, Printer, Plus, Trash2,
   Upload, Sparkles, CheckCircle2, Eye, Sliders, ShieldCheck,
@@ -1465,9 +1466,9 @@ export default function ShaadiBiodataPage() {
             {/* Photo Upload Box */}
             {data.personal.showPhoto && (
               <div className="bg-slate-900/60 p-4 rounded-2xl border border-slate-800 flex items-center gap-4">
-                <div className="w-16 h-20 rounded-xl border-2 border-dashed border-slate-700 bg-slate-950 flex items-center justify-center overflow-hidden shrink-0">
+                <div className="w-16 h-20 rounded-xl border-2 border-dashed border-slate-700 bg-slate-950 flex items-center justify-center overflow-hidden shrink-0 relative">
                   {data.personal.photoUrl ? (
-                    <img src={data.personal.photoUrl} alt="Preview" className="w-full h-full object-cover" />
+                    <Image src={data.personal.photoUrl} alt="Preview" width={64} height={80} unoptimized className="w-full h-full object-cover" />
                   ) : (
                     <Camera className="w-6 h-6 text-slate-600" />
                   )}
@@ -2127,13 +2128,16 @@ export default function ShaadiBiodataPage() {
                     {/* Candidate Photo (if not in Purdah mode) */}
                     {data.personal.showPhoto && (
                       <div
-                        className="w-28 h-36 rounded-xl border-2 p-1 shadow-md overflow-hidden bg-white shrink-0"
+                        className="w-28 h-36 rounded-xl border-2 p-1 shadow-md overflow-hidden bg-white shrink-0 relative"
                         style={{ borderColor: currentThemeConfig.primary }}
                       >
                         {data.personal.photoUrl ? (
-                          <img
+                          <Image
                             src={data.personal.photoUrl}
                             alt="Candidate"
+                            width={112}
+                            height={144}
+                            unoptimized
                             className="w-full h-full object-cover rounded-lg"
                           />
                         ) : (

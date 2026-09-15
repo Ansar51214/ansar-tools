@@ -3,6 +3,7 @@
 import { useState, useMemo, useRef } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Image from 'next/image';
 import { 
   ID_CARD_TEMPLATES, 
   ID_CARD_CATEGORIES, 
@@ -423,7 +424,7 @@ export default function IdCardMakerPage() {
                       }`}
                       title={av.label}
                     >
-                      <img src={av.url} alt={av.label} className="w-full h-full object-cover" />
+                      <Image src={av.url} alt={av.label} width={36} height={36} unoptimized className="w-full h-full object-cover" />
                     </button>
                   ))}
                 </div>
@@ -754,7 +755,7 @@ export default function IdCardMakerPage() {
                                 
                                 {/* Logo or Crest Icon */}
                                 {cardData.logoUrl ? (
-                                  <img src={cardData.logoUrl} alt="Logo" className="w-8 h-8 object-contain rounded" />
+                                  <Image src={cardData.logoUrl} alt="Logo" width={32} height={32} unoptimized className="w-8 h-8 object-contain rounded" />
                                 ) : (
                                   <div 
                                     style={{ backgroundColor: accentColor }}
@@ -776,9 +777,12 @@ export default function IdCardMakerPage() {
                                   avatarShape === 'circle' ? 'rounded-full' : 'rounded-2xl'
                                 }`}
                               >
-                                <img 
+                                <Image 
                                   src={cardData.avatarUrl} 
                                   alt={cardData.holderName} 
+                                  width={112}
+                                  height={112}
+                                  unoptimized
                                   className="w-full h-full object-cover"
                                 />
                               </div>
@@ -842,7 +846,7 @@ export default function IdCardMakerPage() {
                             >
                               <div className="flex items-center gap-2.5">
                                 {cardData.logoUrl ? (
-                                  <img src={cardData.logoUrl} alt="Logo" className="w-6 h-6 object-contain rounded" />
+                                  <Image src={cardData.logoUrl} alt="Logo" width={24} height={24} unoptimized className="w-6 h-6 object-contain rounded" />
                                 ) : (
                                   <div style={{ backgroundColor: accentColor }} className="w-6 h-6 rounded flex items-center justify-center text-slate-900">
                                     <Shield className="w-3.5 h-3.5" />
@@ -873,7 +877,7 @@ export default function IdCardMakerPage() {
                                   avatarShape === 'circle' ? 'rounded-full' : 'rounded-2xl'
                                 }`}
                               >
-                                <img src={cardData.avatarUrl} alt={cardData.holderName} className="w-full h-full object-cover" />
+                                <Image src={cardData.avatarUrl} alt={cardData.holderName} width={96} height={96} unoptimized className="w-full h-full object-cover" />
                               </div>
 
                               {/* Center: Details */}
@@ -1135,10 +1139,13 @@ export default function IdCardMakerPage() {
                 >
                   {/* Card Thumbnail */}
                   <div className="relative h-48 w-full bg-slate-950 overflow-hidden cursor-pointer">
-                    <img
+                    <Image
                       src={tpl.previewImage}
                       alt={tpl.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      unoptimized
                     />
                     
                     {/* Top Badges */}
@@ -1258,10 +1265,13 @@ export default function IdCardMakerPage() {
             </div>
 
             <div className="rounded-2xl overflow-hidden border border-slate-800 h-44 relative">
-              <img 
+              <Image 
                 src={downloadModalTemplate.previewImage} 
                 alt={downloadModalTemplate.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 500px"
                 className="w-full h-full object-cover"
+                unoptimized
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
               <div className="absolute bottom-3 left-3 text-white">

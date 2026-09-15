@@ -3,6 +3,7 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Image from 'next/image';
 import { 
   APRINTS_PRODUCTS, 
   APRINTS_CATEGORIES, 
@@ -553,10 +554,13 @@ Please share the digital design proof on this WhatsApp number and confirm delive
                 >
                   {/* Image Container with Badges */}
                   <div className="relative aspect-square overflow-hidden bg-slate-100 cursor-pointer" onClick={() => handleOpenQuickView(product)}>
-                    <img
+                    <Image
                       src={product.imageUrl}
                       alt={product.title}
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      unoptimized
                     />
 
                     {/* Badge */}
@@ -849,11 +853,14 @@ Please share the digital design proof on this WhatsApp number and confirm delive
               
               {/* Left Column: Product Image & Features (5 cols) */}
               <div className="md:col-span-5 p-5 bg-slate-50 flex flex-col justify-between space-y-4">
-                <div className="aspect-square rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-md">
-                  <img
+                <div className="aspect-square rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-md relative">
+                  <Image
                     src={activeGalleryImg || quickViewProduct.imageUrl}
                     alt={quickViewProduct.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 400px"
                     className="w-full h-full object-cover"
+                    unoptimized
                   />
                 </div>
 

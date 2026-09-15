@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   FileText, Minimize2, Sparkles, Upload, Download, CheckCircle2,
   AlertCircle, Trash2, Eye, RefreshCw, Zap, ShieldCheck,
@@ -555,8 +556,8 @@ export default function PdfCompressorPage() {
                 <div className="flex items-center gap-3 overflow-x-auto pb-1">
                   {thumbnails.map((t) => (
                     <div key={t.pageNumber} className="shrink-0 flex flex-col items-center">
-                      <div className="h-28 w-20 bg-white rounded-lg border border-slate-700 overflow-hidden shadow-md flex items-center justify-center">
-                        <img src={t.dataUrl} alt={`Page ${t.pageNumber}`} className="max-w-full max-h-full object-contain" />
+                      <div className="h-28 w-20 bg-white rounded-lg border border-slate-700 overflow-hidden shadow-md flex items-center justify-center relative">
+                        <Image src={t.dataUrl} alt={`Page ${t.pageNumber}`} width={80} height={112} unoptimized className="max-w-full max-h-full object-contain" />
                       </div>
                       <span className="text-[10px] text-slate-500 mt-1 font-mono">Page {t.pageNumber}</span>
                     </div>

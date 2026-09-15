@@ -12,7 +12,7 @@ export default function VisionSection() {
           Democratizing Digital Tools for Everyone.
         </h2>
         <p className="text-lg text-gray-600 leading-relaxed">
-          We believe that essential digital utilities should be accessible to all. That's why we're committed to providing 100% free, privacy-focused, and lightning-fast web tools with no hidden paywalls, intrusive ads, or mandatory signups.
+          We believe that essential digital utilities should be accessible to all. That&apos;s why we&apos;re committed to providing 100% free, privacy-focused, and lightning-fast web tools with no hidden paywalls, intrusive ads, or mandatory signups.
         </p>
         
         <ul className="space-y-3 pt-4">

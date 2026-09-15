@@ -690,7 +690,7 @@ export default function TypingMasterTool() {
               <div>
                 <span className="font-bold text-white block">Jameel Noori Nastaleeq Font Active (جميل نوری نستعلیق)</span>
                 <span className="text-slate-400 text-[11px]">
-                  Smart Phonetic Helper: Type standard English letters on keyboard (e.g. 'a' gives 'ا', 'm' gives 'م', 'k' gives 'ک')
+                  Smart Phonetic Helper: Type standard English letters on keyboard (e.g. &apos;a&apos; gives &apos;ا&apos;, &apos;m&apos; gives &apos;م&apos;, &apos;k&apos; gives &apos;ک&apos;)
                 </span>
               </div>
             </div>

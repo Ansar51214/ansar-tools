@@ -89,8 +89,8 @@ export default function MetaGlassesTool() {
           <div className="bg-blue-50 text-blue-800 text-sm p-4 rounded-xl mb-8 flex gap-3">
             <span className="text-xl">ℹ️</span>
             <p>
-              This tool injects Meta Ray-Ban Smart Glasses camera info into your photo's EXIF metadata.
-              This can help apps like Instagram recognize it for "camera-captured" style effects.
+              This tool injects Meta Ray-Ban Smart Glasses camera info into your photo&apos;s EXIF metadata.
+              This can help apps like Instagram recognize it for &quot;camera-captured&quot; style effects.
             </p>
           </div>
 

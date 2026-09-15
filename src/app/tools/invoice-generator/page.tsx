@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Image from 'next/image';
 import { currencyToWords } from './numberToWords';
 import { QRCodeSVG } from 'qrcode.react';
 import {
@@ -951,7 +952,7 @@ export default function InvoiceGeneratorPage() {
               <div className="text-center border-b border-dashed border-slate-400 pb-3">
                 {companyLogo && (
                   <div className="relative group inline-block mb-2">
-                    <img src={companyLogo} alt="Logo" className="h-12 mx-auto object-contain" />
+                    <Image src={companyLogo} alt="Logo" width={120} height={48} unoptimized className="h-12 w-auto mx-auto object-contain" />
                     <button
                       type="button"
                       onClick={() => setCompanyLogo(null)}
@@ -1191,7 +1192,7 @@ export default function InvoiceGeneratorPage() {
                     <div className="relative group shrink-0">
                       {companyLogo ? (
                         <div className="relative w-28 h-20 border border-slate-200 rounded-xl overflow-hidden flex items-center justify-center bg-slate-50">
-                          <img src={companyLogo} alt="Logo" className="max-w-full max-h-full object-contain p-1" />
+                          <Image src={companyLogo} alt="Logo" width={112} height={80} unoptimized className="max-w-full max-h-full object-contain p-1" />
                           <button
                             type="button"
                             onClick={() => setCompanyLogo(null)}
@@ -1765,10 +1766,10 @@ export default function InvoiceGeneratorPage() {
                     </p>
                   )}
                   {signatureMode === 'draw' && drawnSignature && (
-                    <img src={drawnSignature} alt="Signature" className="h-12 w-auto mb-1 object-contain" />
+                    <Image src={drawnSignature} alt="Signature" width={160} height={48} unoptimized className="h-12 w-auto mb-1 object-contain" />
                   )}
                   {signatureMode === 'upload' && uploadedSignature && (
-                    <img src={uploadedSignature} alt="Signature" className="h-12 w-auto mb-1 object-contain" />
+                    <Image src={uploadedSignature} alt="Signature" width={160} height={48} unoptimized className="h-12 w-auto mb-1 object-contain" />
                   )}
                   {signatureMode === 'none' && (
                     <div className="h-10 flex items-center justify-center text-slate-400 text-[10px] no-print">
@@ -1953,7 +1954,7 @@ export default function InvoiceGeneratorPage() {
                 </button>
                 {uploadedSignature && (
                   <div className="p-3 bg-white rounded-xl flex items-center justify-center border border-slate-200">
-                    <img src={uploadedSignature} alt="Uploaded Sig" className="max-h-16 object-contain" />
+                    <Image src={uploadedSignature} alt="Uploaded Sig" width={180} height={64} unoptimized className="max-h-16 w-auto object-contain" />
                   </div>
                 )}
               </div>
@@ -1998,7 +1999,7 @@ export default function InvoiceGeneratorPage() {
               <div className="text-center py-8 text-slate-400 text-xs">
                 <AlertCircle className="w-8 h-8 mx-auto text-slate-600 mb-2" />
                 <p>No saved invoices found in browser storage.</p>
-                <p className="text-[10px] text-slate-500 mt-1">Click "Save" in the top bar to store an invoice here.</p>
+                <p className="text-[10px] text-slate-500 mt-1">Click &quot;Save&quot; in the top bar to store an invoice here.</p>
               </div>
             ) : (
               <div className="max-h-72 overflow-y-auto divide-y divide-slate-800 pr-1 space-y-1">
