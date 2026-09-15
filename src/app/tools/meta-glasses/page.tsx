@@ -39,8 +39,8 @@ export default function MetaGlassesTool() {
     if (!dataUrl) return;
 
     try {
-      const zeroth: any = {};
-      const exif: any = {};
+      const zeroth: Record<number, string> = {};
+      const exif: Record<number, string> = {};
 
       zeroth[piexif.ImageIFD.Make] = "Meta";
       zeroth[piexif.ImageIFD.Model] = "Ray-Ban Meta Smart Glasses";
@@ -153,7 +153,7 @@ export default function MetaGlassesTool() {
   );
 }
 
-function Wand2Icon(props: any) {
+function Wand2Icon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}

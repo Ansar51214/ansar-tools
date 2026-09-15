@@ -1602,16 +1602,16 @@ export default function BackgroundRemoverPage() {
                     </span>
                   </div>
                   <div className="grid grid-cols-4 gap-1.5">
-                    {[
+                    {([
                       { id: 'original', name: 'Original' },
                       { id: 'passport', name: 'Passport' },
                       { id: '1:1', name: '1:1 DP' },
                       { id: '4:5', name: '4:5 Studio' },
-                    ].map((r) => (
+                    ] as const).map((r) => (
                       <button
                         key={r.id}
                         type="button"
-                        onClick={() => setCanvasRatio(r.id as any)}
+                        onClick={() => setCanvasRatio(r.id)}
                         className={`py-1.5 rounded-lg text-[10px] font-bold border transition-all ${
                           canvasRatio === r.id
                             ? 'bg-purple-600 text-white border-purple-500'

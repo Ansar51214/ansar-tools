@@ -105,6 +105,27 @@ interface PageThumbnail {
   dataUrl: string;
 }
 
+interface PDFPageProxy {
+  getViewport: (params: { scale: number }) => { width: number; height: number };
+  render: (params: { canvasContext: CanvasRenderingContext2D; viewport: { width: number; height: number } }) => { promise: Promise<void> };
+}
+
+interface PDFDocumentProxy {
+  numPages: number;
+  getPage: (pageNumber: number) => Promise<PDFPageProxy>;
+}
+
+interface PDFJSStatic {
+  GlobalWorkerOptions: {
+    workerSrc: string;
+  };
+  getDocument: (src: { data: Uint8Array } | string) => { promise: Promise<PDFDocumentProxy> };
+}
+
+interface WindowWithPdfJs extends Window {
+  pdfjsLib?: PDFJSStatic;
+}
+
 export default function PdfCompressorPage() {
   // --- STATE ---
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -145,8 +166,8 @@ export default function PdfCompressorPage() {
   };
 
   // Helper: Dynamically load PDF.js from CDN
-  const getPdfJs = useCallback((): Promise<any> => {
-    const setupWorker = (pdfjs: any) => {
+  const getPdfJs = useCallback((): Promise<PDFJSStatic> => {
+    const setupWorker = (pdfjs: PDFJSStatic) => {
       if (!pdfjs.GlobalWorkerOptions.workerSrc) {
         try {
           const workerCode = `importScripts("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js");`;
@@ -159,8 +180,9 @@ export default function PdfCompressorPage() {
       return pdfjs;
     };
 
-    if (typeof window !== 'undefined' && (window as any).pdfjsLib) {
-      return Promise.resolve(setupWorker((window as any).pdfjsLib));
+    const win = typeof window !== 'undefined' ? (window as WindowWithPdfJs) : null;
+    if (win?.pdfjsLib) {
+      return Promise.resolve(setupWorker(win.pdfjsLib));
     }
 
     return new Promise((resolve, reject) => {
@@ -169,9 +191,10 @@ export default function PdfCompressorPage() {
         let attempts = 0;
         const interval = setInterval(() => {
           attempts++;
-          if ((window as any).pdfjsLib) {
+          const currentWin = window as WindowWithPdfJs;
+          if (currentWin.pdfjsLib) {
             clearInterval(interval);
-            resolve(setupWorker((window as any).pdfjsLib));
+            resolve(setupWorker(currentWin.pdfjsLib));
           } else if (attempts > 100) {
             clearInterval(interval);
             reject(new Error('PDF.js loading timed out.'));
@@ -184,7 +207,8 @@ export default function PdfCompressorPage() {
       script.id = 'pdfjs-cdn-script';
       script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js';
       script.onload = () => {
-        const pdfjs = (window as any).pdfjsLib;
+        const currentWin = window as WindowWithPdfJs;
+        const pdfjs = currentWin.pdfjsLib;
         if (pdfjs) {
           resolve(setupWorker(pdfjs));
         } else {
@@ -244,7 +268,7 @@ export default function PdfCompressorPage() {
 
   // Helper: Render rasterized compressed PDF from pages
   const renderRasterPdf = async (
-    pdfDoc: any,
+    pdfDoc: PDFDocumentProxy,
     totalPages: number,
     scale: number,
     quality: number,
@@ -418,7 +442,7 @@ export default function PdfCompressorPage() {
       setProgressMessage('Compression complete!');
     } catch (error) {
       console.error('Compression error:', error);
-      alert('An error occurred during compression: ' + (error as any).message);
+      alert('An error occurred during compression: ' + (error instanceof Error ? error.message : 'Unknown error'));
     } finally {
       setIsProcessing(false);
     }

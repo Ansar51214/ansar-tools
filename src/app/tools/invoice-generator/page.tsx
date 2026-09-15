@@ -77,6 +77,46 @@ type StatusStamp = 'NONE' | 'PAID' | 'PENDING' | 'OVERDUE' | 'DRAFT' | 'VOID';
 type WatermarkPosition = 'center' | 'stamp';
 type SignatureMode = 'draw' | 'type' | 'upload' | 'none';
 
+interface InvoiceDataSnapshot {
+  invoiceTitle?: string;
+  invoiceNumber?: string;
+  invoiceDate?: string;
+  dueDate?: string;
+  poNumber?: string;
+  companyName?: string;
+  companyTagline?: string;
+  companyLogo?: string | null;
+  companyAddress?: string;
+  companyCity?: string;
+  companyPhone?: string;
+  companyEmail?: string;
+  companyWebsite?: string;
+  companyTaxId?: string;
+  clientName?: string;
+  clientCompany?: string;
+  clientAddress?: string;
+  clientCity?: string;
+  clientPhone?: string;
+  clientEmail?: string;
+  items?: LineItem[];
+  taxRate?: number;
+  taxLabel?: string;
+  globalDiscount?: number;
+  shippingFee?: number;
+  amountPaid?: number;
+  bankName?: string;
+  accountTitle?: string;
+  accountNumber?: string;
+  iban?: string;
+  walletNumber?: string;
+  qrValue?: string;
+  notes?: string;
+  terms?: string;
+  currency?: Currency;
+  statusStamp?: StatusStamp;
+  activeTheme?: ColorTheme;
+}
+
 interface SavedInvoiceRecord {
   id: string;
   savedAt: string;
@@ -84,7 +124,7 @@ interface SavedInvoiceRecord {
   clientName: string;
   totalAmount: number;
   currencySymbol: string;
-  data: any;
+  data: InvoiceDataSnapshot;
 }
 
 export default function InvoiceGeneratorPage() {
@@ -386,7 +426,7 @@ export default function InvoiceGeneratorPage() {
   };
 
   // Update Item
-  const handleUpdateItem = (id: string, field: keyof LineItem, value: any) => {
+  const handleUpdateItem = (id: string, field: keyof LineItem, value: string | number) => {
     setItems(items.map(item => item.id === id ? { ...item, [field]: value } : item));
   };
 

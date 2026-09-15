@@ -1465,7 +1465,7 @@ export default function PassportPhotoMakerPage() {
       });
 
       const pdfBytes = await pdfDoc.save();
-      const blob = new Blob([pdfBytes as any], { type: 'application/pdf' });
+      const blob = new Blob([pdfBytes.buffer as ArrayBuffer], { type: 'application/pdf' });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
       link.download = `Ansar-Passport-Print-${selectedPaper.id}-${selectedPreset.country}.pdf`;
@@ -1972,17 +1972,17 @@ export default function PassportPhotoMakerPage() {
         <div className="w-full lg:w-[420px] flex flex-col gap-4">
           {/* Tabs Navigation */}
           <div className="grid grid-cols-6 gap-1 bg-slate-950 p-1.5 rounded-xl border border-slate-800">
-            {[
+            {([
               { id: 'preset', label: 'Preset', icon: <User className="w-3.5 h-3.5" /> },
               { id: 'namedate', label: 'Name/Date', icon: <TypeIcon className="w-3.5 h-3.5" /> },
               { id: 'bg', label: 'Color', icon: <Palette className="w-3.5 h-3.5" /> },
               { id: 'suit', label: 'Suit', icon: <Sparkles className="w-3.5 h-3.5" /> },
               { id: 'adjust', label: 'Adjust', icon: <Sliders className="w-3.5 h-3.5" /> },
               { id: 'print', label: 'Print', icon: <Printer className="w-3.5 h-3.5" /> }
-            ].map((tab) => (
+            ] as const).map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => setActiveTab(tab.id)}
                 className={`py-2 px-1 flex flex-col items-center justify-center gap-1 rounded-lg text-[10px] sm:text-[11px] font-semibold transition-all ${
                   activeTab === tab.id
                     ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
@@ -2713,7 +2713,7 @@ export default function PassportPhotoMakerPage() {
               </div>
               <select
                 value={targetKbMode}
-                onChange={(e) => setTargetKbMode(e.target.value as any)}
+                onChange={(e) => setTargetKbMode(e.target.value as 'hd' | 'govt-50' | 'govt-20' | 'under-100' | 'custom')}
                 className="bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1.5 text-white text-xs focus:outline-none focus:border-blue-500"
               >
                 <option value="hd">Original High-Definition (300 DPI Studio)</option>

@@ -231,10 +231,13 @@ export default function TypingMasterTool() {
     if (soundMode === 'mute') return;
     try {
       if (!audioCtxRef.current) {
-        const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-        audioCtxRef.current = new AudioContextClass();
+        const AudioContextClass = window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+        if (AudioContextClass) {
+          audioCtxRef.current = new AudioContextClass();
+        }
       }
       const ctx = audioCtxRef.current;
+      if (!ctx) return;
       if (ctx.state === 'suspended') {
         ctx.resume();
       }

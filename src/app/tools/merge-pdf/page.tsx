@@ -48,6 +48,27 @@ export interface PdfFileItem {
   isExpanded: boolean;
 }
 
+interface PDFPageProxy {
+  getViewport: (params: { scale: number }) => { width: number; height: number };
+  render: (params: { canvasContext: CanvasRenderingContext2D; viewport: { width: number; height: number } }) => { promise: Promise<void> };
+}
+
+interface PDFDocumentProxy {
+  numPages: number;
+  getPage: (pageNumber: number) => Promise<PDFPageProxy>;
+}
+
+interface PDFJSStatic {
+  GlobalWorkerOptions: {
+    workerSrc: string;
+  };
+  getDocument: (src: { data: Uint8Array } | string) => { promise: Promise<PDFDocumentProxy> };
+}
+
+interface WindowWithPdfJs extends Window {
+  pdfjsLib?: PDFJSStatic;
+}
+
 export default function MergePdfPage() {
   const [files, setFiles] = useState<PdfFileItem[]>([]);
   const [outputFileName, setOutputFileName] = useState<string>('ansar_merged_document.pdf');
@@ -63,8 +84,8 @@ export default function MergePdfPage() {
   };
 
   // Dynamically load PDF.js from CDN for rendering thumbnails
-  const getPdfJs = useCallback((): Promise<any> => {
-    const setupWorker = (pdfjs: any) => {
+  const getPdfJs = useCallback((): Promise<PDFJSStatic> => {
+    const setupWorker = (pdfjs: PDFJSStatic) => {
       if (!pdfjs.GlobalWorkerOptions.workerSrc) {
         try {
           const workerCode = `importScripts("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js");`;
@@ -77,8 +98,9 @@ export default function MergePdfPage() {
       return pdfjs;
     };
 
-    if (typeof window !== 'undefined' && (window as any).pdfjsLib) {
-      return Promise.resolve(setupWorker((window as any).pdfjsLib));
+    const win = typeof window !== 'undefined' ? (window as WindowWithPdfJs) : null;
+    if (win?.pdfjsLib) {
+      return Promise.resolve(setupWorker(win.pdfjsLib));
     }
 
     return new Promise((resolve, reject) => {
@@ -87,9 +109,10 @@ export default function MergePdfPage() {
         let attempts = 0;
         const interval = setInterval(() => {
           attempts++;
-          if ((window as any).pdfjsLib) {
+          const currentWin = window as WindowWithPdfJs;
+          if (currentWin.pdfjsLib) {
             clearInterval(interval);
-            resolve(setupWorker((window as any).pdfjsLib));
+            resolve(setupWorker((window as WindowWithPdfJs).pdfjsLib!));
           } else if (attempts > 100) {
             clearInterval(interval);
             reject(new Error('PDF.js loading timed out.'));
@@ -102,7 +125,7 @@ export default function MergePdfPage() {
       script.id = 'pdfjs-cdn-script';
       script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js';
       script.onload = () => {
-        const pdfjs = (window as any).pdfjsLib;
+        const pdfjs = (window as WindowWithPdfJs).pdfjsLib;
         if (pdfjs) {
           resolve(setupWorker(pdfjs));
         } else {
@@ -123,7 +146,7 @@ export default function MergePdfPage() {
   };
 
   // Generate thumbnail dataUrl for a specific page using PDF.js
-  const renderThumbnail = async (pdfDoc: any, pageNum: number): Promise<string> => {
+  const renderThumbnail = async (pdfDoc: PDFDocumentProxy, pageNum: number): Promise<string> => {
     try {
       const page = await pdfDoc.getPage(pageNum);
       const viewport = page.getViewport({ scale: 0.35 });
@@ -187,9 +210,10 @@ export default function MergePdfPage() {
 
       setFiles((prev) => [...prev, ...newItems]);
       showToast(`Added ${newItems.length} PDF file${newItems.length > 1 ? 's' : ''}!`);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Error reading PDF files:', err);
-      alert(`Could not process PDF: ${err.message || 'Unknown error'}`);
+      const message = err instanceof Error ? err.message : 'Unknown error';
+      alert(`Could not process PDF: ${message}`);
     } finally {
       setLoadingThumbnails(false);
     }
@@ -354,7 +378,7 @@ export default function MergePdfPage() {
       p2.drawText('This is page 2 of sample file #1.', { x: 40, y: 700, size: 12, font: helvetica, color: rgb(0.2, 0.2, 0.2) });
 
       const doc1Bytes = await doc1.save();
-      const file1 = new File([doc1Bytes as any], '01_Annual_Report_Strategy.pdf', { type: 'application/pdf' });
+      const file1 = new File([doc1Bytes.buffer as ArrayBuffer], '01_Annual_Report_Strategy.pdf', { type: 'application/pdf' });
 
       // Sample 2: Financial Appendix
       const doc2 = await PDFDocument.create();
@@ -365,7 +389,7 @@ export default function MergePdfPage() {
       p3.drawText('This is page 1 of sample file #2 to combine with Part 1.', { x: 40, y: 700, size: 12, font: helvetica, color: rgb(0.2, 0.2, 0.2) });
 
       const doc2Bytes = await doc2.save();
-      const file2 = new File([doc2Bytes as any], '02_Financial_Appendix.pdf', { type: 'application/pdf' });
+      const file2 = new File([doc2Bytes.buffer as ArrayBuffer], '02_Financial_Appendix.pdf', { type: 'application/pdf' });
 
       await processUploadedFiles([file1, file2]);
     } catch (err) {
@@ -419,7 +443,7 @@ export default function MergePdfPage() {
       }
 
       const mergedPdfBytes = await mergedDoc.save();
-      const blob = new Blob([mergedPdfBytes as any], { type: 'application/pdf' });
+      const blob = new Blob([mergedPdfBytes.buffer as ArrayBuffer], { type: 'application/pdf' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -433,9 +457,10 @@ export default function MergePdfPage() {
       URL.revokeObjectURL(url);
 
       showToast(`Merged ${totalActivePages} pages successfully!`);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Merge error:', err);
-      alert(`Could not merge PDFs: ${err.message || 'Unknown error'}`);
+      const message = err instanceof Error ? err.message : 'Unknown error';
+      alert(`Could not merge PDFs: ${message}`);
     } finally {
       setIsMerging(false);
     }

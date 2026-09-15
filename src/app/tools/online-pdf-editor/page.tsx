@@ -115,6 +115,27 @@ function createAnnotationId(prefix: string): string {
   return `anno-${prefix}-${Date.now()}`;
 }
 
+interface PDFPageProxy {
+  getViewport: (params: { scale: number; rotation?: number }) => { width: number; height: number };
+  render: (params: { canvasContext: CanvasRenderingContext2D; viewport: { width: number; height: number } }) => { promise: Promise<void> };
+}
+
+interface PDFDocumentProxy {
+  numPages: number;
+  getPage: (pageNumber: number) => Promise<PDFPageProxy>;
+}
+
+interface PDFJSStatic {
+  GlobalWorkerOptions: {
+    workerSrc: string;
+  };
+  getDocument: (src: { data: Uint8Array } | string) => { promise: Promise<PDFDocumentProxy> };
+}
+
+interface WindowWithPdfJs extends Window {
+  pdfjsLib?: PDFJSStatic;
+}
+
 export default function ProfessionalPdfEditorPage() {
   // Document State
   const [docs, setDocs] = useState<LoadedDoc[]>([]);
@@ -218,10 +239,10 @@ export default function ProfessionalPdfEditorPage() {
   };
 
   // Resilient PDF.js Loader with Synchronous In-Memory Blob Worker
-  const getPdfJs = useCallback(async (): Promise<any> => {
+  const getPdfJs = useCallback(async (): Promise<PDFJSStatic | null> => {
     if (typeof window === 'undefined') return null;
 
-    const setupWorker = (pdfjs: any) => {
+    const setupWorker = (pdfjs: PDFJSStatic) => {
       if (pdfjs && !pdfjs.GlobalWorkerOptions?.workerSrc) {
         try {
           const workerBlob = new Blob([
@@ -235,8 +256,9 @@ export default function ProfessionalPdfEditorPage() {
       return pdfjs;
     };
 
-    if ((window as any).pdfjsLib) {
-      return setupWorker((window as any).pdfjsLib);
+    const win = window as WindowWithPdfJs;
+    if (win.pdfjsLib) {
+      return setupWorker(win.pdfjsLib);
     }
 
     return new Promise((resolve, reject) => {
@@ -245,9 +267,10 @@ export default function ProfessionalPdfEditorPage() {
         let attempts = 0;
         const interval = setInterval(() => {
           attempts++;
-          if ((window as any).pdfjsLib) {
+          const currentWin = window as WindowWithPdfJs;
+          if (currentWin.pdfjsLib) {
             clearInterval(interval);
-            resolve(setupWorker((window as any).pdfjsLib));
+            resolve(setupWorker((window as WindowWithPdfJs).pdfjsLib!));
           } else if (attempts > 120) {
             clearInterval(interval);
             reject(new Error('PDF.js loading timed out. Please check your internet connection.'));
@@ -260,7 +283,7 @@ export default function ProfessionalPdfEditorPage() {
       script.id = 'pdfjs-cdn-script';
       script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js';
       script.onload = () => {
-        const pdfjs = (window as any).pdfjsLib;
+        const pdfjs = (window as WindowWithPdfJs).pdfjsLib;
         if (pdfjs) {
           resolve(setupWorker(pdfjs));
         } else {
@@ -339,9 +362,10 @@ export default function ProfessionalPdfEditorPage() {
         setFilename(name.replace('.pdf', '') + '_Edited.pdf');
         setHistory([]);
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('PDF Load Error:', err);
-      alert('Error reading PDF: ' + (err?.message || 'Please ensure the file is valid.'));
+      const message = err instanceof Error ? err.message : 'Please ensure the file is valid.';
+      alert('Error reading PDF: ' + message);
     } finally {
       setIsLoading(false);
       setLoadingStatus('');
@@ -488,9 +512,10 @@ export default function ProfessionalPdfEditorPage() {
       const pdfBytes = await doc.save();
       await loadPdfFromBuffer(pdfBytes, 'AnsarTools_Demo_Contract.pdf', false);
       showToast('Loaded interactive Demo PDF! Try all features freely.');
-    } catch (e: any) {
+    } catch (e: unknown) {
       console.error('Demo creation error:', e);
-      alert('Error creating demo document: ' + (e?.message || e));
+      const message = e instanceof Error ? e.message : 'Unknown error';
+      alert('Error creating demo document: ' + message);
     } finally {
       setIsLoading(false);
     }
@@ -547,7 +572,7 @@ export default function ProfessionalPdfEditorPage() {
       const isArrow = activeTool === 'shape_arrow';
       const newAnno: AnnotationItem = {
         id: createAnnotationId('shape'),
-        type: activeTool as any,
+        type: activeTool as AnnotationItem['type'],
         x: Math.max(1, Math.min(80, clickX)),
         y: Math.max(1, Math.min(85, clickY)),
         width: isLine || isArrow ? 20 : 15,
@@ -797,7 +822,7 @@ export default function ProfessionalPdfEditorPage() {
       } else if (activeTool.startsWith('shape_')) {
         const newAnno: AnnotationItem = {
           id: createAnnotationId('shape'),
-          type: activeTool as any,
+          type: activeTool as AnnotationItem['type'],
           x: minX,
           y: minY,
           width: Math.max(2, width),
@@ -1430,7 +1455,7 @@ export default function ProfessionalPdfEditorPage() {
         src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"
         strategy="afterInteractive"
         onLoad={() => {
-          const pdfjs = (window as any).pdfjsLib;
+          const pdfjs = (window as WindowWithPdfJs).pdfjsLib;
           if (pdfjs && !pdfjs.GlobalWorkerOptions?.workerSrc) {
             try {
               const workerBlob = new Blob([
@@ -1796,7 +1821,7 @@ export default function ProfessionalPdfEditorPage() {
                 <div className="flex items-center gap-2 bg-slate-900/95 px-3 py-1 rounded-xl border border-slate-700">
                   <select
                     value={shapeStyle}
-                    onChange={(e) => setShapeStyle(e.target.value as any)}
+                    onChange={(e) => setShapeStyle(e.target.value as 'outline' | 'fill')}
                     className="bg-slate-800 text-slate-100 text-xs px-2 py-1 rounded-lg border border-slate-700 focus:outline-none cursor-pointer"
                   >
                     <option value="outline">Outline Only</option>

@@ -1105,7 +1105,7 @@ export default function AIPromptsGalleryPage() {
                   <label className="block text-xs font-bold text-slate-700 mb-1">Category</label>
                   <select
                     value={newCategory}
-                    onChange={(e) => setNewCategory(e.target.value as any)}
+                    onChange={(e) => setNewCategory(e.target.value as PromptItem['category'])}
                     className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 focus:outline-none focus:border-blue-500"
                   >
                     <option value="Coding">Coding & Tech</option>

@@ -412,7 +412,7 @@ export default function ResumeMakerPage() {
 
       const p = resumeData.personal;
       const accentHex = (currentColor || '#0f766e').replace('#', '');
-      const children: any[] = [];
+      const children: InstanceType<typeof Paragraph>[] = [];
 
       // 1. Title / Name
       children.push(

@@ -652,7 +652,7 @@ export default function NadraPortalPage() {
               <label className="text-xs text-slate-400 block mb-1.5 font-semibold">Select Document / Card Type:</label>
               <select
                 value={calcCardType}
-                onChange={(e) => setCalcCardType(e.target.value as any)}
+                onChange={(e) => setCalcCardType(e.target.value as "snic" | "nicop" | "frc" | "bform")}
                 className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-emerald-500 font-medium"
               >
                 <option value="snic">Smart National Identity Card (SNIC)</option>
@@ -666,7 +666,7 @@ export default function NadraPortalPage() {
               <label className="text-xs text-slate-400 block mb-1.5 font-semibold">Processing Speed / Delivery:</label>
               <select
                 value={calcDelivery}
-                onChange={(e) => setCalcDelivery(e.target.value as any)}
+                onChange={(e) => setCalcDelivery(e.target.value as "normal" | "urgent" | "executive")}
                 className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-emerald-500 font-medium"
               >
                 <option value="normal">Normal Processing</option>

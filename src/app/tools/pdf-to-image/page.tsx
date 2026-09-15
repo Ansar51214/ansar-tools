@@ -38,6 +38,27 @@ interface RenderedPage {
   selected: boolean;
 }
 
+interface PDFPageProxy {
+  getViewport: (params: { scale: number }) => { width: number; height: number };
+  render: (params: { canvasContext: CanvasRenderingContext2D; viewport: { width: number; height: number } }) => { promise: Promise<void> };
+}
+
+interface PDFDocumentProxy {
+  numPages: number;
+  getPage: (pageNumber: number) => Promise<PDFPageProxy>;
+}
+
+interface PDFJSStatic {
+  GlobalWorkerOptions: {
+    workerSrc: string;
+  };
+  getDocument: (src: { data: Uint8Array } | string) => { promise: Promise<PDFDocumentProxy> };
+}
+
+interface WindowWithPdfJs extends Window {
+  pdfjsLib?: PDFJSStatic;
+}
+
 export default function PdfToImagePage() {
   // State
   const [file, setFile] = useState<File | null>(null);
@@ -60,7 +81,7 @@ export default function PdfToImagePage() {
   const [isZipping, setIsZipping] = useState<boolean>(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const pdfDocRef = useRef<any>(null);
+  const pdfDocRef = useRef<PDFDocumentProxy | null>(null);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -68,8 +89,8 @@ export default function PdfToImagePage() {
   };
 
   // Helper: Dynamically load PDF.js from CDN
-  const getPdfJs = useCallback((): Promise<any> => {
-    const setupWorker = (pdfjs: any) => {
+  const getPdfJs = useCallback((): Promise<PDFJSStatic> => {
+    const setupWorker = (pdfjs: PDFJSStatic) => {
       if (!pdfjs.GlobalWorkerOptions.workerSrc) {
         try {
           const workerCode = `importScripts("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js");`;
@@ -82,8 +103,9 @@ export default function PdfToImagePage() {
       return pdfjs;
     };
 
-    if (typeof window !== 'undefined' && (window as any).pdfjsLib) {
-      return Promise.resolve(setupWorker((window as any).pdfjsLib));
+    const win = typeof window !== 'undefined' ? (window as WindowWithPdfJs) : null;
+    if (win?.pdfjsLib) {
+      return Promise.resolve(setupWorker(win.pdfjsLib));
     }
 
     return new Promise((resolve, reject) => {
@@ -92,9 +114,10 @@ export default function PdfToImagePage() {
         let attempts = 0;
         const interval = setInterval(() => {
           attempts++;
-          if ((window as any).pdfjsLib) {
+          const currentWin = window as WindowWithPdfJs;
+          if (currentWin.pdfjsLib) {
             clearInterval(interval);
-            resolve(setupWorker((window as any).pdfjsLib));
+            resolve(setupWorker((window as WindowWithPdfJs).pdfjsLib!));
           } else if (attempts > 100) {
             clearInterval(interval);
             reject(new Error('PDF.js loading timed out.'));
@@ -107,7 +130,7 @@ export default function PdfToImagePage() {
       script.id = 'pdfjs-cdn-script';
       script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js';
       script.onload = () => {
-        const pdfjs = (window as any).pdfjsLib;
+        const pdfjs = (window as WindowWithPdfJs).pdfjsLib;
         if (pdfjs) {
           resolve(setupWorker(pdfjs));
         } else {
@@ -130,7 +153,7 @@ export default function PdfToImagePage() {
 
   // Convert a single page with specified format & DPI
   const renderSinglePage = async (
-    pdfDoc: any,
+    pdfDoc: PDFDocumentProxy,
     pageNumber: number,
     targetDpi: DpiMode,
     targetFormat: ImageFormat,
@@ -214,9 +237,10 @@ export default function PdfToImagePage() {
       setProgressPercent(100);
       setProgressText('Conversion complete!');
       showToast(`Successfully converted ${numPages} page${numPages > 1 ? 's' : ''}!`);
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Unknown error';
       console.error('PDF parsing error:', err);
-      alert(`Could not process PDF: ${err.message || 'Unknown error'}`);
+      alert(`Could not process PDF: ${message}`);
     } finally {
       setTimeout(() => {
         setLoading(false);
@@ -585,7 +609,7 @@ export default function PdfToImagePage() {
       });
 
       const pdfBytes = await pdfDoc.save();
-      const sampleBlob = new Blob([pdfBytes as any], { type: 'application/pdf' });
+      const sampleBlob = new Blob([pdfBytes.buffer as ArrayBuffer], { type: 'application/pdf' });
       const sampleFile = new File([sampleBlob], 'ansar_sample_document.pdf', { type: 'application/pdf' });
 
       await processPdfFile(sampleFile);

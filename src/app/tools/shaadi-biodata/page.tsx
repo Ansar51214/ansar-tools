@@ -949,7 +949,7 @@ export default function ShaadiBiodataPage() {
       const con = data.contact;
       const pref = data.partnerPreferences;
 
-      const children: any[] = [
+      const children: InstanceType<typeof Paragraph>[] = [
         new Paragraph({
           text: data.header.customTitle || 'MARRIAGE BIODATA',
           heading: HeadingLevel.TITLE,
@@ -1532,7 +1532,7 @@ export default function ShaadiBiodataPage() {
                 <label className="text-slate-400 font-semibold mb-1 block">Gender</label>
                 <select
                   value={data.personal.gender}
-                  onChange={(e) => saveLocal({ ...data, personal: { ...data.personal, gender: e.target.value as any } })}
+                  onChange={(e) => saveLocal({ ...data, personal: { ...data.personal, gender: e.target.value as 'Male' | 'Female' | 'Other' } })}
                   className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-rose-500"
                 >
                   <option value="Male">Male (Groom)</option>

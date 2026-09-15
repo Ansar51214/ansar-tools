@@ -190,9 +190,10 @@ export default function PngToJpgPage() {
       }
       setItems((prev) => [...prev, ...convertedList]);
       showToast(`Converted ${convertedList.length} PNG image${convertedList.length > 1 ? 's' : ''} to JPG!`);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Conversion error:', err);
-      alert(`Error converting images: ${err.message || 'Unknown error'}`);
+      const message = err instanceof Error ? err.message : 'Unknown error';
+      alert(`Error converting images: ${message}`);
     } finally {
       setLoading(false);
     }
