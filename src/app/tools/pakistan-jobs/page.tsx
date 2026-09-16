@@ -484,7 +484,7 @@ export default function PakistanJobsPage() {
   const latestBanking = PAKISTAN_JOBS_DATA.filter(j => j.category === "Private & Banking").slice(0, 7);
 
   return (
-    <div className="min-h-screen bg-[#0a0e17] text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
       <Navbar />
       <main className="flex-1 py-8 px-3 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8">

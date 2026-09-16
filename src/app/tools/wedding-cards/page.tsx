@@ -200,6 +200,7 @@ Please share the digital design proof on this WhatsApp number and confirm delive
 
   const THEMES: WeddingTheme[] = [
     {
+      // Intentional exception: cultural maroon theme for wedding cards, not part of the standard dark/light system
       id: 'maroon',
       name: '👑 Shahi Maroon & Gold',
       bgGradient: 'from-amber-950 via-rose-950 to-slate-950',

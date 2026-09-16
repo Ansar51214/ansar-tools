@@ -1,3 +1,5 @@
+// When building a new tool page, pick either the light theme (bg-slate-50/white) or dark theme (bg-slate-950) per the color system in src/lib/theme.ts — never introduce a new custom background hex value.
+
 import { 
   FileText, FileImage, Image as ImageIcon, Minimize, UserPlus, FileSignature, Receipt,
   Scissors, Type, RefreshCw, Wand2, Download, Video, Sparkles, GraduationCap, Link2, 
