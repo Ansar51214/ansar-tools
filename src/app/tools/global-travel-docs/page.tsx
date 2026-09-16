@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ToolPageHeader from "@/components/ToolPageHeader";
 import Link from "next/link";
 import {
   FileSearch,
@@ -218,10 +219,28 @@ Address: Islamabad / Lahore / Karachi, Pakistan`;
     window.print();
   };
 
+  const handleShare = () => {
+    if (typeof window !== 'undefined') {
+      if (navigator.share) {
+        navigator.share({
+          title: "Global Travel Docs Prep & Attestation Portal",
+          url: window.location.href
+        }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans">
       <Navbar />
       <main className="flex-1">
+      <div className="bg-slate-950 px-4 sm:px-6 lg:px-8 py-3">
+        <div className="max-w-7xl mx-auto">
+          <ToolPageHeader toolName="Global Travel Docs Prep & Attestation Portal" onShare={handleShare} />
+        </div>
+      </div>
       {/* 1. Header Banner */}
       <div className="bg-slate-900 text-white border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">

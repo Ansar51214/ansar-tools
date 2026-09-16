@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ToolPageHeader from "@/components/ToolPageHeader";
 import Link from "next/link";
 import {
   Briefcase,
@@ -11,7 +12,6 @@ import {
   Building2,
   GraduationCap,
   FileText,
-  Share2,
   Flame,
   Award,
   BadgeCheck,
@@ -489,29 +489,7 @@ export default function PakistanJobsPage() {
       <main className="flex-1 py-8 px-3 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8">
 
-        {/* Top Navigation / Breadcrumb */}
-        <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
-            <Link href="/" className="hover:text-emerald-400 transition">Home</Link>
-            <span>/</span>
-            <span className="text-emerald-400">Pakistan Jobs & Results Portal</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={handleShare}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-slate-700 transition"
-            >
-              {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
-              <span>{copiedLink ? "Link Copied!" : "Share Portal"}</span>
-            </button>
-            <Link
-              href="/"
-              className="px-3 py-1.5 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/30 text-xs font-semibold transition"
-            >
-              ← All Tools
-            </Link>
-          </div>
-        </div>
+        <ToolPageHeader toolName="Pakistan Jobs & Results Portal" onShare={handleShare} />
 
         {/* Hero Section */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0c2340] via-[#0f172a] to-[#064e3b] border border-emerald-500/30 p-6 sm:p-10 shadow-2xl text-center">

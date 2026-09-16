@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ToolPageHeader from "@/components/ToolPageHeader";
 import Link from "next/link";
 import {
   Search,
@@ -13,7 +14,6 @@ import {
   CheckCircle2,
   CreditCard,
   Smartphone,
-  Share2,
   Check,
   Layers,
   ArrowUpRight,
@@ -269,29 +269,7 @@ export default function FbrTaxServicesPage() {
       <main className="flex-1 py-8 px-3 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8">
 
-        {/* Top Breadcrumb & Action */}
-        <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
-            <Link href="/" className="hover:text-amber-400 transition">Home</Link>
-            <span>/</span>
-            <span className="text-amber-400 font-bold">FBR Tax Services Portal (Pakistan)</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={handleShare}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-slate-700 transition"
-            >
-              {copiedLink ? <Check className="w-3.5 h-3.5 text-amber-400" /> : <Share2 className="w-3.5 h-3.5" />}
-              <span>{copiedLink ? "Link Copied!" : "Share Portal"}</span>
-            </button>
-            <Link
-              href="/"
-              className="px-3 py-1.5 rounded-xl bg-amber-600/20 hover:bg-amber-600/30 text-amber-400 border border-amber-500/30 text-xs font-semibold transition"
-            >
-              ← All Tools
-            </Link>
-          </div>
-        </div>
+        <ToolPageHeader toolName="FBR Tax Services Portal (Pakistan)" onShare={handleShare} />
 
         {/* Hero Section with Live Search & Quick Action Buttons */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1e293b] via-[#0f172a] to-[#78350f] border border-amber-500/30 p-6 sm:p-10 shadow-2xl text-center">

@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ToolPageHeader from "@/components/ToolPageHeader";
 import Link from "next/link";
 import {
   Search,
@@ -15,8 +16,6 @@ import {
   Sparkles,
   AlertCircle,
   Building2,
-  Share2,
-  Check,
   Compass,
   FileBadge
 } from "lucide-react";
@@ -310,29 +309,7 @@ export default function InternationalVisaGuidesPage() {
       <main className="flex-1 py-8 px-3 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8">
 
-        {/* Top Breadcrumb & Action */}
-        <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
-            <Link href="/" className="hover:text-blue-400 transition">Home</Link>
-            <span>/</span>
-            <span className="text-blue-400 font-bold">International Visa Guides (Pakistani Passport)</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={handleShare}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-slate-700 transition"
-            >
-              {copiedLink ? <Check className="w-3.5 h-3.5 text-blue-400" /> : <Share2 className="w-3.5 h-3.5" />}
-              <span>{copiedLink ? "Link Copied!" : "Share Guide"}</span>
-            </button>
-            <Link
-              href="/"
-              className="px-3 py-1.5 rounded-xl bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 border border-blue-500/30 text-xs font-semibold transition"
-            >
-              ← All Tools
-            </Link>
-          </div>
-        </div>
+        <ToolPageHeader toolName="International Visa Guides (Pakistani Passport)" onShare={handleShare} />
 
         {/* Hero Section with Live Search & Quick Action Buttons */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#0284c7] border border-blue-500/30 p-6 sm:p-10 shadow-2xl text-center">
