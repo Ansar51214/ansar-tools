@@ -4,7 +4,6 @@ import React, { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ToolPageHeader from "@/components/ToolPageHeader";
-import Link from "next/link";
 import {
   Search,
   ExternalLink,
@@ -14,7 +13,6 @@ import {
   CheckCircle2,
   CreditCard,
   Smartphone,
-  Check,
   Layers,
   ArrowUpRight,
   Sparkles,
@@ -185,7 +183,6 @@ const FBR_SERVICES: FbrService[] = [
 export default function FbrTaxServicesPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
-  const [copiedLink, setCopiedLink] = useState(false);
   
   // Tax Calculator State (Updated for Pakistan Budget 2025/2026)
   const [monthlySalary, setMonthlySalary] = useState<number>(150000);
@@ -220,8 +217,6 @@ export default function FbrTaxServicesPage() {
       }).catch(() => {});
     } else {
       navigator.clipboard.writeText(window.location.href);
-      setCopiedLink(true);
-      setTimeout(() => setCopiedLink(false), 2000);
     }
   };
 

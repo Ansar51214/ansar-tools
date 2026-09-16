@@ -4,7 +4,6 @@ import React, { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ToolPageHeader from "@/components/ToolPageHeader";
-import Link from "next/link";
 import {
   CreditCard,
   Search,
@@ -15,7 +14,6 @@ import {
   Layers,
   ArrowUpRight,
   Calculator,
-  Check,
   AlertCircle,
   Smartphone,
   Users,
@@ -228,7 +226,6 @@ export default function NadraPortalPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [calcCardType, setCalcCardType] = useState<"snic" | "nicop" | "frc" | "bform">("snic");
   const [calcDelivery, setCalcDelivery] = useState<"normal" | "urgent" | "executive">("normal");
-  const [copiedLink, setCopiedLink] = useState(false);
   const [trackingInput, setTrackingInput] = useState("");
 
   const categories = [
@@ -260,8 +257,6 @@ export default function NadraPortalPage() {
       }).catch(() => {});
     } else {
       navigator.clipboard.writeText(window.location.href);
-      setCopiedLink(true);
-      setTimeout(() => setCopiedLink(false), 2000);
     }
   };
 

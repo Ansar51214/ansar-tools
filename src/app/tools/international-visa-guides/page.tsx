@@ -4,7 +4,6 @@ import React, { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ToolPageHeader from "@/components/ToolPageHeader";
-import Link from "next/link";
 import {
   Search,
   ExternalLink,
@@ -259,7 +258,6 @@ export default function InternationalVisaGuidesPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRegion, setSelectedRegion] = useState<string>("All");
   const [selectedVisaType, setSelectedVisaType] = useState<string>("All");
-  const [copiedLink, setCopiedLink] = useState(false);
   const [selectedCountryDetails, setSelectedCountryDetails] = useState<VisaCountry | null>(null);
 
   const regions = [
@@ -293,8 +291,6 @@ export default function InternationalVisaGuidesPage() {
       }).catch(() => {});
     } else {
       navigator.clipboard.writeText(window.location.href);
-      setCopiedLink(true);
-      setTimeout(() => setCopiedLink(false), 2000);
     }
   };
 

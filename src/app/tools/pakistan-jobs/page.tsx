@@ -4,7 +4,6 @@ import React, { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ToolPageHeader from "@/components/ToolPageHeader";
-import Link from "next/link";
 import {
   Briefcase,
   Search,
@@ -20,8 +19,7 @@ import {
   Layers,
   Filter,
   ArrowUpRight,
-  Globe2,
-  Check
+  Globe2
 } from "lucide-react";
 
 interface JobItem {
@@ -433,7 +431,6 @@ export default function PakistanJobsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [selectedProvince, setSelectedProvince] = useState<string>("All");
-  const [copiedLink, setCopiedLink] = useState(false);
 
   const categories = [
     "All",
@@ -470,8 +467,6 @@ export default function PakistanJobsPage() {
       }).catch(() => {});
     } else {
       navigator.clipboard.writeText(window.location.href);
-      setCopiedLink(true);
-      setTimeout(() => setCopiedLink(false), 2000);
     }
   };
 
