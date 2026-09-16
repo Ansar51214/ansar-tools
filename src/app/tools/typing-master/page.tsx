@@ -953,7 +953,7 @@ export default function TypingMasterTool() {
               </p>
 
               <div className="mt-6 pt-4 border-t border-slate-200 flex justify-between items-center text-[10px] text-slate-400">
-                <span>Date: {new Date().toLocaleDateString()}</span>
+                <span suppressHydrationWarning>Date: {new Date().toLocaleDateString()}</span>
                 <span>Verified by Ansar Multi-Tool Studio</span>
               </div>
             </div>

@@ -1087,7 +1087,7 @@ export default function InvoiceGeneratorPage() {
                       className="invoice-input text-right w-24 font-mono text-[10px]"
                     />
                   </div>
-                  <p className="text-slate-500 text-[9px]">
+                  <p className="text-slate-500 text-[9px]" suppressHydrationWarning>
                     {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </p>
                 </div>
