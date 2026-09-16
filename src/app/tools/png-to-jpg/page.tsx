@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import Navbar from '@/components/Navbar';
+import ToolPageHeader from '@/components/ToolPageHeader';
 import Footer from '@/components/Footer';
 
 import {
@@ -408,6 +409,9 @@ export default function PngToJpgPage() {
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col font-sans selection:bg-emerald-600 selection:text-white">
       <Navbar />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full">
+        <ToolPageHeader toolName="PNG to JPG" theme="dark" />
+      </div>
 
       {/* TOP HERO HEADER */}
       <header className="bg-slate-950/95 border-b border-slate-800 py-6 px-4 sm:px-6 shadow-xl">

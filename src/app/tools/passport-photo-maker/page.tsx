@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
+import ToolPageHeader from '@/components/ToolPageHeader';
 import Footer from '@/components/Footer';
 import NextImage from 'next/image';
 import {
@@ -1488,6 +1489,9 @@ export default function PassportPhotoMakerPage() {
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col font-sans selection:bg-blue-600 selection:text-white" onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
       <Navbar />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full">
+        <ToolPageHeader toolName="Passport Size Photo Maker" theme="dark" />
+      </div>
 
       {/* Main Studio Bar */}
       <div className="bg-slate-950 border-b border-slate-800 px-4 py-3 sticky top-16 z-30 shadow-md">

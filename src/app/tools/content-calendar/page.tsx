@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
+import ToolPageHeader from "@/components/ToolPageHeader";
 import Footer from "@/components/Footer";
-import Link from "next/link";
 import { 
   Calendar as CalendarIcon, 
   ExternalLink, 
@@ -33,6 +33,9 @@ export default function ContentCalendarPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
       <Navbar />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full">
+        <ToolPageHeader toolName="Master Content Calendar & Drive Sheet" theme="dark" />
+      </div>
       <main className="flex-1 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-6">
 
@@ -55,14 +58,7 @@ export default function ContentCalendarPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2.5 flex-wrap">
-            <Link 
-              href="/"
-              className="text-xs font-semibold px-4 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 transition"
-            >
-              ← Back to Tools
-            </Link>
-          </div>
+          
         </div>
 
         {/* Action Card: Google Drive Save & Direct Sheet Access */}

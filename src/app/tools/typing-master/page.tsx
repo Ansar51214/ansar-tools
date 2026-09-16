@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
+import ToolPageHeader from '@/components/ToolPageHeader';
 import Footer from '@/components/Footer';
 import {
   Keyboard,
@@ -540,6 +541,9 @@ export default function TypingMasterTool() {
       {/* Main Navigation */}
       <div className="print:hidden">
         <Navbar />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full">
+          <ToolPageHeader toolName="Urdu, Hindi & English Typing Master" theme="dark" />
+        </div>
       </div>
 
       {/* Top Header Studio Bar */}

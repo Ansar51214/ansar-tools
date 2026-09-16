@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
+import ToolPageHeader from '@/components/ToolPageHeader';
 import Footer from '@/components/Footer';
 
 import Image from 'next/image';
@@ -1105,6 +1106,9 @@ export default function ShaadiBiodataPage() {
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col font-sans selection:bg-rose-600 selection:text-white">
       <Navbar />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full">
+        <ToolPageHeader toolName="Shaadi Biodata Maker" theme="dark" />
+      </div>
 
       {/* =========================================================================
           TOP STUDIO HEADER TOOLBAR

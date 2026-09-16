@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Navbar from '@/components/Navbar';
+import ToolPageHeader from '@/components/ToolPageHeader';
 import Footer from '@/components/Footer';
 
 import {
@@ -934,6 +935,9 @@ ${resumeData.languages}
     <div className="resume-maker-page min-h-screen bg-slate-900 text-slate-100 flex flex-col font-sans selection:bg-emerald-600 selection:text-white print:bg-white print:text-slate-900 print:min-h-0 print:p-0 print:m-0">
       <div className="print:hidden">
         <Navbar />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full">
+          <ToolPageHeader toolName="Pro ATS Resume Maker" theme="dark" />
+        </div>
       </div>
 
       {/* TOP STUDIO TOOLBAR (Sticky) */}

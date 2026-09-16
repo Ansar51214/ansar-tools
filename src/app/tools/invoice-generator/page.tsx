@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import Navbar from '@/components/Navbar';
+import ToolPageHeader from '@/components/ToolPageHeader';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import { currencyToWords } from './numberToWords';
@@ -710,6 +711,9 @@ export default function InvoiceGeneratorPage() {
       {/* Main Navbar */}
       <div className="print:hidden">
         <Navbar />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full">
+          <ToolPageHeader toolName="Pro Invoice & GST Bill Studio" theme="dark" />
+        </div>
       </div>
 
       {/* =======================================================================

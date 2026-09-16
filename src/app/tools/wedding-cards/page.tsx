@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useRef, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
+import ToolPageHeader from '@/components/ToolPageHeader';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import {
@@ -354,6 +355,9 @@ Please share the digital design proof on this WhatsApp number and confirm delive
   return (
     <div className="min-h-screen bg-slate-50 font-sans flex flex-col text-slate-800 selection:bg-amber-200">
       <Navbar />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full">
+        <ToolPageHeader toolName="Animated Wedding Cards Store & Studio" theme="light" />
+      </div>
 
       {/* Floating Toast Notification */}
       {toastMessage && (

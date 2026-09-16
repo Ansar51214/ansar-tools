@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Navbar from '@/components/Navbar';
+import ToolPageHeader from '@/components/ToolPageHeader';
 import Footer from '@/components/Footer';
 import {
   Calculator,
@@ -208,6 +209,9 @@ Calculated via Multi-Tool Web App (Inspired by Apna Kamao)`;
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-teal-500 selection:text-slate-950">
       <Navbar />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full">
+        <ToolPageHeader toolName="Clients & Financial Freedom Calculator" theme="dark" />
+      </div>
 
       {/* Background Decorative Glow */}
       <div className="fixed top-0 right-0 w-[550px] h-[550px] bg-teal-500/10 rounded-full blur-3xl pointer-events-none -mr-40 -mt-40 z-0" />

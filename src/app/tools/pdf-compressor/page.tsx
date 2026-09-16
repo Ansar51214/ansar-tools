@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
+import ToolPageHeader from '@/components/ToolPageHeader';
 import Footer from '@/components/Footer';
 
 import Image from 'next/image';
@@ -472,6 +473,9 @@ export default function PdfCompressorPage() {
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
       <Navbar />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full">
+        <ToolPageHeader toolName="PDF Compressor" theme="dark" />
+      </div>
 
       {/* Hero Header */}
       <div className="bg-slate-950/80 border-b border-slate-800 py-10 px-4">

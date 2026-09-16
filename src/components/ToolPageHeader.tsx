@@ -8,9 +8,14 @@ import { THEME_TOKENS } from '@/lib/theme';
 interface ToolPageHeaderProps {
   toolName: string;
   onShare?: () => void;
+  theme?: 'light' | 'dark';
 }
 
-export default function ToolPageHeader({ toolName, onShare }: ToolPageHeaderProps) {
+export default function ToolPageHeader({
+  toolName,
+  onShare,
+  theme = 'dark'
+}: ToolPageHeaderProps) {
   const [copied, setCopied] = useState(false);
 
   const handleShareClick = () => {
@@ -30,13 +35,40 @@ export default function ToolPageHeader({ toolName, onShare }: ToolPageHeaderProp
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const isLight = theme === 'light';
+
   return (
-    <div className={`flex items-center justify-between border-b ${THEME_TOKENS.backgrounds.darkCardBorder} pb-4`}>
+    <div
+      className={`flex items-center justify-between border-b ${
+        isLight ? 'border-slate-200' : THEME_TOKENS.backgrounds.darkCardBorder
+      } pb-4`}
+    >
       {/* Breadcrumb Navigation */}
-      <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
-        <Link href="/" className="hover:text-amber-400 transition">Home</Link>
+      <div
+        className={`flex items-center gap-2 text-xs font-semibold ${
+          isLight ? 'text-slate-500' : 'text-slate-400'
+        }`}
+      >
+        <Link
+          href="/"
+          className={
+            isLight
+              ? 'hover:text-blue-600 transition'
+              : 'hover:text-amber-400 transition'
+          }
+        >
+          Home
+        </Link>
         <span>/</span>
-        <span className="text-amber-400 font-bold">{toolName}</span>
+        <span
+          className={
+            isLight
+              ? 'text-blue-600 font-bold'
+              : 'text-amber-400 font-bold'
+          }
+        >
+          {toolName}
+        </span>
       </div>
 
       {/* Actions */}
@@ -44,15 +76,31 @@ export default function ToolPageHeader({ toolName, onShare }: ToolPageHeaderProp
         <button
           type="button"
           onClick={handleShareClick}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-slate-700 transition"
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
+            isLight
+              ? 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
+              : 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700'
+          }`}
         >
-          {copied ? <Check className="w-3.5 h-3.5 text-amber-400" /> : <Share2 className="w-3.5 h-3.5" />}
-          <span>{copied ? "Link Copied!" : "Share Portal"}</span>
+          {copied ? (
+            <Check
+              className={`w-3.5 h-3.5 ${
+                isLight ? 'text-blue-600' : 'text-amber-400'
+              }`}
+            />
+          ) : (
+            <Share2 className="w-3.5 h-3.5" />
+          )}
+          <span>{copied ? 'Link Copied!' : 'Share Portal'}</span>
         </button>
 
         <Link
           href="/"
-          className="px-3 py-1.5 rounded-xl bg-amber-600/20 hover:bg-amber-600/30 text-amber-400 border border-amber-500/30 text-xs font-semibold transition"
+          className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
+            isLight
+              ? 'bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-200'
+              : 'bg-amber-600/20 hover:bg-amber-600/30 text-amber-400 border border-amber-500/30'
+          }`}
         >
           ← All Tools
         </Link>

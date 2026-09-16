@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
+import ToolPageHeader from '@/components/ToolPageHeader';
 import Footer from '@/components/Footer';
 
 import {
@@ -922,6 +923,9 @@ export default function BackgroundRemoverPage() {
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col font-sans selection:bg-emerald-600 selection:text-white">
       <Navbar />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full">
+        <ToolPageHeader toolName="Background Remover" theme="dark" />
+      </div>
 
       {/* Header Banner */}
       <div className="bg-slate-950/90 border-b border-slate-800 py-8 px-4 text-center">

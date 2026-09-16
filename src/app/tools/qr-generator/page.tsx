@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import Navbar from '@/components/Navbar';
+import ToolPageHeader from '@/components/ToolPageHeader';
 import Footer from '@/components/Footer';
 import { QRCodeSVG } from 'qrcode.react';
 import { Download, QrCode } from 'lucide-react';
@@ -41,6 +42,9 @@ export default function QRGeneratorTool() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans flex flex-col">
       <Navbar />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full">
+        <ToolPageHeader toolName="QR Code Generator" theme="light" />
+      </div>
       
       <main className="flex-1 max-w-4xl w-full mx-auto p-4 sm:p-6 lg:p-8 mt-8">
         <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-10">
