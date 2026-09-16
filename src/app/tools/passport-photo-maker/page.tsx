@@ -17,7 +17,6 @@ import {
 } from './presets';
 import { SUIT_TEMPLATES, SuitTemplate } from './suits';
 import { SAMPLE_PORTRAIT_DATA_URI } from './sampleImage';
-import { PDFDocument } from 'pdf-lib';
 import {
   Loader2,
   Upload,
@@ -1440,6 +1439,7 @@ export default function PassportPhotoMakerPage() {
     setIsProcessing(true);
     setStatusMessage('Generating print-ready PDF...');
     try {
+      const { PDFDocument } = await import('pdf-lib');
       const pdfDoc = await PDFDocument.create();
 
       // Convert mm to PDF points (1 inch = 72 pt = 25.4 mm => 1 mm = 72 / 25.4 pt = 2.8346 pt)

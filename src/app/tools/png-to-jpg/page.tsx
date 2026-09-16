@@ -24,7 +24,6 @@ import {
   Maximize2,
   Loader2
 } from 'lucide-react';
-import JSZip from 'jszip';
 
 export interface ConvertedItem {
   id: string;
@@ -299,6 +298,7 @@ export default function PngToJpgPage() {
 
     setIsZipping(true);
     try {
+      const JSZip = (await import('jszip')).default;
       const zip = new JSZip();
       const folder = zip.folder('converted_jpg_images') || zip;
 

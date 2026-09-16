@@ -28,7 +28,6 @@ import {
   SortDesc,
   X
 } from 'lucide-react';
-import { PDFDocument, rgb, StandardFonts, degrees } from 'pdf-lib';
 
 export interface PageItem {
   originalIndex: number;
@@ -361,6 +360,8 @@ export default function MergePdfPage() {
     try {
       setLoadingThumbnails(true);
 
+      const { PDFDocument, rgb, StandardFonts } = await import('pdf-lib');
+
       // Sample 1: Annual Report Part 1
       const doc1 = await PDFDocument.create();
       const helveticaBold = await doc1.embedFont(StandardFonts.HelveticaBold);
@@ -421,6 +422,7 @@ export default function MergePdfPage() {
 
     setIsMerging(true);
     try {
+      const { PDFDocument, degrees } = await import('pdf-lib');
       const mergedDoc = await PDFDocument.create();
 
       for (const item of files) {

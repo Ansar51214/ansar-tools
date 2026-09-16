@@ -40,7 +40,7 @@ import {
   AlignRight,
   FilePlus
 } from 'lucide-react';
-import { PDFDocument, degrees, rgb, StandardFonts } from 'pdf-lib';
+import type { PDFDocument } from 'pdf-lib';
 
 export type ToolMode = 
   | 'select' 
@@ -460,6 +460,7 @@ export default function ProfessionalPdfEditorPage() {
     setIsLoading(true);
     setLoadingStatus('Creating interactive demo contract...');
     try {
+      const { PDFDocument, rgb, StandardFonts } = await import('pdf-lib');
       const doc = await PDFDocument.create();
       const boldFont = await doc.embedFont(StandardFonts.HelveticaBold);
       const regularFont = await doc.embedFont(StandardFonts.Helvetica);
@@ -1148,19 +1149,7 @@ export default function ProfessionalPdfEditorPage() {
     }
   };
 
-  // Hex to RGB [0-1] converter
-  const hexToPdfRgb = (hex: string) => {
-    let clean = (hex || '#000000').replace('#', '');
-    if (clean.length === 3) {
-      clean = clean.split('').map(c => c + c).join('');
-    }
-    const num = parseInt(clean, 16) || 0;
-    return rgb(
-      ((num >> 16) & 255) / 255,
-      ((num >> 8) & 255) / 255,
-      (num & 255) / 255
-    );
-  };
+  // hexToPdfRgb is defined dynamically inside exportEditedPdf where rgb is loaded
 
   // High-DPI Canvas Text Render Helper (Embeds ANY Google Font with 100% fidelity)
   const renderTextToImage = (text: string, fontName: string, size: number, color: string, bold: boolean, italic: boolean) => {
@@ -1200,6 +1189,19 @@ export default function ProfessionalPdfEditorPage() {
     setExportProgress(10);
 
     try {
+      const { PDFDocument, degrees, rgb } = await import('pdf-lib');
+      const hexToPdfRgb = (hex: string) => {
+        let clean = (hex || '#000000').replace('#', '');
+        if (clean.length === 3) {
+          clean = clean.split('').map(c => c + c).join('');
+        }
+        const num = parseInt(clean, 16) || 0;
+        return rgb(
+          ((num >> 16) & 255) / 255,
+          ((num >> 8) & 255) / 255,
+          (num & 255) / 255
+        );
+      };
       const loadedPdfDocs: PDFDocument[] = [];
       for (const d of docs) {
         const loaded = await PDFDocument.load(d.arrayBuffer.slice(0));

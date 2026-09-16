@@ -25,7 +25,6 @@ import {
   Info,
   Palette
 } from 'lucide-react';
-import { PDFDocument } from 'pdf-lib';
 
 // Compression Presets
 type CompressionPreset = 'smart' | 'extreme' | 'recommended' | 'low' | 'target200' | 'target500' | 'custom';
@@ -275,6 +274,7 @@ export default function PdfCompressorPage() {
     quality: number,
     grayscale: boolean
   ): Promise<Uint8Array> => {
+    const { PDFDocument } = await import('pdf-lib');
     const outputPdfDoc = await PDFDocument.create();
 
     for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
@@ -354,6 +354,7 @@ export default function PdfCompressorPage() {
 
       let losslessBytes: Uint8Array;
       try {
+        const { PDFDocument } = await import('pdf-lib');
         const sourceDoc = await PDFDocument.load(sourceData, { ignoreEncryption: true });
         sourceDoc.setTitle('');
         sourceDoc.setAuthor('');

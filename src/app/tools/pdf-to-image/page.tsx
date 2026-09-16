@@ -24,8 +24,6 @@ import {
   Image as ImageIcon,
   Loader2
 } from 'lucide-react';
-import JSZip from 'jszip';
-import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 
 export type ImageFormat = 'jpeg' | 'png' | 'webp';
 export type DpiMode = 72 | 150 | 300;
@@ -400,6 +398,7 @@ export default function PdfToImagePage() {
 
     setIsZipping(true);
     try {
+      const JSZip = (await import('jszip')).default;
       const zip = new JSZip();
       const cleanBase = (fileName || 'document').replace(/\.pdf$/i, '').replace(/[^a-z0-9]+/gi, '_');
       const ext = format === 'jpeg' ? 'jpg' : format;
@@ -438,6 +437,7 @@ export default function PdfToImagePage() {
       setProgressText('Generating Sample 3-Page PDF...');
       setProgressPercent(20);
 
+      const { PDFDocument, rgb, StandardFonts } = await import('pdf-lib');
       const pdfDoc = await PDFDocument.create();
       const helvetica = await pdfDoc.embedFont(StandardFonts.Helvetica);
       const helveticaBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
