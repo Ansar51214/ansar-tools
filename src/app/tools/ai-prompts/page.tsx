@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
 import Footer from '@/components/Footer';
@@ -75,24 +75,24 @@ export default function AIPromptsGalleryPage() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedModel, setSelectedModel] = useState<string>('all');
-  const [favorites, setFavorites] = useState<string[]>(() => {
-    if (typeof window === 'undefined') return [];
+  const [favorites, setFavorites] = useState<string[]>([]);
+  const [customPrompts, setCustomPrompts] = useState<PromptItem[]>([]);
+
+  useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect */
     try {
-      const saved = localStorage.getItem('ansar_ai_prompt_favorites');
-      return saved ? JSON.parse(saved) : [];
+      const savedFavs = localStorage.getItem('ansar_ai_prompt_favorites');
+      if (savedFavs) {
+        setFavorites(JSON.parse(savedFavs));
+      }
+      const savedCustom = localStorage.getItem('ansar_ai_custom_prompts');
+      if (savedCustom) {
+        setCustomPrompts(JSON.parse(savedCustom));
+      }
     } catch {
-      return [];
+      // Ignore read errors
     }
-  });
-  const [customPrompts, setCustomPrompts] = useState<PromptItem[]>(() => {
-    if (typeof window === 'undefined') return [];
-    try {
-      const saved = localStorage.getItem('ansar_ai_custom_prompts');
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
+  }, []);
   
   // Modals & Card Flip state
   const [customizerPrompt, setCustomizerPrompt] = useState<PromptItem | null>(null);

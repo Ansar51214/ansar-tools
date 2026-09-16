@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
 import Footer from '@/components/Footer';
@@ -211,16 +211,19 @@ const SAMPLE_RESUME: ResumeData = {
 };
 
 export default function ResumeMakerPage() {
-  // State
-  const [resumeData, setResumeData] = useState<ResumeData>(() => {
-    if (typeof window === 'undefined') return SAMPLE_RESUME;
+  const [resumeData, setResumeData] = useState<ResumeData>(SAMPLE_RESUME);
+
+  useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect */
     try {
       const saved = localStorage.getItem('ansar_resume_data');
-      return saved ? JSON.parse(saved) : SAMPLE_RESUME;
+      if (saved) {
+        setResumeData(JSON.parse(saved));
+      }
     } catch {
-      return SAMPLE_RESUME;
+      // Ignore read errors
     }
-  });
+  }, []);
   const [currentTemplate, setCurrentTemplate] = useState<TemplateId>('harvard');
   const [currentColor, setCurrentColor] = useState<string>(COLOR_THEMES[0].hex);
   const [fontFamily, setFontFamily] = useState<'sans' | 'serif' | 'mono'>('sans');

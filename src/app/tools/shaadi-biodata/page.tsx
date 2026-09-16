@@ -685,27 +685,27 @@ const SHOWCASE_PROFILES: ShowcaseItem[] = [
 ];
 
 export default function ShaadiBiodataPage() {
-  const [currentTheme, setCurrentTheme] = useState<ThemeId>(() => {
-    if (typeof window === 'undefined') return 'maroon';
+  const [currentTheme, setCurrentTheme] = useState<ThemeId>('maroon');
+  const [data, setData] = useState<BiodataData>(SHOWCASE_PROFILES[0].data);
+
+  useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect */
     try {
       const savedTheme = localStorage.getItem('ansar_shaadi_theme');
       if (savedTheme && savedTheme in THEME_CONFIGS) {
-        return savedTheme as ThemeId;
+        setCurrentTheme(savedTheme as ThemeId);
       }
-    } catch {}
-    return 'maroon';
-  });
-  const [data, setData] = useState<BiodataData>(() => {
-    if (typeof window === 'undefined') return SHOWCASE_PROFILES[0].data;
-    try {
       const saved = localStorage.getItem('ansar_shaadi_biodata_v2');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (parsed && parsed.personal) return parsed;
+        if (parsed && parsed.personal) {
+          setData(parsed);
+        }
       }
-    } catch {}
-    return SHOWCASE_PROFILES[0].data;
-  });
+    } catch {
+      // Ignore read errors
+    }
+  }, []);
   const [activeTab, setActiveTab] = useState<'editor' | 'preview'>('editor');
   
   // Showcase Carousel Slider State

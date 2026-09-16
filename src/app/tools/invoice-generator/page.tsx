@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
 import Footer from '@/components/Footer';
@@ -147,27 +147,16 @@ export default function InvoiceGeneratorPage() {
   });
   const [poNumber, setPoNumber] = useState('');
 
-  // --- SAVED PROFILE LOADER ---
-  const getSavedCompany = () => {
-    if (typeof window === 'undefined') return null;
-    try {
-      const s = localStorage.getItem('ansar_invoice_company');
-      return s ? JSON.parse(s) : null;
-    } catch {
-      return null;
-    }
-  };
-
   // --- BUSINESS / SENDER DETAILS ---
-  const [companyName, setCompanyName] = useState(() => getSavedCompany()?.companyName || 'Ansar Tech Solutions');
-  const [companyTagline, setCompanyTagline] = useState(() => getSavedCompany()?.companyTagline || 'Software, IT & Document Services');
-  const [companyLogo, setCompanyLogo] = useState<string | null>(() => getSavedCompany()?.companyLogo ?? null);
-  const [companyAddress, setCompanyAddress] = useState(() => getSavedCompany()?.companyAddress || 'Commercial Plaza, Main Boulevard');
-  const [companyCity, setCompanyCity] = useState(() => getSavedCompany()?.companyCity || 'Lahore, Pakistan');
-  const [companyPhone, setCompanyPhone] = useState(() => getSavedCompany()?.companyPhone || '+92 300 1234567');
-  const [companyEmail, setCompanyEmail] = useState(() => getSavedCompany()?.companyEmail || 'billing@ansarstudio.com');
-  const [companyWebsite, setCompanyWebsite] = useState(() => getSavedCompany()?.companyWebsite || 'www.ansarstudio.com');
-  const [companyTaxId, setCompanyTaxId] = useState(() => getSavedCompany()?.companyTaxId || 'NTN / GST: 8492041-3');
+  const [companyName, setCompanyName] = useState('Ansar Tech Solutions');
+  const [companyTagline, setCompanyTagline] = useState('Software, IT & Document Services');
+  const [companyLogo, setCompanyLogo] = useState<string | null>(null);
+  const [companyAddress, setCompanyAddress] = useState('Commercial Plaza, Main Boulevard');
+  const [companyCity, setCompanyCity] = useState('Lahore, Pakistan');
+  const [companyPhone, setCompanyPhone] = useState('+92 300 1234567');
+  const [companyEmail, setCompanyEmail] = useState('billing@ansarstudio.com');
+  const [companyWebsite, setCompanyWebsite] = useState('www.ansarstudio.com');
+  const [companyTaxId, setCompanyTaxId] = useState('NTN / GST: 8492041-3');
 
   // --- CLIENT / RECIPIENT DETAILS ---
   const [clientName, setClientName] = useState('Ali Raza');
@@ -213,11 +202,11 @@ export default function InvoiceGeneratorPage() {
   const [amountPaid, setAmountPaid] = useState<number>(0);
 
   // --- PAYMENT DETAILS & SCAN-TO-PAY QR ---
-  const [bankName, setBankName] = useState(() => getSavedCompany()?.bankName || 'Meezan Bank Ltd');
-  const [accountTitle, setAccountTitle] = useState(() => getSavedCompany()?.accountTitle || 'Ansar Tech Solutions');
-  const [accountNumber] = useState(() => getSavedCompany()?.accountNumber || '02010103948291');
-  const [iban, setIban] = useState(() => getSavedCompany()?.iban || 'PK36MEZN0002010103948291');
-  const [walletNumber, setWalletNumber] = useState(() => getSavedCompany()?.walletNumber || '0300-1234567 (EasyPaisa/JazzCash)');
+  const [bankName, setBankName] = useState('Meezan Bank Ltd');
+  const [accountTitle, setAccountTitle] = useState('Ansar Tech Solutions');
+  const [accountNumber, setAccountNumber] = useState('02010103948291');
+  const [iban, setIban] = useState('PK36MEZN0002010103948291');
+  const [walletNumber, setWalletNumber] = useState('0300-1234567 (EasyPaisa/JazzCash)');
   const [qrValue, setQrValue] = useState('PK36MEZN0002010103948291');
   const [showQrCode, setShowQrCode] = useState(true);
 
@@ -232,15 +221,40 @@ export default function InvoiceGeneratorPage() {
   // --- MODALS & NOTIFICATIONS ---
   const [showSigModal, setShowSigModal] = useState(false);
   const [showHistoryModal, setShowHistoryModal] = useState(false);
-  const [savedInvoices, setSavedInvoices] = useState<SavedInvoiceRecord[]>(() => {
-    if (typeof window === 'undefined') return [];
+  const [savedInvoices, setSavedInvoices] = useState<SavedInvoiceRecord[]>([]);
+
+  // Hydration-safe initial sync from localStorage post-mount
+  useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect */
     try {
+      const s = localStorage.getItem('ansar_invoice_company');
+      if (s) {
+        const saved = JSON.parse(s);
+        if (saved) {
+          if (saved.companyName) setCompanyName(saved.companyName);
+          if (saved.companyTagline) setCompanyTagline(saved.companyTagline);
+          if (saved.companyLogo !== undefined) setCompanyLogo(saved.companyLogo);
+          if (saved.companyAddress) setCompanyAddress(saved.companyAddress);
+          if (saved.companyCity) setCompanyCity(saved.companyCity);
+          if (saved.companyPhone) setCompanyPhone(saved.companyPhone);
+          if (saved.companyEmail) setCompanyEmail(saved.companyEmail);
+          if (saved.companyWebsite) setCompanyWebsite(saved.companyWebsite);
+          if (saved.companyTaxId) setCompanyTaxId(saved.companyTaxId);
+          if (saved.bankName) setBankName(saved.bankName);
+          if (saved.accountTitle) setAccountTitle(saved.accountTitle);
+          if (saved.accountNumber) setAccountNumber(saved.accountNumber);
+          if (saved.iban) setIban(saved.iban);
+          if (saved.walletNumber) setWalletNumber(saved.walletNumber);
+        }
+      }
       const historyData = localStorage.getItem('ansar_invoice_history');
-      return historyData ? JSON.parse(historyData) : [];
+      if (historyData) {
+        setSavedInvoices(JSON.parse(historyData));
+      }
     } catch {
-      return [];
+      // Ignore read errors
     }
-  });
+  }, []);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // Refs
