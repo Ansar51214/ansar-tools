@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import Link from "next/link";
 import { 
   Calendar as CalendarIcon, 
@@ -29,7 +31,9 @@ export default function ContentCalendarPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0b0f19] text-slate-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#0b0f19] text-slate-100 flex flex-col font-sans">
+      <Navbar />
+      <main className="flex-1 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-6">
 
         {/* Top Header */}
@@ -153,6 +157,8 @@ export default function ContentCalendarPage() {
         </div>
 
       </div>
+      </main>
+      <Footer />
     </div>
   );
 }

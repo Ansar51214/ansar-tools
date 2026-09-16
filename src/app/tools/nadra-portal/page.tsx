@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import Link from "next/link";
 import {
   CreditCard,
@@ -285,7 +287,9 @@ export default function NadraPortalPage() {
   const calculated = calculateFee();
 
   return (
-    <div className="min-h-screen bg-[#070b14] text-slate-100 py-6 px-3 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#070b14] text-slate-100 flex flex-col font-sans">
+      <Navbar />
+      <main className="flex-1 py-8 px-3 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8">
 
         {/* Top Breadcrumb & Action */}
@@ -839,6 +843,8 @@ export default function NadraPortalPage() {
         </div>
 
       </div>
+      </main>
+      <Footer />
     </div>
   );
 }

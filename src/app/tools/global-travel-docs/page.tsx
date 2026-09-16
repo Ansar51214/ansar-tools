@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import Link from "next/link";
 import {
   FileSearch,
@@ -217,7 +219,9 @@ Address: Islamabad / Lahore / Karachi, Pakistan`;
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800">
+    <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans">
+      <Navbar />
+      <main className="flex-1">
       {/* 1. Header Banner */}
       <div className="bg-slate-900 text-white border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
@@ -1298,6 +1302,8 @@ Address: Islamabad / Lahore / Karachi, Pakistan`;
         )}
 
       </div>
+      </main>
+      <Footer />
     </div>
   );
 }
