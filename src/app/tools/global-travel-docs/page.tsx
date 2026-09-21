@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ToolPageHeader from "@/components/ToolPageHeader";
@@ -151,8 +151,14 @@ export default function GlobalTravelDocsPrep() {
   // ----------------------------------------------------
   // Formatted Cover Letter Output
   // ----------------------------------------------------
+  const [today, setToday] = useState('');
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setToday(new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }));
+  }, []);
+
   const generatedCoverLetter = useMemo(() => {
-    const today = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
     return `Date: ${today}
 
 To:
@@ -207,7 +213,7 @@ Passport No: ${coverData.passportNumber}
 CNIC No: ${coverData.cnicNumber}
 Contact: +92-3XXXXXXXXX
 Address: Islamabad / Lahore / Karachi, Pakistan`;
-  }, [coverData]);
+  }, [coverData, today]);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(generatedCoverLetter);

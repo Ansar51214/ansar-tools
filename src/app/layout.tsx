@@ -28,8 +28,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
         {/* To enable analytics, create a GA4 property at analytics.google.com, get the Measurement ID (starts with G-), and set NEXT_PUBLIC_GA_MEASUREMENT_ID in your deployment environment's env vars (e.g. Vercel project settings). */}
         {gaMeasurementId && (
           <>

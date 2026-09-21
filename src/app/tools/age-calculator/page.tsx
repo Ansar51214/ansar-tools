@@ -1,13 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
 import Footer from '@/components/Footer';
 
 export default function AgeCalculatorTool() {
   const [dob, setDob] = useState('');
+  const [maxDate, setMaxDate] = useState('');
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMaxDate(new Date().toISOString().split('T')[0]);
+  }, []);
+
   const [result, setResult] = useState<{
     years: number;
     months: number;
@@ -74,9 +81,6 @@ export default function AgeCalculatorTool() {
       nextBday: daysToNextBday
     });
   };
-
-  // Default max date = today (can't pick a future DOB)
-  const maxDate = new Date().toISOString().split('T')[0];
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans flex flex-col">

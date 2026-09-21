@@ -139,12 +139,8 @@ export default function InvoiceGeneratorPage() {
   // --- INVOICE HEADER & META ---
   const [invoiceTitle, setInvoiceTitle] = useState('INVOICE');
   const [invoiceNumber, setInvoiceNumber] = useState('INV-2026-001');
-  const [invoiceDate, setInvoiceDate] = useState(() => new Date().toISOString().split('T')[0]);
-  const [dueDate, setDueDate] = useState(() => {
-    const d = new Date();
-    d.setDate(d.getDate() + 15);
-    return d.toISOString().split('T')[0];
-  });
+  const [invoiceDate, setInvoiceDate] = useState('');
+  const [dueDate, setDueDate] = useState('');
   const [poNumber, setPoNumber] = useState('');
 
   // --- BUSINESS / SENDER DETAILS ---
@@ -251,6 +247,13 @@ export default function InvoiceGeneratorPage() {
       if (historyData) {
         setSavedInvoices(JSON.parse(historyData));
       }
+      setInvoiceDate((prev) => prev || new Date().toISOString().split('T')[0]);
+      setDueDate((prev) => {
+        if (prev) return prev;
+        const d = new Date();
+        d.setDate(d.getDate() + 15);
+        return d.toISOString().split('T')[0];
+      });
     } catch {
       // Ignore read errors
     }

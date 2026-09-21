@@ -69,14 +69,17 @@ export default function PassportPhotoMakerPage() {
   // --- Name & Date of Photo (DOP / DOB) Overlay State ---
   const [addNameDate, setAddNameDate] = useState<boolean>(false);
   const [candidateName, setCandidateName] = useState<string>('');
-  const [dopDate, setDopDate] = useState<string>(() => {
+  const [dopDate, setDopDate] = useState<string>('');
+  const [dopPrefix, setDopPrefix] = useState<string>('DOP: ');
+
+  useEffect(() => {
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');
     const mm = String(today.getMonth() + 1).padStart(2, '0');
     const yyyy = today.getFullYear();
-    return `${dd}/${mm}/${yyyy}`;
-  });
-  const [dopPrefix, setDopPrefix] = useState<string>('DOP: ');
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setDopDate(`${dd}/${mm}/${yyyy}`);
+  }, []);
 
   // --- Studio Border State ---
   const [addBorder, setAddBorder] = useState<boolean>(false);
