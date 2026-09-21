@@ -1,5 +1,7 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
+
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -1893,6 +1895,17 @@ export default function BackgroundRemoverPage() {
           </div>
         </section>
       </main>
+
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="AI Background Remover"
+        theme="dark"
+        about="Ansar Tools AI Background Remover automatically separates people, products, and objects from their backgrounds to generate clean transparent PNG cutouts. Optimized for e-commerce listings, ID badges, YouTube thumbnails, and marketing creatives, it processes graphics locally in your browser with zero subscription fees or watermarks."
+        howToUseTitle="How do I remove the background from an image?"
+        steps={[{"title":"Upload an Image","description":"Drag and drop a photo featuring a person, product, or pet into the upload box."},{"title":"Automatic AI Segmentation","description":"The background removal engine detects foreground boundaries and isolates the subject."},{"title":"Refine Edge Details","description":"Preview the transparent cutout against light, dark, or checkered backdrop views to inspect edge precision."},{"title":"Download Transparent PNG","description":"Save your cutout as a 32-bit transparent PNG or apply a solid background color before downloading."}]}
+        faqs={[{"question":"Does the tool support complex hair and soft edges?","answer":"Yes. The edge detection algorithm captures fine contours around hair, clothing folds, and product silhouettes for clean composition."},{"question":"Can I place a solid white or colored background behind the cutout?","answer":"Yes. You can keep the background transparent or replace it with solid white, grey, or studio blue directly before export."},{"question":"Is there a maximum image resolution?","answer":"For best performance, photos up to 4K resolution (4096x4096) are supported without browser lag."},{"question":"Is this tool truly free with no hidden credit charges?","answer":"Yes. Unlike other background removal services that charge per credit, Ansar Tools is 100% free with unlimited conversions."}]}
+      />
 
       <Footer />
     </div>

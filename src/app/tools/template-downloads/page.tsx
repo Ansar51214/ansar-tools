@@ -1,5 +1,6 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import { useState, useMemo, useRef } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -652,6 +653,17 @@ export default function TemplateDownloadsPage() {
           </div>
         </div>
       )}
+
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="Template Downloads Studio"
+        theme="dark"
+        about="Ansar Tools Template Downloads provides a curated library of free professional Microsoft Word documents, PSD graphics, certificate templates, invoice spreadsheets, and stationery layouts. Designed for students, office workers, and graphic designers, all templates are pre-formatted for standard printing and completely free to download."
+        howToUseTitle="How do I download and edit free templates?"
+        steps={[{"title":"Browse Template Categories","description":"Filter by category: Resumes, Business Invoices, Certificates, ID Cards, or Official Stationery."},{"title":"Preview Design Specifications","description":"Inspect template layouts, supported software formats (DOCX, PSD, PDF), and paper dimensions."},{"title":"One-Click Instant Download","description":"Click the Download button to save the source file directly to your computer with zero signup barriers."},{"title":"Customize in Word or Photoshop","description":"Open the template in your preferred desktop software and replace placeholder text with your content."}]}
+        faqs={[{"question":"Are these templates compatible with Microsoft Word and Google Docs?","answer":"Yes. DOCX templates can be opened and customized in Microsoft Word 2016+, Office 365, LibreOffice, and Google Docs."},{"question":"Do I need Adobe Photoshop to use the PSD templates?","answer":"You can edit our PSD files using Adobe Photoshop, Photopea (free online editor), or GIMP without losing layer styles."},{"question":"Are there any download limits or hidden paywalls?","answer":"No. All templates in our repository are 100% free with unlimited downloads and no user registration required."},{"question":"Can I use these templates for commercial client work?","answer":"Yes. The templates are licensed for both personal projects and commercial client deliverables."}]}
+      />
 
       <Footer />
     </div>

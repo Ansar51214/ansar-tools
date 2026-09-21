@@ -1,5 +1,6 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -147,6 +148,17 @@ export default function AgeCalculatorTool() {
           )}
         </div>
       </main>
+
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="Age Calculator"
+        theme="light"
+        about="Ansar Tools Age Calculator calculates your precise age down to years, months, weeks, days, hours, and minutes based on your date of birth. Built for official government forms, school admissions, and retirement milestones, it instantly calculates your upcoming birthday countdown and key life metrics in real time."
+        howToUseTitle="How do I calculate my exact age and next birthday?"
+        steps={[{"title":"Enter Your Date of Birth","description":"Select your birth year, month, and day using the calendar input or by typing your date."},{"title":"Select Reference Date","description":"Leave default as today's date or select a specific past or future date to calculate age at a specific milestone."},{"title":"Click Calculate Age","description":"Hit the 'Calculate Age' button to compute chronological age and milestone metrics instantly."},{"title":"Review Breakdown & Next Birthday","description":"Explore detailed stats showing your age in months, days, hours, minutes, and the exact countdown to your next birthday."}]}
+        faqs={[{"question":"Does the calculator account for leap years and different month lengths?","answer":"Yes. The underlying calculation uses JavaScript Date mathematics to accurately account for February leap years (29 days) and varying month lengths (30 vs 31 days)."},{"question":"Can I calculate my age at a future or historical date?","answer":"Yes. You can adjust the calculation date to find out how old you will be when taking an exam or how old you were on a historical day."},{"question":"Is my date of birth saved or tracked anywhere?","answer":"No. The calculation runs entirely client-side in your browser. No birth dates or personal identities are ever sent to a database."},{"question":"Can I copy my age breakdown for official forms?","answer":"Yes. You can easily select and copy your exact age format (Years, Months, Days) required for PPSC, FPSC, or CSS application forms."}]}
+      />
 
       <Footer />
     </div>

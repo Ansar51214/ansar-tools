@@ -1,5 +1,6 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import { useState, useRef } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -89,6 +90,17 @@ export default function QRGeneratorTool() {
           </div>
         </div>
       </main>
+
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="QR Code Generator"
+        theme="light"
+        about="Ansar Tools QR Code Generator creates high-resolution vector and raster QR codes for website URLs, Wi-Fi networks, WhatsApp chat links, contact vCards, and plain text. Featuring custom foreground and background colors, corner radius controls, and error correction levels, it delivers instantly scannable codes for print and digital marketing."
+        howToUseTitle="How do I generate custom QR codes online?"
+        steps={[{"title":"Select Data Type","description":"Choose what to encode: Website URL, Wi-Fi access credentials, WhatsApp message, vCard contact, or plain text."},{"title":"Enter Content Details","description":"Input your destination link, Wi-Fi SSID and password, or phone number with country code."},{"title":"Customize Appearance","description":"Pick custom foreground and background colors and adjust corner dot styles."},{"title":"Choose Error Correction Level","description":"Select Error Correction (L, M, Q, H) to ensure readability even if the QR code is partially obscured or printed small."},{"title":"Download PNG or SVG","description":"Save your finished QR code as a high-density PNG or scalable SVG vector graphic."}]}
+        faqs={[{"question":"Do these QR codes expire?","answer":"No. The generated codes are static QR codes that encode your data directly into the pixel pattern. They work permanently without expiration or scan limits."},{"question":"How does the Wi-Fi QR code work?","answer":"When scanned by a smartphone camera, the Wi-Fi QR code automatically connects the device to the network without typing the password."},{"question":"What error correction level should I choose for print?","answer":"Level 'H' (High - 30% recovery) is recommended if printing on merchandise, flyers, or outdoor banners where partial scuffing might occur."},{"question":"Can I use the generated QR codes for commercial projects?","answer":"Yes. All QR codes generated on Ansar Tools are 100% royalty-free for personal, commercial, and marketing use."}]}
+      />
 
       <Footer />
     </div>

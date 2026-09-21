@@ -1,5 +1,6 @@
 "use client";
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import ToolPageHeader from "@/components/ToolPageHeader";
@@ -154,6 +155,17 @@ export default function ContentCalendarPage() {
 
       </div>
       </main>
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="Content Calendar & Campaign Planner"
+        theme="dark"
+        about="Ansar Tools Master Content Calendar & Campaign Planner provides an interactive spreadsheet workspace to plan, schedule, and track multi-platform content across YouTube, TikTok, Instagram, LinkedIn, and Facebook. With color-coded status tags, Google Drive integration guides, and publishing checklists, it streamlines editorial workflows."
+        howToUseTitle="How do I plan and manage multi-platform social media content?"
+        steps={[{"title":"Select Target Social Platforms","description":"Choose the channels you publish on: YouTube, TikTok, Instagram, Facebook, LinkedIn, or Twitter/X."},{"title":"Plan Content Slots & Topics","description":"Map out posting dates, content pillars, headline hooks, visual formats, and caption drafts."},{"title":"Assign Status & Workflow Stages","description":"Update status tags (Idea, Scripting, Filming, Editing, Scheduled, Published) to monitor pipeline health."},{"title":"Sync with Google Drive & Export","description":"Download your calendar as an organized CSV/Excel sheet or sync directly with Google Drive spreadsheets."}]}
+        faqs={[{"question":"Can I export my content calendar to Google Sheets or Excel?","answer":"Yes. You can export your scheduled content directly to CSV or copy rows into Microsoft Excel and Google Sheets with intact formatting."},{"question":"Does the calendar support short-form video planning (Reels / TikTok)?","answer":"Yes. Dedicated fields let you plan audio tracks, on-screen hooks, video lengths, and call-to-actions specifically for vertical video."},{"question":"Is there a limit on how many content rows I can plan?","answer":"No. You can plan hundreds of posts across the entire month or quarter without performance lag."},{"question":"Do I need to connect my social media accounts?","answer":"No. This is an editorial planning workspace that requires no account permissions, passwords, or API logins."}]}
+      />
+
       <Footer />
     </div>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import React, { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -777,6 +778,17 @@ export default function FbrTaxServicesPage() {
 
       </div>
       </main>
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="FBR Tax Services & NTN Guide"
+        theme="dark"
+        about="Ansar Tools FBR Tax Services Portal Guide assists Pakistani citizens, salaried professionals, freelancers, and businesses in navigating the Federal Board of Revenue system. It provides direct access to Active Taxpayer List (ATL) status checks, National Tax Number (NTN) registration, IRIS portal guidelines, and tax rate calculations."
+        howToUseTitle="How do I check ATL status and register for an NTN?"
+        steps={[{"title":"Check Active Taxpayer Status (ATL)","description":"Verify whether your CNIC or NTN appears on the active taxpayer list to avoid higher withholding tax rates."},{"title":"Register New NTN via IRIS","description":"Follow step-by-step instructions to register for an individual or business NTN on the FBR IRIS 2.0 portal."},{"title":"Calculate Salaried or Business Tax","description":"Review applicable income tax slab rates for the current fiscal year to estimate tax liability."},{"title":"Direct Access to FBR Portals","description":"Navigate safely to authentic FBR, IRIS, and provincial revenue authority (PRA/SRB/KPRA) web portals."}]}
+        faqs={[{"question":"Why is maintaining FBR Active Taxpayer (ATL) status important?","answer":"Active taxpayers pay significantly lower withholding tax rates on banking transactions, property transfers, vehicle purchases, and prize bonds compared to non-filers."},{"question":"How can I verify my NTN status using SMS?","answer":"You can verify ATL status by sending 'ATL [13-digit CNIC]' via SMS to 9966 from any mobile network in Pakistan."},{"question":"Do freelancers and IT exporters need to pay income tax in Pakistan?","answer":"Registered IT and IT-enabled services exporters benefit from 0.25% concessionary tax rates when registered with PSEB and filing timely annual returns."},{"question":"Does Ansar Tools access my IRIS tax account?","answer":"No. We provide guidance, tax slab references, and direct official links. Your tax filings must be performed securely on the official FBR IRIS website."}]}
+      />
+
       <Footer />
     </div>
   );

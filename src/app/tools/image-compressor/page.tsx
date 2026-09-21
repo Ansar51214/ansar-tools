@@ -1,5 +1,7 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
+
 import { useState, useRef } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -195,6 +197,17 @@ export default function ImageCompressorTool() {
           )}
         </div>
       </main>
+
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="Image Compressor"
+        theme="light"
+        about="Ansar Tools Image Compressor minimizes file sizes for JPG, PNG, and WebP images by up to 90% without sacrificing perceptual clarity. Tailored for webmasters seeking faster page loads and applicants meeting strict portal upload thresholds, it provides real-time before-and-after size comparisons and batch download features."
+        howToUseTitle="How do I compress images online without losing quality?"
+        steps={[{"title":"Add Images to Queue","description":"Upload images by dropping them into the designated dropzone or selecting them via the file browser."},{"title":"Select Quality & Max Dimensions","description":"Adjust the compression slider and optional maximum width/height constraints to reach your target file size."},{"title":"Inspect Savings in Real Time","description":"Compare original vs compressed file sizes and review the estimated bandwidth reduction."},{"title":"Download Optimized Files","description":"Click 'Download All' to retrieve your compressed images in a single click."}]}
+        faqs={[{"question":"Which image formats are supported?","answer":"The compressor supports JPEG, PNG, and modern WebP formats, automatically optimizing each according to its compression capabilities."},{"question":"How much file size reduction can I expect?","answer":"Depending on initial image density, reductions between 50% and 85% are common with virtually zero noticeable loss in quality on screens."},{"question":"Is there a limit on image dimensions?","answer":"You can process large multi-megapixel smartphone and DSLR photos. You can also downscale max width/height to drastically reduce payload size."},{"question":"Do you keep copies of my personal photos?","answer":"No. Images are processed purely in client-side memory. No images are ever uploaded, logged, or saved to any external server."}]}
+      />
 
       <Footer />
     </div>

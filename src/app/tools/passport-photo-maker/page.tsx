@@ -1,5 +1,6 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -3134,6 +3135,17 @@ export default function PassportPhotoMakerPage() {
           </div>
         </div>
       </section>
+
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="Passport Size Photo Maker"
+        theme="dark"
+        about="Ansar Tools Passport Size Photo Maker creates compliant biometric photos for passports, visas, national ID cards, and official applications worldwide. Equipped with AI suit overlays, background color replacers, face-centering alignment grids, and standard 4x6 inch print sheet generators, it produces studio-grade passport prints from home."
+        howToUseTitle="How do I make passport-size photos with custom suits?"
+        steps={[{"title":"Upload Your Photo","description":"Upload a front-facing headshot with clear lighting and neutral facial expression."},{"title":"Choose Country & Visa Preset","description":"Select your target specification, such as Pakistani Passport (2x1.5 in), US Visa (2x2 in), or Schengen Visa (35x45 mm)."},{"title":"Align Face with Studio Guide","description":"Use the interactive zoom, rotate, and center guides to align eyes and chin within the biometric boundary."},{"title":"Apply Suit Overlay & Background Color","description":"Optionally select a formal professional suit overlay and set the background to solid white, blue, or grey."},{"title":"Download Print Grid Sheet","description":"Download individual high-res photos or a 4x6 inch / A4 photo sheet containing 4, 6, or 8 ready-to-cut pictures."}]}
+        faqs={[{"question":"What are the standard Pakistani passport photo dimensions?","answer":"Pakistani passports and NADRA CNIC forms require 2 x 1.5 inch (38 x 50 mm) photos with a sky blue or white background, which is pre-configured in our presets."},{"question":"How does the formal suit overlay feature work?","answer":"You can select from male and female formal business suits, blazers, and ties, and position them beneath your headshot for a polished, professional appearance."},{"question":"Can I print the 4x6 photo sheet at any local photo lab?","answer":"Yes. The exported 4x6 inch JPEG sheet is standard photo lab size (1200x1800 px at 300 DPI) and prints economically on glossy photo paper anywhere."},{"question":"Does the tool support US Visa (2x2 inches) requirements?","answer":"Yes. The 2x2 inch (51x51 mm) US Visa preset features the mandatory 50-69% head height ratio guide and pure white backdrop."}]}
+      />
 
       <Footer />
     </div>

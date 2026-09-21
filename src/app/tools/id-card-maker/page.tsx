@@ -1,5 +1,6 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import { useState, useMemo, useRef } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -1367,6 +1368,17 @@ export default function IdCardMakerPage() {
           </div>
         </div>
       )}
+
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="Pro ID Card Maker & PSD Studio"
+        theme="dark"
+        about="Ansar Tools Pro ID Card Maker empowers schools, companies, security agencies, and event organizers to design professional identification cards and employee badges. Featuring front-and-back dual layouts, photo upload with cropping, dynamic barcode and QR code generators, and multi-card print sheets, it simplifies credential generation."
+        howToUseTitle="How do I design and print employee or student ID cards?"
+        steps={[{"title":"Select Card Template & Orientation","description":"Choose between vertical portrait or horizontal landscape card orientations and pick a design preset."},{"title":"Enter Cardholder Details","description":"Input the employee or student name, designation, ID number, department, blood group, and emergency contact."},{"title":"Upload & Crop Portrait Photo","description":"Upload the cardholder's portrait photo and use the built-in cropper to position and center the face."},{"title":"Generate Barcode & QR Code","description":"Assign a unique ID number to automatically generate high-contrast scannable Code128 barcodes and QR codes."},{"title":"Export Single or Multi-Card Sheet","description":"Download high-resolution front/back PNG cards or compile multi-card A4 print grids ready for PVC lamination."}]}
+        faqs={[{"question":"What card dimensions does this tool produce?","answer":"Cards are formatted to standard CR80 credit-card dimensions (85.6mm x 53.98mm / 3.375 x 2.125 inches), fitting standard PVC badge holders."},{"question":"Can I print multiple cards onto a single A4 sheet?","answer":"Yes. The studio provides a dedicated multi-badge print layout that arranges multiple badges on standard A4 paper or PVC card trays."},{"question":"Are the generated barcodes and QR codes real and scannable?","answer":"Yes. Barcodes follow the universal Code128 standard and QR codes contain your encoded data, fully readable by handheld optical scanners and smartphone cameras."},{"question":"Can I add company logos and signatures?","answer":"Yes. You can upload custom company logos, authorized signatory signatures, and organizational stamp graphics directly onto the badge canvas."}]}
+      />
 
       <Footer />
     </div>

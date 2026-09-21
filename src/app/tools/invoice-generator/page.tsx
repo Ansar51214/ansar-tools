@@ -1,5 +1,6 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import { useState, useRef, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -731,6 +732,7 @@ export default function InvoiceGeneratorPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full">
           <ToolPageHeader toolName="Pro Invoice & GST Bill Studio" theme="dark" />
         </div>
+          <div className="mt-3 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><h1 className="text-xl sm:text-2xl font-bold text-white">Pro Invoice & GST Bill Studio</h1><p className="text-xs sm:text-sm text-slate-400">Create, customize, and print multi-currency invoices and receipts.</p></div>
       </div>
 
       {/* =======================================================================
@@ -2198,7 +2200,18 @@ export default function InvoiceGeneratorPage() {
 
       {/* Main Footer */}
       <div className="print:hidden">
-        <Footer />
+        
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="Pro Invoice & GST Bill Studio"
+        theme="dark"
+        about="Ansar Tools Pro Invoice Studio lets freelancers, agencies, and small businesses generate professional PDF invoices, GST tax bills, and thermal POS receipts. Operating entirely in-browser with multi-currency conversion, automated tax/discount calculations, number-to-words spelling, and local storage auto-save, it requires no sign-up or paid subscription."
+        howToUseTitle="How do I create and print professional invoices?"
+        steps={[{"title":"Enter Business & Client Details","description":"Fill in your company name, logo, NTN tax ID, and contact details alongside the client's billing information."},{"title":"Add Invoice Line Items","description":"Add billable services or products with item descriptions, quantities, rates, and individual unit discounts."},{"title":"Configure Tax, Currency & Discounts","description":"Select your currency (PKR, USD, EUR, GBP), adjust the GST/VAT tax percentage, and input global discounts or shipping fees."},{"title":"Choose Theme & Print Format","description":"Select an accent color palette and switch between standard A4 Portrait or 80mm POS Thermal Receipt format."},{"title":"Download PDF or Print","description":"Click 'Download PDF' or 'Print Invoice' to render high-resolution print-ready documents with zero watermarks."}]}
+        faqs={[{"question":"Does the tool automatically write totals in words?","answer":"Yes. The invoice engine automatically translates your net payable amount into English words (e.g. 'Fifty Thousand Rupees Only') for legal compliance."},{"question":"Are my client details and past invoices saved securely?","answer":"Invoices are saved directly to your browser's private local storage. They persist across page reloads without ever being sent to our servers."},{"question":"Can I generate 80mm thermal POS receipts for retail counters?","answer":"Yes. Switch the paper format toggle from 'A4 Portrait' to 'POS Thermal (80mm)' to instantly format receipts for thermal roll printers."},{"question":"Does this invoice generator support Pakistani tax (FBR / PRA / SRB GST)?","answer":"Yes. You can customize the tax label (GST, VAT, Sales Tax) and set the exact tax rate matching your provincial revenue authority requirements."}]}
+      />
+
+      <Footer />
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import React, { useState, useMemo, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -1328,6 +1329,17 @@ Address: Islamabad / Lahore / Karachi, Pakistan`;
 
       </div>
       </main>
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="Global Travel Docs Prep Studio"
+        theme="dark"
+        about="Ansar Tools Global Travel Docs Prep helps Pakistani travellers, students, and professionals prepare visa documentation compliant with international embassy standards. Featuring an interactive cover letter generator, minimum bank balance benchmark calculators, MOFA apostille attestation guidelines, and State Bank travel allowance rules, it simplifies global journey preparation."
+        howToUseTitle="How do I prepare visa cover letters and calculate bank balances?"
+        steps={[{"title":"Generate Custom Visa Cover Letter","description":"Fill in your travel itinerary, embassy name, passport number, and employment details to generate an embassy-grade letter."},{"title":"Calculate Minimum Bank Balance","description":"Use the benchmark calculator to estimate required closing balances and daily funds based on destination currency."},{"title":"Review MOFA Attestation Steps","description":"Consult the procedural guide for educational and civil certificate attestations through MOFA and Apostille portals."},{"title":"Verify Health & Transit Rules","description":"Check yellow fever, polio NIMS vaccination certificates, and State Bank of Pakistan foreign exchange quotas."}]}
+        faqs={[{"question":"Is the generated visa cover letter accepted by Schengen and UK embassies?","answer":"Yes. The cover letter follows standard consular formatting with flight itineraries, hotel bookings, financial sponsorship, and ties to home country."},{"question":"How is the recommended travel bank balance determined?","answer":"Benchmarks calculate estimated return flights, daily living allowances ($100-$150/day), hotel expenses, and a 25% safety reserve converted to PKR."},{"question":"Do I need a Polio vaccination certificate (NIMS) to travel abroad from Pakistan?","answer":"Yes. Under WHO guidelines, all travelers departing Pakistan after staying over 4 weeks require an authentic NIMS Polio Vaccination Certificate."},{"question":"Are my passport numbers and travel details saved?","answer":"No. All cover letter generation and bank balance math execute strictly in your browser. No travel records are saved or transmitted."}]}
+      />
+
       <Footer />
     </div>
   );

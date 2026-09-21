@@ -1,5 +1,6 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import { useState, useRef, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -2324,6 +2325,17 @@ export default function ShaadiBiodataPage() {
         </div>
 
       </main>
+
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="Shaadi Biodata Maker"
+        theme="dark"
+        about="Ansar Tools Shaadi Biodata Maker crafts elegant, culturally attuned matrimonial profiles for Pakistani, Muslim, and Desi communities. Featuring dedicated sections for religious values, education, family background, and partner preferences, it formats confidential biodatas into polished, printable PDFs with customizable Islamic themes and privacy controls."
+        howToUseTitle="How do I create a matrimonial biodata PDF?"
+        steps={[{"title":"Fill Personal & Religious Details","description":"Enter full name, age, height, education, occupation, sect, and religious lifestyle preferences."},{"title":"Add Family Background","description":"Detail father's occupation, mother's background, siblings, and family residence location."},{"title":"Specify Partner Expectations","description":"Outline preferred age bracket, educational qualifications, city preferences, and values."},{"title":"Upload Portrait Photo (Optional)","description":"Optionally upload a formal portrait photo with privacy blurring or crop adjustments."},{"title":"Export Confidential PDF","description":"Choose an elegant theme (Emerald, Royal Gold, Floral Rose) and download your print-ready matrimonial PDF."}]}
+        faqs={[{"question":"Is my family's personal matrimonial biodata kept private?","answer":"100% yes. All biodata details remain strictly in your local browser memory. No names, photos, or contact numbers are saved on any server."},{"question":"Can I create a biodata without adding a photograph?","answer":"Yes. The photo section is completely optional. If omitted, the biodata layout automatically adjusts to a sophisticated text-only format."},{"question":"Which visual themes are available?","answer":"You can select from classic Islamic architectural borders, modern minimalist serif templates, and regal Mughal-inspired borders."},{"question":"Can I save my biodata draft and finish editing later?","answer":"Yes. The tool auto-saves your progress in your browser's private local storage, allowing you to return and refine your profile anytime."}]}
+      />
 
       <Footer />
     </div>

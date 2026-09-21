@@ -1,5 +1,6 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -1025,7 +1026,18 @@ export default function TypingMasterTool() {
 
       {/* Main Footer */}
       <div className="print:hidden">
-        <Footer />
+        
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="Typing Master (Urdu, Hindi & English)"
+        theme="dark"
+        about="Ansar Tools Typing Master is an interactive touch-typing speed trainer and examination suite supporting Urdu (Phonetic), Hindi, and English keyboards. Designed for government job exam candidates, data entry operators, and students, it provides real-time WPM tracking, accuracy meters, and downloadable certification upon test completion."
+        howToUseTitle="How do I practice typing and earn a WPM certificate?"
+        steps={[{"title":"Select Language & Difficulty","description":"Choose Urdu (Phonetic keyboard), Hindi, or English and select test duration (1, 3, or 5 minutes)."},{"title":"Follow On-Screen Finger Placement","description":"Observe the interactive on-screen keyboard layout showing corresponding keys and correct finger zones."},{"title":"Type the Dynamic Text Passage","description":"Type the prompt text accurately as the real-time speed meter records WPM and keystroke accuracy."},{"title":"Review Analytics & Download Certificate","description":"Inspect your net words-per-minute, gross keystrokes, and error rate, then download a signed completion certificate."}]}
+        faqs={[{"question":"Do I need to install an Urdu or Hindi phonetic keyboard layout in Windows?","answer":"No. The built-in virtual keyboard automatically translates standard QWERTY keystrokes into Urdu Phonetic or Hindi characters directly inside the browser."},{"question":"How is Net WPM calculated?","answer":"Net Words Per Minute is calculated based on standard 5-character word equivalents minus typed error penalties, reflecting strict testing agency formulas."},{"question":"Is the downloaded typing certificate valid for job portfolios?","answer":"The certificate includes your candidate name, test date, accuracy percentage, and certified WPM speed, perfect for resumes and job portfolios."},{"question":"Does the test support backspace error correction?","answer":"Yes. You can press backspace to fix recent errors before moving forward, matching real-world transcription environments."}]}
+      />
+
+      <Footer />
       </div>
     </div>
   );

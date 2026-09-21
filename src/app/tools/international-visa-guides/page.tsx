@@ -1,5 +1,6 @@
 "use client";
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import React, { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -832,6 +833,17 @@ export default function InternationalVisaGuidesPage() {
 
       </div>
       </main>
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="International Visa Guides"
+        theme="dark"
+        about="Ansar Tools International Visa Guides provides comprehensive application checklists, official consular portal directories, and visa requirements for Pakistani passport holders. Spanning UAE Dubai visas, Saudi tourist/Umrah e-visas, UK visitor visas, Schengen Europe, Turkey, and Thailand, it organizes authentic visa pathways in one secure hub."
+        howToUseTitle="How do I check visa requirements for my destination country?"
+        steps={[{"title":"Select Destination Country","description":"Choose your travel destination: UAE, Saudi Arabia, United Kingdom, Schengen Zone, Turkey, or Malaysia."},{"title":"Review Visa Type & Requirements","description":"Examine requirements for tourist e-visas, sticker visas, transit permits, or business delegations."},{"title":"Check Required Supporting Documents","description":"Assemble passport validity, bank statements, tax returns, employment NOCs, and flight bookings."},{"title":"Access Verified Consular Application Portals","description":"Click direct links to official embassy websites, VFS Global, Gerry's, or official e-visa immigration servers."}]}
+        faqs={[{"question":"Which countries offer e-visas or visa-on-arrival for Pakistani passport holders?","answer":"Pakistani passport holders can obtain online e-visas or entry permits for Azerbaijan, Malaysia, Tajikistan, Qatar, and Gulf transit visas."},{"question":"Can I apply for a Saudi Tourist or Umrah e-Visa directly?","answer":"Yes. The guide details the official KSA MOFA Nusuk platform and requirements for GCC residents or valid US/UK visa holders to obtain instant e-visas."},{"question":"How do I avoid fraudulent visa agency scams?","answer":"Always submit applications and payments exclusively through official embassy portals and authorized centers (VFS Global, Gerry's, BLS) linked in our guide."},{"question":"Does Ansar Tools issue visas or guarantee approvals?","answer":"No. Ansar Tools is an informational directory. Visa approval rests exclusively with the sovereign immigration authorities of the destination country."}]}
+      />
+
       <Footer />
     </div>
   );

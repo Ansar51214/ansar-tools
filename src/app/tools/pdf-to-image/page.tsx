@@ -1,5 +1,7 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
+
 import { useState, useRef, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -1137,6 +1139,17 @@ export default function PdfToImagePage() {
           </div>
         </div>
       </section>
+
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="PDF to Image Converter"
+        theme="dark"
+        about="Ansar Tools PDF to Image Converter transforms PDF pages into high-resolution JPG or PNG pictures directly in your web browser. Built for researchers, students, and digital creators, it accurately renders vector typography, form layouts, and high-fidelity graphics with instant single-page or bulk ZIP file downloads."
+        howToUseTitle="How do I convert PDF pages to images?"
+        steps={[{"title":"Open Your PDF","description":"Drop your PDF file into the upload zone or click to browse files from your computer or smartphone."},{"title":"Choose Output Format & DPI","description":"Select between JPG (best for photos/scans) or PNG (best for vector diagrams) and pick your preferred rendering scale (1x, 2x, or 3x DPI)."},{"title":"Preview Rendered Pages","description":"Browse high-resolution visual previews of each rendered page in real time."},{"title":"Download Images","description":"Download individual pages as separate images or click 'Download All as ZIP' to retrieve every page at once."}]}
+        faqs={[{"question":"What is the difference between choosing JPG and PNG?","answer":"JPG produces smaller file sizes ideal for uploading document scans to portals. PNG preserves lossless sharpness with transparent elements, making it ideal for diagrams and slide graphics."},{"question":"Does rendering at 2x or 3x DPI increase image quality?","answer":"Yes. Higher DPI multipliers render vector text and shapes at crisp 300+ DPI equivalents, perfect for printing or zooming in on fine small print."},{"question":"Are my converted pages uploaded to any cloud server?","answer":"No. The conversion renders directly to HTML5 Canvas elements in your browser. Your confidential records stay 100% on your device."},{"question":"Can I convert multi-page documents all at once?","answer":"Yes. The tool processes every page in the document and bundles them into an organized ZIP archive with sequential file names."}]}
+      />
 
       <Footer />
     </div>

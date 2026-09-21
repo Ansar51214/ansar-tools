@@ -1,5 +1,7 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
+
 import { useState, useRef, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -952,6 +954,17 @@ export default function MergePdfPage() {
           </div>
         </div>
       </section>
+
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="Merge PDF Tool"
+        theme="dark"
+        about="Ansar Tools Merge PDF combines multiple PDF documents into a single organized file directly inside your web browser. Designed for job applicants, students, accountants, and office administrators, it allows you to upload unlimited PDF files, reorder pages intuitively, and download a unified document with zero server uploads or watermarks."
+        howToUseTitle="How do I merge multiple PDF files together?"
+        steps={[{"title":"Upload PDF Files","description":"Drag and drop two or more PDF files into the upload area or click the browse button to select files from your device."},{"title":"Arrange Document Order","description":"Use the up and down arrow buttons to reorder your PDF files into the exact sequence you want them combined."},{"title":"Review Page Counts","description":"Check individual file page counts and total combined pages shown on the summary card."},{"title":"Merge & Download","description":"Click the 'Merge PDF Files' button to compile your unified document instantly in memory and save it to your disk."}]}
+        faqs={[{"question":"Are my PDF documents uploaded to an external server?","answer":"No. The entire PDF merge process runs locally inside your browser engine using WebAssembly and pdf-lib. Your confidential files never leave your computer or phone."},{"question":"Is there a limit on how many PDFs I can combine?","answer":"There is no artificial cap on the number of PDFs you can merge. Because processing happens in browser memory, you can easily combine dozens of documents depending on your device's available RAM."},{"question":"Does merging alter the original quality or text content?","answer":"No. Our merger retains the original vector text, embedded fonts, image resolutions, and form fields intact without introducing recompression artifacts."},{"question":"Can I reorder individual pages within a PDF?","answer":"You can arrange the order of entire documents before merging. To edit or delete individual pages, you can use our Online PDF Editor tool."}]}
+      />
 
       <Footer />
     </div>

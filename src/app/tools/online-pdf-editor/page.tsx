@@ -1,5 +1,7 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
+
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -3461,7 +3463,20 @@ export default function ProfessionalPdfEditorPage() {
       )}
 
       {/* Footer on landing */}
-      {pages.length === 0 && <Footer />}
+      {pages.length === 0 && (
+        <>
+          <ToolGuideSection
+        toolName="Online PDF Editor"
+        theme="dark"
+        about="Ansar Tools Online PDF Editor provides an intuitive, browser-based workspace to modify documents, type text with custom fonts, insert digital signatures, highlight crucial passages, and white-out errors. Ideal for contract signing, invoice adjustments, and academic paperwork, it functions smoothly across mobile and desktop without software installation."
+        howToUseTitle="How do I edit and sign a PDF online?"
+        steps={[{"title":"Load Your PDF","description":"Upload the PDF you wish to edit using the file selector or drag-and-drop box."},{"title":"Select an Editing Tool","description":"Choose Text, Draw, Signature, Rectangle, Highlight, or White-Out from the toolbar or mobile bottom drawer."},{"title":"Annotate and Customize","description":"Click on the document canvas to position text, resize shapes, pick colors, or sign with your mouse or finger."},{"title":"Save & Export","description":"Click 'Export Edited PDF' to merge all vector annotations into a clean, downloadable PDF file."}]}
+        faqs={[{"question":"Can I draw and save my authentic handwritten signature?","answer":"Yes. The signature tool lets you draw your signature using a mouse, stylus, or touchscreen, adjust stroke thickness, and position it anywhere on the page."},{"question":"Does this editor work on mobile phones?","answer":"Yes. The editor features a dedicated mobile responsive bottom toolbar with slide-up drawers for tool selection, color options, and page navigation."},{"question":"Will editing corrupt existing form fields or text?","answer":"No. Your annotations are layered cleanly as new vector elements or white-out blocks atop the original PDF structure, preserving overall layout fidelity."},{"question":"Is there any watermark placed on exported files?","answer":"Never. Ansar Tools is completely free with zero watermarks, zero subscription paywalls, and zero account requirements."}]}
+      />
+
+                <Footer />
+        </>
+      )}
     </div>
   );
 }

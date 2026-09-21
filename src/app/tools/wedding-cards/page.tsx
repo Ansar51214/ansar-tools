@@ -1,5 +1,6 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import { useState, useMemo, useRef, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -1263,6 +1264,17 @@ Please share the digital design proof on this WhatsApp number and confirm delive
           </div>
         </div>
       )}
+
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="Animated Wedding Cards Studio"
+        theme="maroon"
+        about="Ansar Tools Animated Wedding Cards Studio designs bespoke digital invitations, Barat & Walima announcements, and mehndi cards featuring traditional Pakistani and Islamic aesthetics. With elegant Nastaliq calligraphy, floral gold borders, customizable couple names, and audio background integration, it creates memorable digital invitations."
+        howToUseTitle="How do I create and customize digital wedding invitation cards?"
+        steps={[{"title":"Choose Wedding Event Theme","description":"Select your event: Barat, Walima, Mehndi, Qawwali Night, or Save the Date announcement."},{"title":"Customize Couple & Event Details","description":"Enter the bride and groom names, parents' names, venue location, date, and program timings."},{"title":"Select Aesthetic Background & Borders","description":"Choose from royal maroon, emerald green, and gold foil ornamental frame borders."},{"title":"Preview & Export Digital Card","description":"Inspect the animated card layout and download as high-resolution printable graphic or shareable digital card."}]}
+        faqs={[{"question":"Does the card maker support Urdu Nastaliq calligraphy?","answer":"Yes. Pre-styled Islamic Bismillah calligraphy and Urdu phrasing can be included directly in your card typography."},{"question":"Can I share the generated wedding card directly on WhatsApp?","answer":"Yes. Exported cards are formatted for optimal mobile screen dimensions, making them easy to send to friends and family on WhatsApp."},{"question":"Can I print the invitation at a local printing press?","answer":"Yes. Downloads are exported at high-resolution 300 DPI, making them suitable for physical card stock and glossy paper printing."},{"question":"Are there any charges or watermarks on wedding invitations?","answer":"No. Ansar Tools provides all wedding card templates completely free without any watermarks."}]}
+      />
 
       <Footer />
     </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import { useState, useRef } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -150,6 +151,17 @@ export default function MetaGlassesTool() {
           )}
         </div>
       </main>
+
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="Meta Glasses Photo Converter"
+        theme="light"
+        about="Ansar Tools Meta Glasses 3D Effect injects authentic camera EXIF metadata and Ray-Ban Meta smart glasses device signatures into any photograph. Built for digital enthusiasts, tech reviewers, and mobile photographers, it modifies image header tags client-side while preserving original image quality and color reproduction."
+        howToUseTitle="How do I add Meta smart glasses camera metadata to photos?"
+        steps={[{"title":"Upload Source Photo","description":"Select a JPEG or PNG photo from your gallery or desktop folder."},{"title":"Select Meta Smart Glasses Profile","description":"Choose the target device profile (Ray-Ban Meta Wayfarer or Headliner) and camera firmware metadata tag."},{"title":"Customize Timestamp & Location","description":"Optionally update the capture timestamp and simulated geolocation EXIF tags."},{"title":"Inject Metadata & Download","description":"Click 'Process Photo' to embed the binary EXIF IFD data block and save your modified photo instantly."}]}
+        faqs={[{"question":"What EXIF tags are added to the photo?","answer":"The tool writes the camera Make ('Meta'), Model ('Ray-Ban Meta Smart Glasses'), Software ('Meta View App'), and Lens Model into the standard ExifIFD and 0th IFD headers."},{"question":"Does processing compress or downgrade my original photo quality?","answer":"No. The EXIF injection parses and inserts metadata blocks using piexifjs without recompressing the underlying image bitmap, keeping pixel data identical."},{"question":"Can social media platforms read the injected metadata?","answer":"Platforms and photo viewer apps that parse standard EXIF metadata will detect the camera hardware and device tags."},{"question":"Is my photo sent to an external server during processing?","answer":"No. The entire binary EXIF modification happens locally within your browser's JavaScript environment."}]}
+      />
 
       <Footer />
     </div>

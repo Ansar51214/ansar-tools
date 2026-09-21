@@ -1,5 +1,6 @@
 "use client";
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import React, { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -1070,6 +1071,17 @@ export default function PakistanJobsPage() {
 
       </div>
       </main>
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="Pakistan Jobs & Testing Portals Guide"
+        theme="dark"
+        about="Ansar Tools Pakistan Jobs Portal Guide centralizes verified testing agencies, public service commissions, and federal recruitment opportunities across Pakistan. Covering FPSC, PPSC, SPSC, KPPSC, NTS, OTS, and armed forces inductions, it provides syllabus breakdowns, roll number slip lookups, and result verification links in one organized directory."
+        howToUseTitle="How do I find government jobs and download roll number slips?"
+        steps={[{"title":"Browse By Testing Commission","description":"Filter recruitment notices across Federal (FPSC, NTS), Punjab (PPSC), Sindh (SPSC), or Khyber Pakhtunkhwa (KPPSC)."},{"title":"Check Eligibility & Application Deadlines","description":"Review required qualifications, age limits, provincial quotas, and chalans before applying."},{"title":"Download Syllabus & Challan Forms","description":"Access verified syllabus PDFs, past paper formats, and official National Bank challan receipts."},{"title":"Track Test Slips & Results","description":"Use direct portal links to access candidate admission certificates, exam centers, and merit interview lists."}]}
+        faqs={[{"question":"How do I download my roll number slip for NTS or PPSC exams?","answer":"Use our direct testing agency links, enter your 13-digit CNIC on the official portal, and download your printable admission certificate."},{"question":"Are private and military recruitment notices included?","answer":"Yes. The guide tracks Pakistan Army, Navy, PAF civilian vacancies, state-owned enterprises, and bank recruitment drives."},{"question":"Does Ansar Tools charge any application processing fee?","answer":"No. Ansar Tools is 100% free. All fee payments must be made via official agency challans at designated NBP or online banking channels."},{"question":"How often are job circulars and test schedules updated?","answer":"Portal directories and links are reviewed on an ongoing basis to ensure direct links to official commission job announcements remain functional."}]}
+      />
+
       <Footer />
     </div>
   );

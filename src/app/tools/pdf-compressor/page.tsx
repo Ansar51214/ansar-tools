@@ -1,5 +1,7 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
+
 import { useState, useRef, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -931,6 +933,17 @@ export default function PdfCompressorPage() {
           </div>
         </section>
       </main>
+
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="PDF Compressor"
+        theme="dark"
+        about="Ansar Tools PDF Compressor shrinks heavy PDF files down to target sizes such as under 1MB, 500KB, or 200KB for government job portals, university admissions, and email attachments. Operating entirely in your browser, it optimizes images and streams without uploading sensitive personal documents to third-party servers."
+        howToUseTitle="How do I compress a PDF online for free?"
+        steps={[{"title":"Select PDF Document","description":"Choose a PDF file from your device by clicking the upload zone or dragging it into the window."},{"title":"Choose Compression Mode","description":"Select your desired compression preset (Extreme, Recommended, or Low Compression) based on your target file size."},{"title":"Monitor Compression Progress","description":"Watch the client-side optimization meter as the tool compresses embedded images and structural metadata."},{"title":"Download Optimized PDF","description":"Review the final file size reduction percentage and click Download to save your compressed PDF instantly."}]}
+        faqs={[{"question":"Will compressing my PDF reduce text readability?","answer":"No. Vector text, digital signatures, and typography remain crisp and vector-based. Compression primarily targets oversized high-DPI embedded scans and uncompressed stream objects."},{"question":"Can I compress password-protected PDF files?","answer":"Encrypted or password-protected PDFs must be unlocked before compression because the browser engine needs permission to read and rewrite internal document streams."},{"question":"Does the compression meet Pakistani government portal limits (PPSC, FPSC, NTS)?","answer":"Yes. The Recommended and Extreme presets are specifically tuned to bring certificates and CNIC scans under 500KB and 200KB portal submission caps."},{"question":"Is my confidential document stored online?","answer":"Never. All compression runs client-side inside your browser via web workers. No document data is transmitted over the internet."}]}
+      />
 
       <Footer />
     </div>

@@ -1,5 +1,7 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
+
 import { useState, useRef } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -955,6 +957,17 @@ export default function PngToJpgPage() {
           </div>
         </div>
       </section>
+
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="PNG to JPG Converter"
+        theme="dark"
+        about="Ansar Tools PNG to JPG Converter turns transparent or heavy PNG graphics into lightweight, web-optimized JPEG files in seconds. Ideal for web designers, e-commerce sellers, and portal applicants needing compliant JPG uploads, it lets you customize background fills, tune compression quality, and batch download converted files."
+        howToUseTitle="How do I convert PNG images to JPG?"
+        steps={[{"title":"Upload PNG Images","description":"Select one or multiple PNG files from your device to queue them for batch conversion."},{"title":"Set Background Fill Color","description":"Since JPG does not support transparency, choose White, Black, or custom background color to replace transparent pixels."},{"title":"Adjust Quality Slider","description":"Fine-tune output image quality between 10% and 100% to balance file size against visual fidelity."},{"title":"Convert and Download","description":"Download your converted JPGs individually or save all images simultaneously in a single compressed ZIP file."}]}
+        faqs={[{"question":"Why do transparent areas become white by default?","answer":"The JPEG format does not support alpha channel transparency. By default, transparent pixels are replaced with crisp solid white, or any custom color you choose."},{"question":"Does batch converting multiple PNGs slow down my computer?","answer":"Conversions use browser Canvas rendering in lightweight sequential pipelines, ensuring fast processing without freezing your system memory."},{"question":"Can I convert photos from mobile camera galleries?","answer":"Yes. The converter works seamlessly on iOS, Android, macOS, and Windows with full touch support."},{"question":"Are my images sent to a remote API?","answer":"No. The entire image processing pipeline runs inside your local browser memory, guaranteeing total privacy."}]}
+      />
 
       <Footer />
     </div>

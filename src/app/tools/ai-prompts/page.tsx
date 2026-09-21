@@ -1,5 +1,6 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import { useState, useMemo, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -1166,6 +1167,17 @@ export default function AIPromptsGalleryPage() {
           </div>
         </div>
       )}
+
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="AI Prompts Vault"
+        theme="dark"
+        about="Ansar Tools AI Prompts Vault delivers over 150+ battle-tested, high-converting prompts engineered for ChatGPT, Claude, Gemini, and Midjourney. Categorized across copywriting, programming, marketing, career coaching, and graphic design, it lets you customize variables and copy optimized prompts in a single click."
+        howToUseTitle="How do I browse and customize AI prompts?"
+        steps={[{"title":"Explore Categories & Search","description":"Browse prompt categories (Coding, Copywriting, Marketing, Graphic Design, Business) or use the search bar."},{"title":"Preview Prompt Framework","description":"Review prompt objectives, target AI models (GPT-4, Claude, Midjourney), and expected outputs."},{"title":"Customize Dynamic Variables","description":"Replace bracketed placeholders (e.g. [Industry], [Target Audience]) with your specific details."},{"title":"One-Click Copy & Use","description":"Click 'Copy Prompt' to copy the formatted instructions to your clipboard and paste into your AI assistant."}]}
+        faqs={[{"question":"Are these prompts compatible with ChatGPT Free and GPT-4o?","answer":"Yes. All prompts are crafted with structured system instructions, few-shot examples, and role parameters that work across both free and premium LLMs."},{"question":"Can I export prompt collections for offline reference?","answer":"Yes. The vault includes one-click export options to download prompts in Markdown or JSON format for your private notes."},{"question":"Do the image prompts work for Midjourney v6 and DALL-E 3?","answer":"Yes. The Graphic Design section includes optimized visual prompts with camera angles, lighting cues, and aspect ratio parameters."},{"question":"Are new prompts added regularly?","answer":"The prompt vault is continuously refreshed with emerging techniques like chain-of-thought and structured persona frameworks."}]}
+      />
 
       <Footer />
     </div>

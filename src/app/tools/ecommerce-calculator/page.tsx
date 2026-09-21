@@ -1,5 +1,6 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import { useState, useMemo } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -828,6 +829,17 @@ Calculated with Multi-Tool Web App (Inspired by Apna Kamao)`;
 
         </div>
       </main>
+
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="E-Commerce Profit & Growth Calculator"
+        theme="dark"
+        about="Ansar Tools E-Commerce Profit & Growth Calculator evaluates product profitability, ad spend ROAS, fulfillment overheads, and net margins for online store owners. Tailored for Shopify, Daraz, Amazon, and WooCommerce sellers, it reveals your true break-even metrics and return on investment with interactive sensitivity sliders."
+        howToUseTitle="How do I calculate product profit margins and break-even ROAS?"
+        steps={[{"title":"Input Product Cost & Selling Price","description":"Enter your wholesale sourcing cost (COGS) and retail listing price per unit."},{"title":"Add Marketing & Ad Spend (CAC)","description":"Specify your average customer acquisition cost or ad budget to calculate required Return on Ad Spend (ROAS)."},{"title":"Factor Packaging & Delivery Fees","description":"Include courier shipping fees, return ratio reserves, and packaging box costs."},{"title":"Inspect Net Profit & Break-Even Targets","description":"Review gross margin percentages, net profit per order, and the minimum sales volume required to break even."}]}
+        faqs={[{"question":"How is the break-even ROAS calculated?","answer":"Break-even ROAS is calculated as Selling Price divided by (Selling Price minus COGS minus shipping and operational overheads), showing the minimum marketing efficiency required."},{"question":"Does the calculator factor in courier return ratios (RTO)?","answer":"Yes. You can specify expected return-to-origin percentages to accurately reflect cash deductions common in cash-on-delivery (COD) e-commerce."},{"question":"Can I simulate different sales volumes?","answer":"Yes. Adjust monthly sales targets to see projected gross revenue, total ad spend, and net monthly take-home profit."},{"question":"Is this calculator suitable for Amazon FBA and Daraz?","answer":"Yes. You can input custom platform referral and commission fees to model Amazon, Daraz, or local Shopify dropshipping margins."}]}
+      />
 
       <Footer />
     </div>

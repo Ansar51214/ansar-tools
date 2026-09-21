@@ -1,5 +1,6 @@
 'use client';
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import { useState, useMemo, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import ToolPageHeader from '@/components/ToolPageHeader';
@@ -1941,7 +1942,18 @@ ${resumeData.languages}
       />
 
       <div className="print:hidden">
-        <Footer />
+        
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="Pro ATS Resume Maker"
+        theme="dark"
+        about="Ansar Tools Pro ATS Resume Maker helps job seekers, fresh graduates, and seasoned professionals craft recruiter-ready, ATS-compliant CVs in minutes. With real-time PDF previews, customizable color themes, drag-and-drop section reordering, and instant single-column layouts, your resume passes applicant tracking systems effortlessly."
+        howToUseTitle="How do I build an ATS-friendly resume online?"
+        steps={[{"title":"Fill Personal & Contact Information","description":"Enter your full name, job title, email, phone number, location, and professional portfolio links."},{"title":"Add Experience & Education","description":"List previous roles with quantifiable achievements, followed by academic degrees and certifications."},{"title":"Highlight Core Skills & Languages","description":"Input your technical proficiencies, soft skills, and spoken language fluencies with visual rating badges."},{"title":"Customize Design Theme","description":"Select from modern ATS-approved color accents and clean typographic scales."},{"title":"Export Clean PDF","description":"Preview your resume in real time and click 'Download PDF' to generate an ATS-parseable document."}]}
+        faqs={[{"question":"Why is an ATS-friendly resume layout important?","answer":"Applicant Tracking Systems struggle with complex tables, graphical columns, and multi-layered text boxes. Our single-column clean format ensures 100% text parseability by automated screening software."},{"question":"Can I customize the resume sections and headings?","answer":"Yes. You can toggle optional sections like Projects, Certifications, and Languages, and tailor all bullet points to your target job description."},{"question":"Is my resume data stored privately?","answer":"Yes. Your resume data is automatically cached in your browser's local storage so you can return and edit anytime without external data storage."},{"question":"Does the PDF export retain selectable text?","answer":"Yes. The exported PDF contains true vector text, ensuring recruiters can copy-paste details and search for keywords."}]}
+      />
+
+      <Footer />
       </div>
     </div>
   );

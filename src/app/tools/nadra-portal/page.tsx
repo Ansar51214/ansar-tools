@@ -1,5 +1,6 @@
 "use client";
 
+import ToolGuideSection from '@/components/ToolGuideSection';
 import React, { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -817,6 +818,17 @@ export default function NadraPortalPage() {
 
       </div>
       </main>
+      
+      {/* SEO, How-to Guide & FAQ Section */}
+      <ToolGuideSection
+        toolName="NADRA Identity Portal Guide"
+        theme="dark"
+        about="Ansar Tools NADRA Identity Portal Guide organizes authentic procedures, official fee schedules, required documentation, and direct links for Pakistani civil registration. Designed for citizens and overseas Pakistanis, it simplifies Smart CNIC renewals, Family Registration Certificates (FRC), Child Registration Certificates (B-Form), and Pak-ID mobile verifications."
+        howToUseTitle="How do I use this NADRA service guide?"
+        steps={[{"title":"Select Required Identity Service","description":"Choose your service: Smart CNIC / NICOP renewal, FRC issuance, B-Form registration, or modification."},{"title":"Review Required Documents Checklist","description":"Verify mandatory documents including parent CNIC copies, marriage certificates (Nikahnama), or biometric proofs."},{"title":"Check Official Fee & Processing Time","description":"Consult current NADRA fee tables for Normal, Urgent, and Executive processing tiers."},{"title":"Access Direct Pak-ID Portal","description":"Click the verified direct portal link to submit applications through the official NADRA Pak-ID system."}]}
+        faqs={[{"question":"Can I renew my CNIC or NICOP online from abroad?","answer":"Yes. Overseas Pakistanis can renew their NICOP or Smart CNIC via the official NADRA Pak-ID mobile app with biometric fingerprint scanning."},{"question":"What is the difference between FRC and B-Form?","answer":"The B-Form (CRC) registers children under 18 with NADRA. The Family Registration Certificate (FRC) validates complete family lineage for visa and legal affairs."},{"question":"Does Ansar Tools charge any fees or collect personal data?","answer":"No. Ansar Tools is purely an informational guide. We never charge fees or collect CNIC numbers. All transactions happen on official government portals."},{"question":"What should I do if my fingerprints fail biometric verification?","answer":"NADRA provides senior citizen facial recognition verification and physical desk processing at local NADRA Mega Centers."}]}
+      />
+
       <Footer />
     </div>
   );
