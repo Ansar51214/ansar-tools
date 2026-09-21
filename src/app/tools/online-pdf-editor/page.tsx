@@ -38,7 +38,9 @@ import {
   AlignLeft,
   AlignCenter,
   AlignRight,
-  FilePlus
+  FilePlus,
+  Sliders,
+  Layers
 } from 'lucide-react';
 import type { PDFDocument } from 'pdf-lib';
 
@@ -114,6 +116,26 @@ export const GOOGLE_FONTS = [
 
 function createAnnotationId(prefix: string): string {
   return `anno-${prefix}-${Date.now()}`;
+}
+
+function getToolLabel(tool: ToolMode): string {
+  switch (tool) {
+    case 'select': return 'Select';
+    case 'text': return 'Text';
+    case 'eraser_brush': return 'Brush';
+    case 'whiteout': return 'Whiteout';
+    case 'draw': return 'Draw';
+    case 'shape_rect': return 'Rect';
+    case 'shape_circle': return 'Circle';
+    case 'shape_arrow': return 'Arrow';
+    case 'shape_line': return 'Line';
+    case 'signature': return 'Sign';
+    case 'image': return 'Image';
+    case 'highlight': return 'Highlight';
+    case 'check': return 'Check';
+    case 'cross': return 'Cross';
+    default: return 'Tools';
+  }
 }
 
 interface PDFPageProxy {
@@ -218,6 +240,9 @@ export default function ProfessionalPdfEditorPage() {
     currentX: number;
     currentY: number;
   } | null>(null);
+
+  // Mobile bottom sheet drawer state ('tools' | 'options' | 'pages' | null)
+  const [mobileDrawer, setMobileDrawer] = useState<'tools' | 'options' | 'pages' | null>(null);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -1955,7 +1980,7 @@ export default function ProfessionalPdfEditorPage() {
           <div className="flex-1 flex overflow-hidden">
             
             {/* LEFT TOOL PALETTE (Ansar Tools) */}
-            <aside className="w-16 sm:w-20 bg-slate-900 border-r border-slate-800 flex flex-col items-center py-3 gap-2 overflow-y-auto flex-shrink-0 z-30 shadow-lg">
+            <aside className="w-16 sm:w-20 bg-slate-900 border-r border-slate-800 flex-col items-center py-3 gap-2 overflow-y-auto flex-shrink-0 z-30 shadow-lg hidden md:flex">
               {/* Select */}
               <button
                 onClick={() => setActiveTool('select')}
@@ -2205,7 +2230,7 @@ export default function ProfessionalPdfEditorPage() {
             </aside>
 
             {/* MAIN DOCUMENT SCROLL VIEW */}
-            <section className="flex-1 bg-slate-950 overflow-y-auto p-4 sm:p-8 flex flex-col items-center gap-8 relative">
+            <section className="flex-1 bg-slate-950 overflow-y-auto p-2 sm:p-6 pb-24 md:pb-8 flex flex-col items-center gap-6 sm:gap-8 relative">
               
               {/* Active Tool Helper Banner */}
               <div className="sticky top-2 z-30 bg-slate-900/90 backdrop-blur border border-slate-700 text-xs text-slate-300 px-4 py-1.5 rounded-full shadow-lg flex items-center gap-2">
@@ -2540,6 +2565,703 @@ export default function ProfessionalPdfEditorPage() {
               })}
             </section>
 
+          </div>
+
+          {/* ========================================================================= */}
+          {/* MOBILE ONLY: BOTTOM SHEET SLIDE-UP DRAWER (OVERLAYING CANVAS)             */}
+          {/* ========================================================================= */}
+          {mobileDrawer && (
+            <>
+              {/* Backdrop */}
+              <div
+                onClick={() => setMobileDrawer(null)}
+                className="fixed inset-0 bg-black/60 backdrop-blur-xs z-40 md:hidden animate-in fade-in duration-200"
+              />
+
+              {/* Drawer Sheet */}
+              <div className="fixed bottom-14 left-0 right-0 max-h-[75vh] bg-slate-900 border-t border-slate-800 rounded-t-3xl shadow-2xl z-50 overflow-hidden flex flex-col animate-in slide-in-from-bottom duration-200 md:hidden">
+                {/* Drawer Pull Handle & Title */}
+                <div className="pt-2.5 pb-2 px-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/90">
+                  <div className="w-8" />
+                  <div className="flex flex-col items-center">
+                    <div className="w-10 h-1 bg-slate-700 rounded-full mb-1.5" />
+                    <span className="text-xs font-bold text-white uppercase tracking-wider">
+                      {mobileDrawer === 'tools' && 'Document Tools'}
+                      {mobileDrawer === 'options' && `Tool Settings: ${getToolLabel(activeTool)}`}
+                      {mobileDrawer === 'pages' && `Pages Management (${pages.length})`}
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => setMobileDrawer(null)}
+                    className="p-1.5 rounded-full hover:bg-slate-800 text-slate-400 hover:text-white"
+                  >
+                    <CrossIcon className="w-4 h-4" />
+                  </button>
+                </div>
+
+                {/* Drawer Content */}
+                <div className="p-4 overflow-y-auto max-h-[calc(75vh-56px)] space-y-4">
+                  {/* TAB 1: TOOLS GRID */}
+                  {mobileDrawer === 'tools' && (
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-4 gap-2">
+                        {/* Select */}
+                        <button
+                          onClick={() => { setActiveTool('select'); setMobileDrawer(null); }}
+                          className={`p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition ${
+                            activeTool === 'select' ? 'bg-blue-600 text-white shadow-lg' : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800'
+                          }`}
+                        >
+                          <MousePointer className="w-5 h-5" />
+                          <span className="text-[10px] font-bold">Select</span>
+                        </button>
+
+                        {/* Text */}
+                        <button
+                          onClick={() => { setActiveTool('text'); setMobileDrawer('options'); }}
+                          className={`p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition ${
+                            activeTool === 'text' ? 'bg-blue-600 text-white shadow-lg' : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800'
+                          }`}
+                        >
+                          <Type className="w-5 h-5" />
+                          <span className="text-[10px] font-bold">Text</span>
+                        </button>
+
+                        {/* Brush Eraser */}
+                        <button
+                          onClick={() => { setActiveTool('eraser_brush'); setMobileDrawer('options'); }}
+                          className={`p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition ${
+                            activeTool === 'eraser_brush' ? 'bg-purple-600 text-white shadow-lg' : 'bg-slate-800/80 text-purple-300 hover:bg-slate-800'
+                          }`}
+                        >
+                          <Eraser className="w-5 h-5" />
+                          <span className="text-[10px] font-bold">Brush</span>
+                        </button>
+
+                        {/* Whiteout */}
+                        <button
+                          onClick={() => { setActiveTool('whiteout'); setMobileDrawer('options'); }}
+                          className={`p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition ${
+                            activeTool === 'whiteout' ? 'bg-blue-600 text-white shadow-lg' : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800'
+                          }`}
+                        >
+                          <Square className="w-5 h-5" />
+                          <span className="text-[10px] font-bold">Whiteout</span>
+                        </button>
+
+                        {/* Freehand Draw */}
+                        <button
+                          onClick={() => { setActiveTool('draw'); setMobileDrawer('options'); }}
+                          className={`p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition ${
+                            activeTool === 'draw' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-800/80 text-indigo-300 hover:bg-slate-800'
+                          }`}
+                        >
+                          <Palette className="w-5 h-5" />
+                          <span className="text-[10px] font-bold">Draw</span>
+                        </button>
+
+                        {/* Rectangle */}
+                        <button
+                          onClick={() => { setActiveTool('shape_rect'); setMobileDrawer('options'); }}
+                          className={`p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition ${
+                            activeTool === 'shape_rect' ? 'bg-blue-600 text-white shadow-lg' : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800'
+                          }`}
+                        >
+                          <Square className="w-5 h-5" />
+                          <span className="text-[10px] font-bold">Rect</span>
+                        </button>
+
+                        {/* Circle */}
+                        <button
+                          onClick={() => { setActiveTool('shape_circle'); setMobileDrawer('options'); }}
+                          className={`p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition ${
+                            activeTool === 'shape_circle' ? 'bg-blue-600 text-white shadow-lg' : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800'
+                          }`}
+                        >
+                          <Circle className="w-5 h-5" />
+                          <span className="text-[10px] font-bold">Circle</span>
+                        </button>
+
+                        {/* Arrow */}
+                        <button
+                          onClick={() => { setActiveTool('shape_arrow'); setMobileDrawer('options'); }}
+                          className={`p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition ${
+                            activeTool === 'shape_arrow' ? 'bg-blue-600 text-white shadow-lg' : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800'
+                          }`}
+                        >
+                          <ArrowUpRight className="w-5 h-5" />
+                          <span className="text-[10px] font-bold">Arrow</span>
+                        </button>
+
+                        {/* Line */}
+                        <button
+                          onClick={() => { setActiveTool('shape_line'); setMobileDrawer('options'); }}
+                          className={`p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition ${
+                            activeTool === 'shape_line' ? 'bg-blue-600 text-white shadow-lg' : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800'
+                          }`}
+                        >
+                          <Minus className="w-5 h-5" />
+                          <span className="text-[10px] font-bold">Line</span>
+                        </button>
+
+                        {/* Digital Sign */}
+                        <button
+                          onClick={() => { setMobileDrawer(null); setShowSigModal(true); }}
+                          className="p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition bg-slate-800/80 text-sky-400 hover:bg-slate-800"
+                        >
+                          <PenTool className="w-5 h-5" />
+                          <span className="text-[10px] font-bold">Sign</span>
+                        </button>
+
+                        {/* Highlight */}
+                        <button
+                          onClick={() => { setActiveTool('highlight'); setMobileDrawer('options'); }}
+                          className={`p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition ${
+                            activeTool === 'highlight' ? 'bg-yellow-500 text-slate-950 font-bold shadow-lg' : 'bg-slate-800/80 text-yellow-400 hover:bg-slate-800'
+                          }`}
+                        >
+                          <Highlighter className="w-5 h-5" />
+                          <span className="text-[10px] font-bold">Highlight</span>
+                        </button>
+
+                        {/* Insert Image */}
+                        <button
+                          onClick={() => { setMobileDrawer(null); imageUploadRef.current?.click(); }}
+                          className="p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition bg-slate-800/80 text-green-400 hover:bg-slate-800"
+                        >
+                          <ImageIcon className="w-5 h-5" />
+                          <span className="text-[10px] font-bold">Image</span>
+                        </button>
+
+                        {/* Checkmark */}
+                        <button
+                          onClick={() => { setActiveTool('check'); setMobileDrawer(null); }}
+                          className={`p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition ${
+                            activeTool === 'check' ? 'bg-emerald-600 text-white shadow-lg' : 'bg-slate-800/80 text-emerald-400 hover:bg-slate-800'
+                          }`}
+                        >
+                          <Check className="w-5 h-5 stroke-[3]" />
+                          <span className="text-[10px] font-bold">Check ✓</span>
+                        </button>
+
+                        {/* Crossmark */}
+                        <button
+                          onClick={() => { setActiveTool('cross'); setMobileDrawer(null); }}
+                          className={`p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition ${
+                            activeTool === 'cross' ? 'bg-rose-600 text-white shadow-lg' : 'bg-slate-800/80 text-rose-400 hover:bg-slate-800'
+                          }`}
+                        >
+                          <CrossIcon className="w-5 h-5 stroke-[3]" />
+                          <span className="text-[10px] font-bold">Cross ✗</span>
+                        </button>
+                      </div>
+
+                      <p className="text-[11px] text-slate-400 text-center">
+                        💡 Tap a tool to select it, then interact directly with your PDF.
+                      </p>
+                    </div>
+                  )}
+
+                  {/* TAB 2: CURRENT TOOL OPTIONS */}
+                  {mobileDrawer === 'options' && (
+                    <div className="space-y-4">
+                      {activeTool === 'text' && (
+                        <div className="space-y-3.5">
+                          <div>
+                            <label className="block text-xs font-semibold text-slate-300 mb-1.5">Font Family</label>
+                            <select
+                              value={fontFamily}
+                              onChange={(e) => setFontFamily(e.target.value)}
+                              className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none"
+                            >
+                              {GOOGLE_FONTS.map((f) => (
+                                <option key={f.name} value={f.name}>
+                                  {f.label}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+
+                          <div>
+                            <div className="flex justify-between items-center text-xs text-slate-300 mb-1.5">
+                              <span>Font Size</span>
+                              <span className="font-mono text-blue-400 font-bold">{fontSize}px</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <button
+                                onClick={() => setFontSize(s => Math.max(10, s - 2))}
+                                className="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-base font-bold flex items-center justify-center border border-slate-700"
+                              >
+                                -
+                              </button>
+                              <input
+                                type="range"
+                                min="10"
+                                max="60"
+                                value={fontSize}
+                                onChange={(e) => setFontSize(parseInt(e.target.value))}
+                                className="flex-1 accent-blue-500 h-2 bg-slate-800 rounded-lg cursor-pointer"
+                              />
+                              <button
+                                onClick={() => setFontSize(s => Math.min(72, s + 2))}
+                                className="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-base font-bold flex items-center justify-center border border-slate-700"
+                              >
+                                +
+                              </button>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center justify-between gap-2 pt-1">
+                            <div className="flex items-center gap-1.5">
+                              <button
+                                onClick={() => setIsBold(!isBold)}
+                                className={`w-10 h-10 rounded-xl font-bold text-sm flex items-center justify-center transition ${
+                                  isBold ? 'bg-blue-600 text-white shadow' : 'bg-slate-800 text-slate-300 border border-slate-700'
+                                }`}
+                              >
+                                <Bold className="w-4 h-4" />
+                              </button>
+                              <button
+                                onClick={() => setIsItalic(!isItalic)}
+                                className={`w-10 h-10 rounded-xl font-serif italic text-sm flex items-center justify-center transition ${
+                                  isItalic ? 'bg-blue-600 text-white shadow' : 'bg-slate-800 text-slate-300 border border-slate-700'
+                                }`}
+                              >
+                                <Italic className="w-4 h-4" />
+                              </button>
+                            </div>
+
+                            <div className="flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800">
+                              {(['left', 'center', 'right'] as const).map((align) => (
+                                <button
+                                  key={align}
+                                  onClick={() => setTextAlign(align)}
+                                  className={`w-9 h-8 rounded-lg flex items-center justify-center transition ${
+                                    textAlign === align ? 'bg-blue-600 text-white' : 'text-slate-400'
+                                  }`}
+                                >
+                                  {align === 'left' && <AlignLeft className="w-3.5 h-3.5" />}
+                                  {align === 'center' && <AlignCenter className="w-3.5 h-3.5" />}
+                                  {align === 'right' && <AlignRight className="w-3.5 h-3.5" />}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-semibold text-slate-300 mb-1.5">Text Color</label>
+                            <div className="flex items-center gap-2">
+                              {['#000000', '#1e3a8a', '#dc2626', '#16a34a', '#d97706', '#ffffff'].map((hex) => (
+                                <button
+                                  key={hex}
+                                  onClick={() => setTextColor(hex)}
+                                  className={`w-8 h-8 rounded-full border-2 transition-all ${
+                                    textColor === hex ? 'scale-110 ring-2 ring-blue-500 border-white' : 'border-slate-700'
+                                  }`}
+                                  style={{ backgroundColor: hex }}
+                                />
+                              ))}
+                              <input
+                                type="color"
+                                value={textColor}
+                                onChange={(e) => setTextColor(e.target.value)}
+                                className="w-8 h-8 rounded-full cursor-pointer bg-transparent border-0 ml-1"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {activeTool === 'eraser_brush' && (
+                        <div className="space-y-4">
+                          <div>
+                            <label className="block text-xs font-semibold text-slate-300 mb-2">Brush Thickness</label>
+                            <div className="grid grid-cols-3 gap-2">
+                              {[
+                                { sz: 14, label: 'Fine (14px)' },
+                                { sz: 26, label: 'Medium (26px)' },
+                                { sz: 45, label: 'Thick (45px)' }
+                              ].map(({ sz, label }) => (
+                                <button
+                                  key={sz}
+                                  onClick={() => setEraserBrushSize(sz)}
+                                  className={`py-3 px-2 rounded-xl text-xs font-bold transition border ${
+                                    eraserBrushSize === sz
+                                      ? 'bg-purple-600 text-white border-purple-400 shadow-md'
+                                      : 'bg-slate-800 text-slate-300 border-slate-700'
+                                  }`}
+                                >
+                                  {label}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-semibold text-slate-300 mb-2">Background Paper Tone</label>
+                            <div className="grid grid-cols-2 gap-2">
+                              <button
+                                onClick={() => setCustomEraseColor('auto')}
+                                className={`py-2.5 px-3 rounded-xl text-xs font-bold transition border ${
+                                  customEraseColor === 'auto'
+                                    ? 'bg-blue-600 text-white border-blue-400 shadow-md'
+                                    : 'bg-slate-800 text-slate-300 border-slate-700'
+                                }`}
+                              >
+                                Auto-Match (Content-Aware)
+                              </button>
+                              <button
+                                onClick={() => setCustomEraseColor('#ffffff')}
+                                className={`py-2.5 px-3 rounded-xl text-xs font-bold transition border ${
+                                  customEraseColor === '#ffffff'
+                                    ? 'bg-blue-600 text-white border-blue-400 shadow-md'
+                                    : 'bg-slate-800 text-slate-300 border-slate-700'
+                                }`}
+                              >
+                                Pure White
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {activeTool === 'whiteout' && (
+                        <div className="space-y-3">
+                          <label className="block text-xs font-semibold text-slate-300">Whiteout Color Tone</label>
+                          <div className="grid grid-cols-3 gap-2">
+                            {[
+                              { val: 'auto', label: 'Auto-Match' },
+                              { val: '#ffffff', label: 'Pure White' },
+                              { val: '#fffdf8', label: 'Warm Cream' }
+                            ].map(({ val, label }) => (
+                              <button
+                                key={val}
+                                onClick={() => setCustomEraseColor(val)}
+                                className={`py-2.5 px-2 rounded-xl text-xs font-bold transition border ${
+                                  customEraseColor === val
+                                    ? 'bg-blue-600 text-white border-blue-400 shadow-md'
+                                    : 'bg-slate-800 text-slate-300 border-slate-700'
+                                }`}
+                              >
+                                {label}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {activeTool.startsWith('shape_') && (
+                        <div className="space-y-3.5">
+                          <div className="grid grid-cols-2 gap-2">
+                            <div>
+                              <label className="block text-xs font-semibold text-slate-300 mb-1.5">Style</label>
+                              <select
+                                value={shapeStyle}
+                                onChange={(e) => setShapeStyle(e.target.value as 'outline' | 'fill')}
+                                className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none"
+                              >
+                                <option value="outline">Outline Only</option>
+                                <option value="fill">Filled Color</option>
+                              </select>
+                            </div>
+
+                            <div>
+                              <label className="block text-xs font-semibold text-slate-300 mb-1.5">Stroke Width</label>
+                              <div className="grid grid-cols-4 gap-1">
+                                {[1, 2, 4, 6].map((w) => (
+                                  <button
+                                    key={w}
+                                    onClick={() => setShapeStrokeWidth(w)}
+                                    className={`py-2 rounded-lg text-xs font-mono font-bold transition ${
+                                      shapeStrokeWidth === w ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-400'
+                                    }`}
+                                  >
+                                    {w}px
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-semibold text-slate-300 mb-1.5">Shape Color</label>
+                            <div className="flex items-center gap-2">
+                              {['#2563eb', '#dc2626', '#16a34a', '#d97706', '#000000', '#ffffff'].map((hex) => (
+                                <button
+                                  key={hex}
+                                  onClick={() => setShapeColor(hex)}
+                                  className={`w-8 h-8 rounded-full border-2 transition-all ${
+                                    shapeColor === hex ? 'scale-110 ring-2 ring-blue-500 border-white' : 'border-slate-700'
+                                  }`}
+                                  style={{ backgroundColor: hex }}
+                                />
+                              ))}
+                              <input
+                                type="color"
+                                value={shapeColor}
+                                onChange={(e) => setShapeColor(e.target.value)}
+                                className="w-8 h-8 rounded-full cursor-pointer bg-transparent border-0 ml-1"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {activeTool === 'draw' && (
+                        <div className="space-y-3.5">
+                          <div>
+                            <div className="flex justify-between items-center text-xs text-slate-300 mb-1.5">
+                              <span>Pen Thickness</span>
+                              <span className="font-mono text-blue-400 font-bold">{penWidth}px</span>
+                            </div>
+                            <input
+                              type="range"
+                              min="1"
+                              max="14"
+                              value={penWidth}
+                              onChange={(e) => setPenWidth(parseInt(e.target.value))}
+                              className="w-full accent-blue-500 h-2 bg-slate-800 rounded-lg cursor-pointer"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-semibold text-slate-300 mb-1.5">Ink Color</label>
+                            <div className="flex items-center gap-2">
+                              {['#2563eb', '#000000', '#dc2626', '#16a34a', '#7c3aed', '#ffffff'].map((hex) => (
+                                <button
+                                  key={hex}
+                                  onClick={() => setPenColor(hex)}
+                                  className={`w-8 h-8 rounded-full border-2 transition-all ${
+                                    penColor === hex ? 'scale-110 ring-2 ring-blue-500 border-white' : 'border-slate-700'
+                                  }`}
+                                  style={{ backgroundColor: hex }}
+                                />
+                              ))}
+                              <input
+                                type="color"
+                                value={penColor}
+                                onChange={(e) => setPenColor(e.target.value)}
+                                className="w-8 h-8 rounded-full cursor-pointer bg-transparent border-0 ml-1"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {activeTool === 'highlight' && (
+                        <div className="space-y-3">
+                          <label className="block text-xs font-semibold text-slate-300">Highlighter Color Tone</label>
+                          <div className="grid grid-cols-5 gap-2">
+                            {[
+                              { name: 'Yellow', hex: '#fef08a' },
+                              { name: 'Green', hex: '#bbf7d0' },
+                              { name: 'Pink', hex: '#fbcfe8' },
+                              { name: 'Blue', hex: '#bae6fd' },
+                              { name: 'Orange', hex: '#fed7aa' }
+                            ].map(swatch => (
+                              <button
+                                key={swatch.hex}
+                                onClick={() => setHighlightColor(swatch.hex)}
+                                className={`h-11 rounded-xl border flex flex-col items-center justify-center transition-all ${
+                                  highlightColor === swatch.hex ? 'ring-2 ring-white border-white scale-105' : 'border-slate-700'
+                                }`}
+                                style={{ backgroundColor: swatch.hex }}
+                              >
+                                <span className="text-[9px] font-extrabold text-slate-900">{swatch.name}</span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {activeTool === 'select' && (
+                        <div className="space-y-3">
+                          <p className="text-xs text-slate-300">
+                            Select Mode is active. Tap any added element on the PDF canvas to select, reposition, resize, or delete it.
+                          </p>
+                          <div className="grid grid-cols-2 gap-2">
+                            <button
+                              onClick={duplicateSelectedElement}
+                              className="py-2.5 px-3 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border border-slate-700"
+                            >
+                              <Copy className="w-4 h-4 text-blue-400" /> Duplicate Element
+                            </button>
+                            <button
+                              onClick={handleFormatPainterClick}
+                              className={`py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition ${
+                                formatPainterActive
+                                  ? 'bg-amber-500 text-slate-950 font-bold'
+                                  : 'bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700'
+                              }`}
+                            >
+                              <Paintbrush className="w-4 h-4" /> Format Painter
+                            </button>
+                          </div>
+                        </div>
+                      )}
+
+                      {(activeTool === 'check' || activeTool === 'cross') && (
+                        <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800 text-center">
+                          <p className="text-xs text-slate-300">
+                            Tap anywhere on the PDF page or on a checkbox to stamp a {activeTool === 'check' ? '✓ Checkmark' : '✗ Crossmark'}.
+                          </p>
+                        </div>
+                      )}
+
+                      <button
+                        onClick={() => setMobileDrawer(null)}
+                        className="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-xs shadow-lg transition-all cursor-pointer"
+                      >
+                        Apply &amp; Return to PDF
+                      </button>
+                    </div>
+                  )}
+
+                  {/* TAB 3: PAGES DRAWER */}
+                  {mobileDrawer === 'pages' && (
+                    <div className="space-y-4">
+                      {/* Top Action Buttons */}
+                      <div className="grid grid-cols-2 gap-2">
+                        <button
+                          onClick={addBlankPage}
+                          className="py-2.5 px-3 bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/40 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5"
+                        >
+                          <Plus className="w-4 h-4" /> Add Blank Page
+                        </button>
+                        <button
+                          onClick={() => mergePdfInputRef.current?.click()}
+                          className="py-2.5 px-3 bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/40 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5"
+                        >
+                          <FilePlus className="w-4 h-4" /> Merge PDF
+                        </button>
+                      </div>
+
+                      {/* Pages Thumbnails Grid */}
+                      <div className="grid grid-cols-2 gap-3">
+                        {pages.map((page, idx) => (
+                          <div
+                            key={idx}
+                            onClick={() => {
+                              setActivePageIndex(idx);
+                              const el = document.getElementById(`editor-page-${idx}`);
+                              el?.scrollIntoView({ behavior: 'smooth' });
+                              setMobileDrawer(null);
+                            }}
+                            className={`rounded-2xl border-2 p-2 transition cursor-pointer flex flex-col ${
+                              activePageIndex === idx
+                                ? 'border-blue-500 bg-blue-500/10 shadow-lg'
+                                : 'border-slate-800 bg-slate-950/80 hover:border-slate-700'
+                            }`}
+                          >
+                            <div className="flex items-center justify-between text-[11px] font-bold text-slate-300 mb-1.5">
+                              <span>Page ${idx + 1}</span>
+                              <div className="flex items-center gap-1">
+                                <button
+                                  onClick={(e) => { e.stopPropagation(); rotatePage(idx); }}
+                                  className="p-1 hover:text-blue-400"
+                                  title="Rotate 90°"
+                                >
+                                  <RotateCw className="w-3.5 h-3.5" />
+                                </button>
+                                <button
+                                  onClick={(e) => { e.stopPropagation(); duplicatePage(idx); }}
+                                  className="p-1 hover:text-blue-400"
+                                  title="Duplicate"
+                                >
+                                  <Copy className="w-3.5 h-3.5" />
+                                </button>
+                                <button
+                                  onClick={(e) => { e.stopPropagation(); deletePage(idx); }}
+                                  className="p-1 hover:text-rose-400"
+                                  title="Delete"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
+                            </div>
+
+                            <div className="aspect-[3/4] bg-white rounded-lg overflow-hidden flex items-center justify-center shadow-inner">
+                              {page.canvasDataUrl ? (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
+                                  src={page.canvasDataUrl}
+                                  alt={`Page ${idx + 1}`}
+                                  className="w-full h-full object-contain"
+                                  style={{ transform: `rotate(${page.rotation}deg)` }}
+                                />
+                              ) : (
+                                <div className="text-slate-400 text-xs font-semibold">Blank</div>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
+
+          {/* ========================================================================= */}
+          {/* MOBILE ONLY: FIXED BOTTOM TOOLBAR                                         */}
+          {/* ========================================================================= */}
+          <div className="fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 px-2 py-1.5 flex items-center justify-around md:hidden shadow-2xl safe-area-inset-bottom">
+            {/* Tools Drawer Toggle */}
+            <button
+              onClick={() => setMobileDrawer(prev => prev === 'tools' ? null : 'tools')}
+              className={`flex-1 py-1 px-2 rounded-xl flex flex-col items-center justify-center gap-0.5 transition ${
+                mobileDrawer === 'tools' ? 'text-blue-400 bg-blue-500/10 font-bold' : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <Palette className="w-5 h-5" />
+              <span className="text-[10px] font-bold">Tools</span>
+            </button>
+
+            {/* Options Drawer Toggle */}
+            <button
+              onClick={() => setMobileDrawer(prev => prev === 'options' ? null : 'options')}
+              className={`flex-1 py-1 px-2 rounded-xl flex flex-col items-center justify-center gap-0.5 transition ${
+                mobileDrawer === 'options' ? 'text-blue-400 bg-blue-500/10 font-bold' : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <Sliders className="w-5 h-5" />
+              <span className="text-[10px] font-bold truncate max-w-[65px]">
+                {getToolLabel(activeTool)}
+              </span>
+            </button>
+
+            {/* Pages Drawer Toggle */}
+            <button
+              onClick={() => setMobileDrawer(prev => prev === 'pages' ? null : 'pages')}
+              className={`flex-1 py-1 px-2 rounded-xl flex flex-col items-center justify-center gap-0.5 transition ${
+                mobileDrawer === 'pages' ? 'text-blue-400 bg-blue-500/10 font-bold' : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <Layers className="w-5 h-5" />
+              <span className="text-[10px] font-bold">P. {activePageIndex + 1}/{pages.length}</span>
+            </button>
+
+            {/* Quick Undo */}
+            <button
+              onClick={handleUndo}
+              disabled={history.length === 0}
+              className="py-1 px-2.5 rounded-xl flex flex-col items-center justify-center gap-0.5 text-slate-400 hover:text-white disabled:opacity-30 cursor-pointer"
+              title="Undo last action"
+            >
+              <Undo2 className="w-4 h-4" />
+              <span className="text-[10px] font-bold">Undo</span>
+            </button>
+
+            {/* Zoom Cycle Button */}
+            <button
+              onClick={() => setZoomLevel(prev => prev >= 1.5 ? 0.6 : prev >= 1.0 ? 1.5 : prev >= 0.8 ? 1.0 : 0.8)}
+              className="py-1 px-2.5 rounded-xl flex flex-col items-center justify-center gap-0.5 text-slate-400 hover:text-white cursor-pointer"
+              title="Cycle Zoom"
+            >
+              <ZoomIn className="w-4 h-4" />
+              <span className="text-[10px] font-mono font-bold">{Math.round(zoomLevel * 100)}%</span>
+            </button>
           </div>
         </div>
       )}

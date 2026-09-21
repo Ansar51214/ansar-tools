@@ -1802,7 +1802,7 @@ export default function PassportPhotoMakerPage() {
                       onTouchEnd={handleMouseUp}
                       onWheel={handleWheel}
                       className="cursor-grab active:cursor-grabbing block touch-none"
-                      style={{ maxHeight: '540px', width: 'auto' }}
+                      style={{ maxHeight: '540px', width: 'auto', maxWidth: '100%' }}
                     />
 
                     {/* Canvas Floating Top Controls */}
@@ -1816,7 +1816,7 @@ export default function PassportPhotoMakerPage() {
                         <button
                           title="Toggle Biometric Head Guides"
                           onClick={() => setShowBiometricGuide(!showBiometricGuide)}
-                          className={`p-1.5 rounded text-xs flex items-center gap-1 ${
+                          className={`p-2 sm:p-1.5 min-h-[38px] rounded-lg text-xs flex items-center gap-1 ${
                             showBiometricGuide ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white'
                           }`}
                         >
@@ -1826,7 +1826,7 @@ export default function PassportPhotoMakerPage() {
                         <button
                           title="Toggle Rule of Thirds Grid"
                           onClick={() => setShowRuleOfThirds(!showRuleOfThirds)}
-                          className={`p-1.5 rounded text-xs flex items-center gap-1 ${
+                          className={`p-2 sm:p-1.5 min-h-[38px] rounded-lg text-xs flex items-center gap-1 ${
                             showRuleOfThirds ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white'
                           }`}
                         >
@@ -1843,7 +1843,7 @@ export default function PassportPhotoMakerPage() {
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => setZoom((z) => Math.max(0.5, z - 0.1))}
-                        className="p-1.5 text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg"
+                        className="p-2 sm:p-1.5 min-w-[38px] min-h-[38px] flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg"
                         title="Zoom Out"
                       >
                         <ZoomOut className="w-4 h-4" />
@@ -1858,7 +1858,7 @@ export default function PassportPhotoMakerPage() {
                       />
                       <button
                         onClick={() => setZoom((z) => Math.min(3.5, z + 0.1))}
-                        className="p-1.5 text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg"
+                        className="p-2 sm:p-1.5 min-w-[38px] min-h-[38px] flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg"
                         title="Zoom In"
                       >
                         <ZoomIn className="w-4 h-4" />
@@ -1891,31 +1891,31 @@ export default function PassportPhotoMakerPage() {
                     <div className="h-4 w-px bg-slate-800 mx-1" />
 
                     {/* Rotate and Flip Controls */}
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1.5">
                       <button
                         onClick={() => setRotation((r) => (r - 90) % 360)}
-                        className="p-1.5 text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg"
+                        className="p-2 sm:p-1.5 min-w-[38px] min-h-[38px] flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg"
                         title="Rotate 90° CCW"
                       >
                         <RotateCcw className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => setRotation((r) => (r + 90) % 360)}
-                        className="p-1.5 text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg"
+                        className="p-2 sm:p-1.5 min-w-[38px] min-h-[38px] flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg"
                         title="Rotate 90° CW"
                       >
                         <RotateCw className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => setFlipH(!flipH)}
-                        className={`p-1.5 rounded-lg ${flipH ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white hover:bg-slate-800'}`}
+                        className={`p-2 sm:p-1.5 min-w-[38px] min-h-[38px] flex items-center justify-center rounded-lg ${flipH ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white hover:bg-slate-800'}`}
                         title="Flip Horizontal"
                       >
                         <FlipHorizontal className="w-4 h-4" />
                       </button>
                       <button
                         onClick={handleResetFrame}
-                        className="px-2.5 py-1 text-xs text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg flex items-center gap-1"
+                        className="px-2.5 py-1.5 min-h-[38px] text-xs text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg flex items-center gap-1"
                         title="Reset Position & Zoom"
                       >
                         <RefreshCw className="w-3 h-3" /> Reset
@@ -1982,7 +1982,7 @@ export default function PassportPhotoMakerPage() {
         {/* RIGHT: Studio Controls Sidebar Tabs */}
         <div className="w-full lg:w-[420px] flex flex-col gap-4">
           {/* Tabs Navigation */}
-          <div className="grid grid-cols-6 gap-1 bg-slate-950 p-1.5 rounded-xl border border-slate-800">
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5 sm:gap-1 bg-slate-950 p-1.5 rounded-xl border border-slate-800">
             {([
               { id: 'preset', label: 'Preset', icon: <User className="w-3.5 h-3.5" /> },
               { id: 'namedate', label: 'Name/Date', icon: <TypeIcon className="w-3.5 h-3.5" /> },
@@ -2258,7 +2258,7 @@ export default function PassportPhotoMakerPage() {
                           <button
                             key={b.hex}
                             onClick={() => setBorderColor(b.hex)}
-                            className={`w-7 h-7 rounded-md border-2 transition-all ${
+                            className={`w-9 h-9 sm:w-8 sm:h-8 rounded-lg border-2 transition-all flex items-center justify-center ${
                               borderColor === b.hex ? 'border-blue-500 scale-110' : 'border-slate-700'
                             }`}
                             style={{ backgroundColor: b.hex }}
@@ -2443,7 +2443,7 @@ export default function PassportPhotoMakerPage() {
               </div>
 
               {/* Suit Templates Grid */}
-              <div className="grid grid-cols-3 gap-2.5 max-h-56 overflow-y-auto pr-1">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 max-h-56 overflow-y-auto pr-1">
                 {SUIT_TEMPLATES.filter((s) => s.gender === suitGenderTab).map((suit) => (
                   <button
                     key={suit.id}
@@ -2483,10 +2483,10 @@ export default function PassportPhotoMakerPage() {
                   {/* Nudge buttons */}
                   <div className="flex items-center justify-between pt-1">
                     <span className="text-xs text-slate-400">Position Nudge:</span>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1.5">
                       <button
                         onClick={() => setSuitPos((p) => ({ ...p, x: p.x - 4 }))}
-                        className="p-1.5 bg-slate-800 hover:bg-slate-700 rounded text-slate-300"
+                        className="p-2 sm:p-1.5 min-w-[36px] min-h-[36px] flex items-center justify-center bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300"
                         title="Nudge Left"
                       >
                         <ArrowLeft className="w-3.5 h-3.5" />
@@ -2494,14 +2494,14 @@ export default function PassportPhotoMakerPage() {
                       <div className="flex flex-col gap-1">
                         <button
                           onClick={() => setSuitPos((p) => ({ ...p, y: p.y - 4 }))}
-                          className="p-1.5 bg-slate-800 hover:bg-slate-700 rounded text-slate-300"
+                          className="p-1.5 sm:p-1 min-w-[36px] min-h-[22px] flex items-center justify-center bg-slate-800 hover:bg-slate-700 rounded text-slate-300"
                           title="Nudge Up"
                         >
                           <ArrowUp className="w-3.5 h-3.5" />
                         </button>
                         <button
                           onClick={() => setSuitPos((p) => ({ ...p, y: p.y + 4 }))}
-                          className="p-1.5 bg-slate-800 hover:bg-slate-700 rounded text-slate-300"
+                          className="p-1.5 sm:p-1 min-w-[36px] min-h-[22px] flex items-center justify-center bg-slate-800 hover:bg-slate-700 rounded text-slate-300"
                           title="Nudge Down"
                         >
                           <ArrowDown className="w-3.5 h-3.5" />
@@ -2509,14 +2509,14 @@ export default function PassportPhotoMakerPage() {
                       </div>
                       <button
                         onClick={() => setSuitPos((p) => ({ ...p, x: p.x + 4 }))}
-                        className="p-1.5 bg-slate-800 hover:bg-slate-700 rounded text-slate-300"
+                        className="p-2 sm:p-1.5 min-w-[36px] min-h-[36px] flex items-center justify-center bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300"
                         title="Nudge Right"
                       >
                         <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                       <button
                         onClick={() => setSuitFlip(!suitFlip)}
-                        className={`p-1.5 rounded ml-2 ${suitFlip ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-300'}`}
+                        className={`p-2 sm:p-1.5 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg ml-1 ${suitFlip ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-300'}`}
                         title="Flip Suit Horizontally"
                       >
                         <FlipHorizontal className="w-3.5 h-3.5" />
@@ -2814,7 +2814,7 @@ export default function PassportPhotoMakerPage() {
                     <canvas
                       ref={sigCanvasRef}
                       className="block shadow-inner bg-white rounded cursor-grab active:cursor-grabbing"
-                      style={{ maxHeight: '220px', width: 'auto' }}
+                      style={{ maxHeight: '220px', width: 'auto', maxWidth: '100%' }}
                     />
                   </div>
 
@@ -2822,7 +2822,7 @@ export default function PassportPhotoMakerPage() {
                   <div className="flex items-center gap-3 bg-slate-900/90 border border-slate-800 px-4 py-2 rounded-xl shadow-lg">
                     <button
                       onClick={() => setSigZoom((z) => Math.max(0.4, z - 0.1))}
-                      className="p-1.5 text-slate-300 hover:text-white rounded-lg hover:bg-slate-800"
+                      className="p-2 sm:p-1.5 min-w-[38px] min-h-[38px] flex items-center justify-center text-slate-300 hover:text-white rounded-lg hover:bg-slate-800"
                       title="Zoom Out"
                     >
                       <ZoomOut className="w-4 h-4" />
@@ -2833,11 +2833,11 @@ export default function PassportPhotoMakerPage() {
                       max="250"
                       value={Math.round(sigZoom * 100)}
                       onChange={(e) => setSigZoom(Number(e.target.value) / 100)}
-                      className="w-28 accent-blue-500 h-1.5 bg-slate-700 rounded-lg cursor-pointer"
+                      className="w-24 sm:w-28 accent-blue-500 h-1.5 bg-slate-700 rounded-lg cursor-pointer"
                     />
                     <button
                       onClick={() => setSigZoom((z) => Math.min(3, z + 0.1))}
-                      className="p-1.5 text-slate-300 hover:text-white rounded-lg hover:bg-slate-800"
+                      className="p-2 sm:p-1.5 min-w-[38px] min-h-[38px] flex items-center justify-center text-slate-300 hover:text-white rounded-lg hover:bg-slate-800"
                       title="Zoom In"
                     >
                       <ZoomIn className="w-4 h-4" />
@@ -2852,12 +2852,12 @@ export default function PassportPhotoMakerPage() {
                   </div>
 
                   {/* Nudge buttons */}
-                  <div className="flex items-center gap-1.5 bg-slate-900/70 border border-slate-800 px-3 py-1.5 rounded-lg text-xs text-slate-400">
+                  <div className="flex items-center gap-2 bg-slate-900/70 border border-slate-800 px-3 py-1.5 rounded-xl text-xs text-slate-400">
                     <span>Align:</span>
-                    <button onClick={() => setSigPan((p) => ({ ...p, x: p.x - 4 }))} className="p-1 hover:text-white bg-slate-800 rounded"><ArrowLeft className="w-3.5 h-3.5" /></button>
-                    <button onClick={() => setSigPan((p) => ({ ...p, y: p.y - 4 }))} className="p-1 hover:text-white bg-slate-800 rounded"><ArrowUp className="w-3.5 h-3.5" /></button>
-                    <button onClick={() => setSigPan((p) => ({ ...p, y: p.y + 4 }))} className="p-1 hover:text-white bg-slate-800 rounded"><ArrowDown className="w-3.5 h-3.5" /></button>
-                    <button onClick={() => setSigPan((p) => ({ ...p, x: p.x + 4 }))} className="p-1 hover:text-white bg-slate-800 rounded"><ArrowRight className="w-3.5 h-3.5" /></button>
+                    <button onClick={() => setSigPan((p) => ({ ...p, x: p.x - 4 }))} className="p-2 sm:p-1.5 min-w-[36px] min-h-[36px] flex items-center justify-center hover:text-white bg-slate-800 rounded-lg"><ArrowLeft className="w-3.5 h-3.5" /></button>
+                    <button onClick={() => setSigPan((p) => ({ ...p, y: p.y - 4 }))} className="p-2 sm:p-1.5 min-w-[36px] min-h-[36px] flex items-center justify-center hover:text-white bg-slate-800 rounded-lg"><ArrowUp className="w-3.5 h-3.5" /></button>
+                    <button onClick={() => setSigPan((p) => ({ ...p, y: p.y + 4 }))} className="p-2 sm:p-1.5 min-w-[36px] min-h-[36px] flex items-center justify-center hover:text-white bg-slate-800 rounded-lg"><ArrowDown className="w-3.5 h-3.5" /></button>
+                    <button onClick={() => setSigPan((p) => ({ ...p, x: p.x + 4 }))} className="p-2 sm:p-1.5 min-w-[36px] min-h-[36px] flex items-center justify-center hover:text-white bg-slate-800 rounded-lg"><ArrowRight className="w-3.5 h-3.5" /></button>
                   </div>
 
                   <p className="text-[11px] text-slate-400 text-center">

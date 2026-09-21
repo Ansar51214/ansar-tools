@@ -317,7 +317,7 @@ export default function IdCardMakerPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* LEFT COLUMN: CUSTOMIZER CONTROLS (5 cols) */}
-            <div className="lg:col-span-5 bg-slate-900/90 border border-slate-800 rounded-3xl p-6 shadow-2xl backdrop-blur-md space-y-6">
+            <div className="lg:col-span-5 bg-slate-900/90 border border-slate-800 rounded-3xl p-4 sm:p-6 shadow-2xl backdrop-blur-md space-y-6">
               <div className="flex items-center justify-between border-b border-slate-800 pb-4">
                 <div className="flex items-center gap-2">
                   <Sliders className="w-5 h-5 text-blue-400" />
@@ -368,7 +368,7 @@ export default function IdCardMakerPage() {
                     <button
                       type="button"
                       onClick={() => setOrientation('vertical')}
-                      className={`py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                      className={`py-2 sm:py-1.5 min-h-[38px] flex items-center justify-center text-xs font-semibold rounded-lg transition-all ${
                         orientation === 'vertical' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-white'
                       }`}
                     >
@@ -377,7 +377,7 @@ export default function IdCardMakerPage() {
                     <button
                       type="button"
                       onClick={() => setOrientation('horizontal')}
-                      className={`py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                      className={`py-2 sm:py-1.5 min-h-[38px] flex items-center justify-center text-xs font-semibold rounded-lg transition-all ${
                         orientation === 'horizontal' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-white'
                       }`}
                     >
@@ -394,7 +394,7 @@ export default function IdCardMakerPage() {
                     <button
                       type="button"
                       onClick={() => setActiveSide('both')}
-                      className={`py-1.5 text-[11px] font-semibold rounded-lg transition-all ${
+                      className={`py-2 sm:py-1.5 min-h-[38px] flex items-center justify-center text-[11px] font-semibold rounded-lg transition-all ${
                         activeSide === 'both' ? 'bg-blue-600 text-white' : 'text-slate-400'
                       }`}
                     >
@@ -403,7 +403,7 @@ export default function IdCardMakerPage() {
                     <button
                       type="button"
                       onClick={() => setActiveSide('front')}
-                      className={`py-1.5 text-[11px] font-semibold rounded-lg transition-all ${
+                      className={`py-2 sm:py-1.5 min-h-[38px] flex items-center justify-center text-[11px] font-semibold rounded-lg transition-all ${
                         activeSide === 'front' ? 'bg-blue-600 text-white' : 'text-slate-400'
                       }`}
                     >
@@ -412,7 +412,7 @@ export default function IdCardMakerPage() {
                     <button
                       type="button"
                       onClick={() => setActiveSide('back')}
-                      className={`py-1.5 text-[11px] font-semibold rounded-lg transition-all ${
+                      className={`py-2 sm:py-1.5 min-h-[38px] flex items-center justify-center text-[11px] font-semibold rounded-lg transition-all ${
                         activeSide === 'back' ? 'bg-blue-600 text-white' : 'text-slate-400'
                       }`}
                     >
@@ -461,7 +461,7 @@ export default function IdCardMakerPage() {
               </div>
 
               {/* Theme Colors Customizer */}
-              <div className="grid grid-cols-3 gap-3 pt-2 border-t border-slate-800">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-slate-800">
                 <div>
                   <label className="block text-[11px] font-semibold text-slate-400 mb-1">Primary Color</label>
                   <div className="flex items-center gap-1.5 bg-slate-950 p-1.5 rounded-lg border border-slate-800">
@@ -546,7 +546,7 @@ export default function IdCardMakerPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                   <div>
                     <label className="block text-[11px] font-medium text-slate-400 mb-1">ID Number</label>
                     <input
@@ -646,14 +646,14 @@ export default function IdCardMakerPage() {
                   <button
                     type="button"
                     onClick={() => setAvatarShape('circle')}
-                    className={`px-2 py-0.5 text-[10px] rounded ${avatarShape === 'circle' ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-400'}`}
+                    className={`px-3 py-1.5 sm:py-0.5 min-h-[34px] flex items-center justify-center text-[10px] font-medium rounded ${avatarShape === 'circle' ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-400'}`}
                   >
                     Circle
                   </button>
                   <button
                     type="button"
                     onClick={() => setAvatarShape('rounded')}
-                    className={`px-2 py-0.5 text-[10px] rounded ${avatarShape === 'rounded' ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-400'}`}
+                    className={`px-3 py-1.5 sm:py-0.5 min-h-[34px] flex items-center justify-center text-[10px] font-medium rounded ${avatarShape === 'rounded' ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-400'}`}
                   >
                     Square
                   </button>
@@ -708,7 +708,7 @@ export default function IdCardMakerPage() {
               </div>
 
               {/* LIVE CARDS RENDER CONTAINER */}
-              <div className="bg-slate-900/50 border border-slate-800/80 rounded-3xl p-6 sm:p-10 flex flex-col items-center justify-center min-h-[560px] shadow-2xl overflow-hidden relative">
+              <div className="bg-slate-900/50 border border-slate-800/80 rounded-3xl p-3 sm:p-10 flex flex-col items-center justify-center min-h-[560px] shadow-2xl overflow-hidden relative w-full max-w-full">
                 
                 {/* Visual grid backdrop */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
@@ -722,7 +722,7 @@ export default function IdCardMakerPage() {
                   {/* FRONT SIDE CARD                                           */}
                   {/* ========================================================= */}
                   {(activeSide === 'front' || activeSide === 'both') && (
-                    <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center w-full max-w-full overflow-x-auto py-1">
                       
                       {/* Optional Lanyard Ribbon Mockup */}
                       {showLanyard && (
@@ -954,7 +954,7 @@ export default function IdCardMakerPage() {
                   {/* BACK SIDE CARD                                            */}
                   {/* ========================================================= */}
                   {(activeSide === 'back' || activeSide === 'both') && (
-                    <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center w-full max-w-full overflow-x-auto py-1">
                       
                       {/* Optional Lanyard Clip for Back */}
                       {showLanyard && (
