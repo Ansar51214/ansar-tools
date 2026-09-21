@@ -8,49 +8,43 @@ Base URL: https://ansartools.com
 - Nothing Leaves Your Device: Your documents, photos, and personal records stay entirely on your local machine. No remote server storage, no data mining, and zero tracking.
 - No Catch, Ever: Every single utility is freely accessible without premium paywalls, sneaky trial periods, artificial watermarks, or sign-up hurdles.
 
-## Complete Tool Directory (33 Tools)
-
-### Popular Tools
-- **Latest Pakistan Jobs & Results Portal**: Find verified government and private jobs in Pakistan with direct links to FPSC, PPSC, NTS, OTS, and educational boards. (URL: https://ansartools.com/tools/pakistan-jobs)
-- **Master Content Calendar & Drive Sheet**: Streamline your multi-platform content scheduling with our interactive spreadsheet and calendar workspace. (URL: https://ansartools.com/tools/content-calendar)
-- **Clients & Financial Freedom Calculator**: Calculate your exact monthly survival budget, income gap, required client pipeline, and daily outreach targets. (URL: https://ansartools.com/tools/clients-financial-calculator)
-- **E-Commerce Profit & Growth Calculator**: Calculate product profit margins, marketing ROAS, fulfillment costs, and net revenue for Shopify, Daraz, and Amazon stores. (URL: https://ansartools.com/tools/ecommerce-calculator)
-- **Online PDF Editor**: Full-featured browser PDF editor to edit text, add digital signatures, shapes, highlights, and erase content. (URL: https://ansartools.com/tools/online-pdf-editor)
-- **Passport Size Photo Maker**: Create biometric passport photos with AI suit overlays, custom background colors, face centering, and print-ready grid sheets. (URL: https://ansartools.com/tools/passport-photo-maker)
-- **Pro ID Card Maker & PSD Studio**: Create professional ID cards, student badges, and corporate credentials with custom photos, barcodes, QR codes, and print layouts. (URL: https://ansartools.com/tools/id-card-maker)
-- **Shaadi Biodata Maker**: Create beautiful marriage biodatas with religious details, family background, partner preferences, and premium printable layouts. (URL: https://ansartools.com/tools/shaadi-biodata)
-- **Pro ATS Resume Maker**: Design ATS-compliant professional resumes with real-time formatting, recruiter-approved sections, custom themes, and clean PDF export. (URL: https://ansartools.com/tools/resume-maker)
-- **Fresher Resume Builder**: Dedicated resume maker designed for students, fresh graduates, and career starters with modern templates. (URL: https://ansartools.com/tools/resume-maker)
-- **Pro Invoice & GST Bill Studio**: Create, customize, and print professional invoices with automatic tax, discount, currency conversion, and number-to-words calculation. (URL: https://ansartools.com/tools/invoice-generator)
-- **Multi-Currency Invoice (USD/PKR)**: Multi-currency invoice creator supporting USD, PKR, EUR, GBP, and automatic currency formatting. (URL: https://ansartools.com/tools/invoice-generator)
-- **AI Background Remover**: Instantly remove image backgrounds online for free with AI and download clean transparent PNGs. (URL: https://ansartools.com/tools/background-remover)
-- **PDF to Image Converter**: Extract every page of your PDF into high-quality JPG or PNG images instantly in your browser with zero upload lag. (URL: https://ansartools.com/tools/pdf-to-image)
-- **Merge PDF**: Easily merge multiple PDF documents into a single organized file with drag-and-drop reordering, page preview, and high-speed processing. (URL: https://ansartools.com/tools/merge-pdf)
-- **PNG to JPG Converter**: Fast and secure batch image format converter from transparent PNGs to high-definition JPGs with custom background color fill. (URL: https://ansartools.com/tools/png-to-jpg)
+## Complete Tool Directory (27 Tools)
 
 ### Document & PDF Tools
+- **Online PDF Editor**: Full-featured browser PDF editor to edit text, add digital signatures, shapes, highlights, and erase content. (URL: https://ansartools.com/tools/online-pdf-editor)
 - **PDF Compressor**: Shrink large PDF documents to under 1MB, 500KB, or 200KB for government job portals, university submissions, and email attachments. (URL: https://ansartools.com/tools/pdf-compressor)
+- **PDF to Image Converter**: Extract every page of your PDF into high-quality JPG or PNG images instantly in your browser with zero upload lag. (URL: https://ansartools.com/tools/pdf-to-image)
+- **Merge PDF**: Easily merge multiple PDF documents into a single organized file with drag-and-drop reordering, page preview, and high-speed processing. (URL: https://ansartools.com/tools/merge-pdf)
+- **Pro Invoice & GST Bill Studio**: Create, customize, and print professional multi-currency invoices with automatic tax, discount, currency conversion, and number-to-words calculation. (URL: https://ansartools.com/tools/invoice-generator)
 
 ### Image & Photo Tools
+- **Passport Size Photo Maker**: Create biometric passport photos with AI suit overlays, custom background colors, face centering, and print-ready grid sheets. (URL: https://ansartools.com/tools/passport-photo-maker)
+- **AI Background Remover**: Instantly remove image backgrounds online for free with AI and download clean transparent PNGs. (URL: https://ansartools.com/tools/background-remover)
+- **PNG to JPG Converter**: Fast and secure batch image format converter from transparent PNGs to high-definition JPGs with custom background color fill. (URL: https://ansartools.com/tools/png-to-jpg)
 - **Image Compressor**: Reduce image file sizes by up to 90% while preserving visual clarity for web optimization, portals, and online forms. (URL: https://ansartools.com/tools/image-compressor)
 - **Meta Glasses 3D Effect**: Convert and inject EXIF camera metadata into photos to simulate Meta smart glasses and camera hardware tags. (URL: https://ansartools.com/tools/meta-glasses)
 
-### AI Prompts & Templates
-- **Master Content Calendar (Google Sheets)**: Editorial scheduling and social media campaign master sheet template. (URL: https://ansartools.com/tools/content-calendar)
-- **Pro ID Card Maker Studio**: Complete ID badge generation suite with printable sheets and customizable layouts. (URL: https://ansartools.com/tools/id-card-maker)
-- **AI Prompts Gallery**: Browse and customize high-converting AI prompts for graphic design, coding, writing, marketing, career, and business productivity. (URL: https://ansartools.com/tools/ai-prompts)
+### Design, AI & Templates
+- **Pro ID Card Maker & PSD Studio**: Create professional ID cards, student badges, and corporate credentials with custom photos, barcodes, QR codes, and print layouts. (URL: https://ansartools.com/tools/id-card-maker)
+- **Shaadi Biodata Maker**: Create beautiful marriage biodatas with religious details, family background, partner preferences, and premium printable layouts. (URL: https://ansartools.com/tools/shaadi-biodata)
 - **Animated Wedding Cards**: Design traditional and modern wedding invitation cards, Barat & Walima announcements with Urdu/English typography and gold borders. (URL: https://ansartools.com/tools/wedding-cards)
+- **AI Prompts Gallery**: Browse and customize high-converting AI prompts for graphic design, coding, writing, marketing, career, and business productivity. (URL: https://ansartools.com/tools/ai-prompts)
 - **Template Downloads**: Download free graphic templates, business card layouts, invoice designs, certificates, and ID card source files. (URL: https://ansartools.com/tools/template-downloads)
 
-### Career & Utility Tools
-- **Online Mock Test**: Interactive online practice tests and MCQs for competitive exams and testing agency preparations. (URL: https://ansartools.com/tools/mock-test)
+### Career & Productivity Tools
+- **Pro ATS Resume Maker**: Design ATS-compliant professional resumes with real-time formatting, recruiter-approved sections, custom themes, and clean PDF export. (URL: https://ansartools.com/tools/resume-maker)
+- **Master Content Calendar & Drive Sheet**: Streamline your multi-platform content scheduling with our interactive spreadsheet and calendar workspace. (URL: https://ansartools.com/tools/content-calendar)
+- **Clients & Financial Freedom Calculator**: Calculate your exact monthly survival budget, income gap, required client pipeline, and daily outreach targets. (URL: https://ansartools.com/tools/clients-financial-calculator)
+- **E-Commerce Profit & Growth Calculator**: Calculate product profit margins, marketing ROAS, fulfillment costs, and net revenue for Shopify, Daraz, and Amazon stores. (URL: https://ansartools.com/tools/ecommerce-calculator)
+
+### Utility & Learning Tools
 - **Urdu, Hindi & English Typing Master**: Improve typing speed with interactive touch typing exercises in Urdu (Phonetic), Hindi, and English. Test WPM and download certificates. (URL: https://ansartools.com/tools/typing-master)
 - **QR Code Generator**: Generate high-resolution vector QR codes for websites, contact cards, Wi-Fi networks, WhatsApp chat, and text with custom colors. (URL: https://ansartools.com/tools/qr-generator)
-- **Age Calculator**: Free online age calculator. Calculate your exact age in years, months, weeks, days, hours, and find out your upcoming milestone birthdays. (URL: https://ansartools.com/tools/age-calculator)
+- **Age Calculator**: Calculate your exact age in years, months, weeks, days, hours, and find out your upcoming milestone birthdays. (URL: https://ansartools.com/tools/age-calculator)
 
-### Portal Services & Official Utility Guides
+### Portal Services & Official Verification Guides
+- **Latest Pakistan Jobs & Results Portal**: Find verified government and private jobs in Pakistan with direct links to FPSC, PPSC, NTS, OTS, and educational boards. (URL: https://ansartools.com/tools/pakistan-jobs)
 - **NADRA Identity Portal**: Official guidelines and direct links for NADRA Smart Card renewals, Family Registration Certificates (FRC), and civil registration in Pakistan. (URL: https://ansartools.com/tools/nadra-portal)
 - **FBR Tax Services**: Comprehensive portal for Pakistani taxpayers: FBR Active Taxpayer List (ATL) status, NTN verification, and income tax filing guidelines. (URL: https://ansartools.com/tools/fbr-tax-services)
 - **International Visa Guides**: Authentic visa application directory for Pakistani passport holders covering Dubai, Saudi Arabia, UK, Schengen, USA, and Far East. (URL: https://ansartools.com/tools/international-visa-guides)
 - **Global Travel Docs Prep**: Prepare embassy-grade cover letters, calculate minimum bank balance benchmarks, and verify MOFA Apostille and NIMS polio certificates. (URL: https://ansartools.com/tools/global-travel-docs)
-- **Pakistan Jobs Portal**: Direct links to FPSC, PPSC, NTS, OTS, and educational boards across Pakistan. (URL: https://ansartools.com/tools/pakistan-jobs)
