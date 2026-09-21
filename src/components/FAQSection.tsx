@@ -25,8 +25,25 @@ export default function FAQSection() {
 
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer,
+      },
+    })),
+  };
+
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <div className="text-center mb-10">
         <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
         <p className="text-gray-600">Got questions? We&apos;ve got answers.</p>

@@ -21,6 +21,30 @@ export const metadata: Metadata = {
   description: "Ansar Tools is a powerful all-in-one suite of free online tools: PDF editor, invoice generator, resume maker, ID card designer, typing master, and official portal guides.",
 };
 
+const siteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://ansartools.com/#organization",
+      "name": "Ansar Tools",
+      "url": "https://ansartools.com",
+      "logo": "https://ansartools.com/logo.svg",
+      "description": "Pakistan's all-in-one free digital utility suite offering PDF, document, image, and productivity tools.",
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ansartools.com/#website",
+      "name": "Ansar Tools",
+      "url": "https://ansartools.com",
+      "publisher": {
+        "@id": "https://ansartools.com/#organization",
+      },
+      "description": "Pakistan's all-in-one free digital utility suite offering PDF, document, image, and productivity tools.",
+    },
+  ],
+};
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
@@ -31,6 +55,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
+        />
         {/* To enable analytics, create a GA4 property at analytics.google.com, get the Measurement ID (starts with G-), and set NEXT_PUBLIC_GA_MEASUREMENT_ID in your deployment environment's env vars (e.g. Vercel project settings). */}
         {gaMeasurementId && (
           <>
