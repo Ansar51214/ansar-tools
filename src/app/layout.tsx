@@ -52,8 +52,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-      suppressHydrationWarning
     >
+      {/* Suppresses a known false-positive hydration warning caused by browser extensions (e.g. ColorZilla's cz-shortcut-listen attribute, Grammarly, Dark Reader) injecting attributes into <body> before React hydrates — this is not an application bug. */}
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <script
           type="application/ld+json"
